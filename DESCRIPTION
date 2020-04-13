@@ -15,3 +15,6 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 URL: https://github.com/ruthkr/effectorpred
 BugReports: https://github.com/ruthkr/effectorpred/issues
+Imports: 
+    magrittr,
+    dplyr
