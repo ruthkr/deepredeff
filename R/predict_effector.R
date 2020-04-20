@@ -6,21 +6,24 @@
 #'
 #' @return Dataframe with sequences and effector predictions
 #' @export
+#'
+#' @importFrom rlang .data
 predict_effector <- function(x, pathogen = "all", col_names) {
   # Check if input is FASTA or dataframe
   if (is.character(x)) {
-
     data_list <- seqinr::read.fasta(x)
 
-    data_raw <-  data_list %>%
+    data_raw <- data_list %>%
       purrr::map(
         .f = function(x) {
           data.frame(
             c(
-              x %>% attributes() %>% unlist(),
+              x %>%
+                attributes() %>%
+                unlist(),
               x %>%
                 paste0(collapse = "") %>%
-                stringr::str_to_upper() %>%
+                toupper() %>%
                 `names<-`("sequence")
             ) %>%
               rbind()
@@ -30,8 +33,7 @@ predict_effector <- function(x, pathogen = "all", col_names) {
       purrr::reduce(dplyr::bind_rows)
 
     data <- data_raw %>%
-      dplyr::select(name, sequence)
-
+      dplyr::select(.data$name, .data$sequence)
   } else {
     data <- x %>%
       dplyr::select({{ col_names }})
@@ -41,9 +43,9 @@ predict_effector <- function(x, pathogen = "all", col_names) {
 
   if (pathogen == "bacteria") {
     max_length <- 2574
-  } else if (pathogen == "oomycete"){
+  } else if (pathogen == "oomycete") {
     max_length <- 934
-  } else if (pathogen == "fungi"){
+  } else if (pathogen == "fungi") {
     max_length <- 4034
   } else {
     max_length <- 4034
@@ -75,9 +77,9 @@ predict_effector <- function(x, pathogen = "all", col_names) {
     )
 
   preds <- cbind(
-      data,
-      prob = unlist(pred_list)
-    )
+    data,
+    prob = unlist(pred_list)
+  )
 
   return(preds)
 }
