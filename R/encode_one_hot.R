@@ -26,5 +26,8 @@ encode_one_hot <- function(sequence, max_length = 4034) {
     count <- count + 1
   }
 
+  encoded_sequence <- encoded_sequence %>%
+    array(dim = c(1, max_length, length(keys)))
+
   return(encoded_sequence)
 }
