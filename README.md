@@ -7,8 +7,9 @@
 
 <!-- badges: end -->
 
-The goal of effectorpred is to
-…
+**effectorpred** is a package for prediction an effector given amino
+acid sequence of a
+protein.
 
 ## Installation
 
@@ -33,6 +34,6 @@ devtools::install_github("ruthkr/effectorpred")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-# library(effectorpred)
+library(effectorpred)
 ## basic example code
 ```
