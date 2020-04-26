@@ -1,17 +1,38 @@
-#' Predict on a single sequence
+#' Prediction mapper helper
 #'
-#' @param sequence Sequence.
-#' @param model Trained model.
+#' @param sequence_list List of sequences.
+#' @param model_list List of models.
 #'
-#' @return Prediction.
-#' @export
-predict_single_effector <- function(sequence, model) {
+#' @return List of predictions.
+prediction_mapper <- function(sequence_list, model_list) {
+  pred_list <- purrr::map(
+    .x = model_list,
+    .f = function(model) {
+      purrr::map(
+        .x = sequence_list,
+        .f = function(sequence) {
+          # Select encoding method
+          if (model$layers[[1]] %>% stringr::str_detect("embedding")) {
+            encode_method <- encode_integer
+          } else {
+            encode_method <- encode_one_hot
+          }
 
-  result <- stats::predict(model, sequence)
+          max_length <- unlist(model$layers[[1]]$input_shape)[[1]]
 
-  return(result)
+          # Make prediction
+          pred <- encode_method(sequence, max_length) %>%
+            stats::predict(model, .) %>%
+            as.numeric()
+
+          return(pred)
+        }
+      )
+    }
+  )
+
+  return(pred_list)
 }
-
 
 #' Predict effector
 #'
@@ -28,44 +49,34 @@ predict_effector <- function(x, pathogen = "all", col_names) {
 
   # Check if input is FASTA or dataframe
   if (is.character(x)) {
-    data <- fasta_to_df(x) %>%
+    sequence_df <- fasta_to_df(x) %>%
       dplyr::select(.data$name, .data$sequence)
   } else {
-    data <- x %>%
+    sequence_df <- x %>%
       dplyr::select({{ col_names }})
   }
 
-  # Load model
-  model <- load_model(pathogen)
-  max_length <- model$layers[[1]]$input_shape[[1]][[2]]
+  # Make list of sequences
+  sequence_list <- sequence_df %>%
+    dplyr::pull(sequence) %>%
+    as.list()
 
-  # Process sequences
-  # seq_list <- data %>%
-  #   dplyr::pull(sequence) %>%
-  #   as.list() %>%
-  #   purrr::map(
-  #     .f = function(x) {
-  #       sequence <- encode_one_hot(x, max_length)
-  #       return(sequence)
-  #     }
-  #   )
+  # Select ensemble method
+  if (pathogen == "bacteria") {
+    ensemble_method <- ensemble_weighted
+  } else {
+    ensemble_method <- function(x) { return(x[[1]]) }
+  }
+
+  # Load model
+  model_list <- load_model(pathogen)
 
   # Make predictions
-  pred_list <- data %>%
-    dplyr::pull(sequence) %>%
-    as.list() %>%
-    purrr::map(
-      .f = function(x) {
-        pred <- encode_integer(x, max_length) %>%
-          predict_single_effector(model) %>%
-          as.numeric()
-        return(pred)
-      }
-    )
+  pred_list <- prediction_mapper(sequence_list, model_list)
 
-  preds <- cbind(
-    data,
-    prob = unlist(pred_list)
+  preds <- dplyr::bind_cols(
+    sequence_df,
+    prob = unlist(ensemble_method(pred_list))
   )
 
   return(preds)
