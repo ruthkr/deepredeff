@@ -1,8 +1,8 @@
 #' Load model in HDF5 format
 #'
-#' @param pathogen Name of pathogen
+#' @param pathogen Name of pathogen.
 #'
-#' @return all of the hyperparamaters and parameters of particula model from specific chosen pathogen
+#' @return all of the hyperparamaters and parameters of particula model from specific chosen pathogen.
 #' @export
 load_model <- function(pathogen = c("all", "bacteria", "fungi", "oomycete")) {
   pathogen <- match.arg(pathogen)

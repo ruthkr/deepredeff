@@ -1,8 +1,8 @@
 #' FASTA to dataframe
 #'
-#' @param fasta_path Path to FASTA file
+#' @param fasta_path Path to FASTA file.
 #'
-#' @return Data frame
+#' @return Data frame.
 #' @export
 fasta_to_df <- function(fasta_path) {
   data_list <- seqinr::read.fasta(fasta_path)

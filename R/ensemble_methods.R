@@ -1,9 +1,9 @@
-#' Ensemble Weighted
+#' Ensemble weighted
 #'
 #' @param pred_list List of deep learning models.
 #' @param weights Accuracy values from evaluating the validation dataset.
 #'
-#' @return Prediction
+#' @return Prediction.
 #' @export
 ensemble_weighted <- function(pred_list, weights) {
   ensemble_pred <- purrr::pmap(

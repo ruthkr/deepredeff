@@ -1,9 +1,9 @@
-#' One-hot Encoder
+#' One-hot encoder
 #'
-#' @param sequence Sequence
-#' @param max_length Maximum sequence length used on the training data
+#' @param sequence Sequence.
+#' @param max_length Maximum sequence length used on the training data.
 #'
-#' @return One-hot encoded sequence
+#' @return One-hot encoded sequence.
 #' @export
 encode_one_hot <- function(sequence, max_length = 4034) {
   keys <- as.list(1:20)
@@ -32,12 +32,12 @@ encode_one_hot <- function(sequence, max_length = 4034) {
   return(encoded_sequence)
 }
 
-#' Integer Encoder
+#' Integer encoder
 #'
-#' @param sequence Sequence
-#' @param max_length Maximum sequence length used on the training data
+#' @param sequence Sequence.
+#' @param max_length Maximum sequence length used on the training data.
 #'
-#' @return Integer encoded sequence
+#' @return Integer encoded sequence.
 #' @export
 encode_integer <- function(sequence, max_length = 4034) {
   # Define the list of the letters
