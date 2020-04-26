@@ -4,3 +4,4 @@
 ^LICENSE\.md$
 ^tests.Rmd$
 ^tests2.Rmd$
+^data-raw$
