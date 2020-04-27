@@ -10,11 +10,7 @@ load_model <- function(pathogen = c("all", "bacteria", "fungi", "oomycete")) {
   model_paths <- Sys.glob(paste0(system.file("extdata", "weights", package = "deeffpred"), "/", pathogen, "*.hdf5"))
 
   # Model names for list
-  model_names <- model_paths %>%
-    stringr::str_split("/") %>%
-    unlist() %>%
-    grep(".hdf5", x = ., value = TRUE) %>%
-    stringr::str_remove_all(paste0(pathogen, "_|.hdf5"))
+  model_names <- gsub(paste0(".*\\/", pathogen, "_|.hdf5"), "", model_paths)
 
   # Clear Keras session graph
   keras::k_clear_session()

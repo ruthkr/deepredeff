@@ -2,17 +2,13 @@
 
 bacteria_weight_paths <- Sys.glob(here::here("data-raw", "bacteria_*.csv"))
 
-bacteria_weight_names <- bacteria_weight_paths %>%
-  stringr::str_split("/") %>%
-  unlist() %>%
-  grep(".csv", x = ., value = TRUE) %>%
-  stringr::str_remove_all(paste0("bacteria_|.csv"))
+bacteria_weight_names <- gsub(".*\\/bacteria_|.csv", "", bacteria_weight_paths)
 
 bacteria_weights <- bacteria_weight_paths %>%
   purrr::map(
     .f = function(x) {
       weight <- x %>%
-      data.table::fread() %>%
+        data.table::fread() %>%
         tail(n = 3L) %>%
         dplyr::filter(acc == max(acc)) %>%
         dplyr::slice(1) %>%
