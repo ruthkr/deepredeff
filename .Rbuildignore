@@ -5,3 +5,4 @@
 ^tests.Rmd$
 ^tests2.Rmd$
 ^data-raw$
+^benchmarks\.Rmd$
