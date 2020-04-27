@@ -12,7 +12,7 @@ prediction_mapper <- function(sequence_list, model_list) {
         .x = sequence_list,
         .f = function(sequence) {
           # Select encoding method
-          if (model$layers[[1]] %>% stringr::str_detect("embedding")) {
+          if (any(grep("embedding", model$layers[[1]]))) {
             encode_method <- encode_integer
           } else {
             encode_method <- encode_one_hot
@@ -64,8 +64,12 @@ predict_effector <- function(x, pathogen = "all", col_names) {
   # Select ensemble method
   if (pathogen == "bacteria") {
     ensemble_method <- ensemble_weighted
+    weights <- bacteria_weights
   } else {
-    ensemble_method <- function(x) { return(x[[1]]) }
+    ensemble_method <- function(x, y) {
+      return(x[[1]])
+    }
+    weights <- NULL
   }
 
   # Load model
@@ -76,7 +80,7 @@ predict_effector <- function(x, pathogen = "all", col_names) {
 
   preds <- dplyr::bind_cols(
     sequence_df,
-    prob = unlist(ensemble_method(pred_list))
+    prob = unlist(ensemble_method(pred_list, weights))
   )
 
   return(preds)

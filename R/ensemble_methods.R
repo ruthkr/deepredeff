@@ -9,7 +9,7 @@ ensemble_weighted <- function(pred_list, weights) {
   ensemble_pred <- purrr::pmap(
     pred_list,
     .f = function(...) {
-      res <- stats::weighted.mean(c(...), weights)
+      res <- stats::weighted.mean(c(...), weights[names(c(...))])
     }
   )
 
