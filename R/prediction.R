@@ -12,7 +12,7 @@ prediction_mapper <- function(sequence_list, model_list) {
         .x = sequence_list,
         .f = function(sequence) {
           # Select encoding method
-          if (any(grep("embedding", model$layers[[1]]))) {
+          if (any(grep("embedding", as.character(model$layers[[1]])))) {
             encode_method <- encode_integer
           } else {
             encode_method <- encode_one_hot
