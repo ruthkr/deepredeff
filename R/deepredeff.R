@@ -1,12 +1,12 @@
-#' \code{deeffpred} package
+#' \code{deepredeff} package
 #'
 #' Effector protein predictor using Deep Learning models.
 #'
 #' See the README on
-#' \href{https://github.com/ruthkr/deeffpred/}{GitHub}
+#' \href{https://github.com/ruthkr/deepredeff/}{GitHub}
 #'
 #' @docType package
-#' @name deeffpred
+#' @name deepredeff
 NULL
 
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
