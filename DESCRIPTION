@@ -1,6 +1,6 @@
-Package: deeffpred
+Package: deepredeff
 Title: Effector Predictor
-Version: 1.0.0.9000
+Version: 1.0.1
 Authors@R: 
     person(given = "Ruth",
            family = "Kristianingsih",
@@ -10,8 +10,8 @@ Authors@R:
 Description: Effector protein predictor using Deep Learning
     models.
 License: GPL-3
-URL: https://github.com/ruthkr/deeffpred
-BugReports: https://github.com/ruthkr/deeffpred/issues
+URL: https://github.com/ruthkr/deepredeff
+BugReports: https://github.com/ruthkr/deepredeff/issues
 Depends: 
     R (>= 2.10)
 Imports: 
