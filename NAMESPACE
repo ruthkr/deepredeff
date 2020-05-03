@@ -3,6 +3,7 @@
 export("%>%")
 export(encode_integer)
 export(encode_one_hot)
+export(ensemble_voting)
 export(ensemble_weighted)
 export(fasta_to_df)
 export(load_model)

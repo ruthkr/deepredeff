@@ -21,7 +21,8 @@ Imports:
     purrr,
     rlang,
     seqinr,
-    tensorflow
+    tensorflow,
+    Biostrings
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

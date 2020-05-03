@@ -65,6 +65,9 @@ predict_effector <- function(x, pathogen = "all", col_names) {
   if (pathogen == "bacteria") {
     ensemble_method <- ensemble_weighted
     weights <- bacteria_weights
+  } else if (pathogen == "all") {
+    ensemble_method <- ensemble_voting
+    weights <- bacteria_weights
   } else {
     ensemble_method <- function(x, y) {
       return(x[[1]])
