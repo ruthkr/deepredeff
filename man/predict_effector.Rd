@@ -4,12 +4,12 @@
 \alias{predict_effector}
 \title{Predict effector}
 \usage{
-predict_effector(x, pathogen = "all", col_names)
+predict_effector(input, model = "all", col_names)
 }
 \arguments{
-\item{x}{FASTA path or dataframe.}
+\item{input}{FASTA path or dataframe that contains input sequences.}
 
-\item{pathogen}{Pathogen.}
+\item{model}{Selected model.}
 
 \item{col_names}{Optional column names for dataframe. One of them must be named 'sequence'.}
 }
