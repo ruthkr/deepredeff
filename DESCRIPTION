@@ -1,6 +1,6 @@
 Package: deepredeff
 Title: Effector Predictor
-Version: 1.0.1
+Version: 1.0.1.9000
 Authors@R: 
     person(given = "Ruth",
            family = "Kristianingsih",
