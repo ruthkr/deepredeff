@@ -3,4 +3,5 @@
 .RData
 tests*.Rmd
 benchmarks.Rmd
+profiling.Rmd
 docs
