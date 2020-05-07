@@ -16,6 +16,8 @@ knitr::opts_chunk$set(
 # deepredeff <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
+`r badgecreatr::badge_lifecycle("experimental")`
+`r badgecreatr::badge_cran("biodosetools")`
 <!-- badges: end -->
 
 **deepredeff** is a package to predict effector protein given amino acid sequences. This tool can be used to predict effectors from three different pathogens, which are oomycete, fungi, and bacteria.  

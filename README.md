@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/biodosetools)](https://cran.r-project.org/package=biodosetools)
 <!-- badges: end -->
 
 **deepredeff** is a package to predict effector protein given amino acid
