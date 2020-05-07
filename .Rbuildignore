@@ -6,3 +6,6 @@
 ^tests2.Rmd$
 ^data-raw$
 ^benchmarks\.Rmd$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
