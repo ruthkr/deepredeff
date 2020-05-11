@@ -84,20 +84,54 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<!-- You can install the released version of deepredeff from [CRAN](https://CRAN.R-project.org) with: -->
-<!-- ``` r -->
-<!-- install.packages("deepredeff") -->
-<!-- ``` -->
 <p>The development version can be installed from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("devtools")</span>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu">install_github</span>(<span class="st">"ruthkr/deepredeff"</span>)</pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode" id="cb2"><pre class="r"># library(deepredeff)
-## basic example code</pre></div>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># Specify the conda environment </span>
+<span class="kw pkg">reticulate</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/use_python.html">use_condaenv</a></span>(<span class="st">"tensorflow"</span>, <span class="kw">conda</span> <span class="kw">=</span> <span class="st">"/usr/local/Caskroom/miniconda/base/bin/conda"</span>)
+
+<span class="co"># Load the package</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">deepredeff</span>)
+
+<span class="co"># Define the fasta path from the sample data</span>
+<span class="no">bacteria_fasta_path</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"example"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"bacteria_sample"</span>, <span class="st">".fasta"</span>), <span class="kw">package</span> <span class="kw">=</span> <span class="st">"deepredeff"</span>)
+
+<span class="co"># Predict the effector candidate </span>
+<span class="no">pred_bacteria_fasta_input</span> <span class="kw">&lt;-</span> <span class="kw pkg">deepredeff</span><span class="kw ns">::</span><span class="fu"><a href="reference/predict_effector.html">predict_effector</a></span>(
+  <span class="kw">input</span> <span class="kw">=</span> <span class="no">bacteria_fasta_path</span>,
+  <span class="kw">model</span> <span class="kw">=</span> <span class="st">"bacteria"</span>
+  )
+<span class="co">#&gt; Loaded models: cnn_gru, cnn_lstm, gru_emb, lstm_emb for pathogen bacteria.</span>
+<span class="co">#&gt; Loaded models successfully!</span>
+
+<span class="co"># View results</span>
+<span class="no">pred_bacteria_fasta_input</span> <span class="kw">%&gt;%</span>
+  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">sequence</span> <span class="kw">=</span> <span class="kw pkg">stringr</span><span class="kw ns">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span>(<span class="no">sequence</span>, <span class="fl">1</span>, <span class="fl">50</span>)) <span class="kw">%&gt;%</span>
+  <span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>()</pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">name</th>
+<th align="left">sequence</th>
+<th align="right">prob</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">A0A0Q0BGR4_1</td>
+<td align="left">MGNICGTSGSHYVYSPPVSPRHVSGSSTPVHSVGGQGLTSVYQLSAEARD</td>
+<td align="right">0.9916961</td>
+</tr>
+<tr class="even">
+<td align="left">ALS93546_0</td>
+<td align="left">MIRRIAGVLLSVLAWAGPAHATDQLPDLIQIDGQQATLLAEPLSSPLDDP</td>
+<td align="right">0.5174671</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
   </div>
