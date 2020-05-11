@@ -40,35 +40,6 @@ prediction_mapper <- function(sequence_list, model_list) {
 
   return(pred_list)
 }
-# prediction_mapper <- function(sequence_array, model_list) {
-#   pred_list <- purrr::map(
-#     .x = model_list,
-#     .f = function(model) {
-#       purrr::map(
-#         .x = sequence_list,
-#         .f = function(sequence) {
-#           # Select encoding method
-#           if (any(grep("embedding", as.character(model$layers[[1]])))) {
-#             encode_method <- encode_integer
-#           } else {
-#             encode_method <- encode_one_hot
-#           }
-#
-#           max_length <- unlist(model$layers[[1]]$input_shape)[[1]]
-#
-#           # Make prediction
-#           pred <- encode_method(sequence, max_length) %>%
-#             stats::predict(model, .) %>%
-#             as.numeric()
-#
-#           return(pred)
-#         }
-#       )
-#     }
-#   )
-#
-#   return(pred_list)
-# }
 
 
 #' Predict effector
@@ -90,8 +61,9 @@ predict_effector <- function(input, model = "all", col_names) {
   if (class_input == "character") {
     sequence_df <- fasta_to_df(input) %>%
       dplyr::select(.data$name, .data$sequence)
-  } else if (class_input == "AAString" | "AAStringSet"){
-    sequence_df <- aas_to_df(input)
+  } else if (class_input %in% c("AAString", "AAStringSet")) {
+    sequence_df <- aas_to_df(input) %>%
+      dplyr::rename(sequence = seq)
   } else {
     sequence_df <- input %>%
       dplyr::select({{ col_names }})
@@ -102,16 +74,6 @@ predict_effector <- function(input, model = "all", col_names) {
     dplyr::pull(sequence) %>%
     as.list()
 
-  # sequence_array <- sequence_list %>%
-  #   as.list() %>%
-  #   purrr::map(
-  #     .f = function(x) {
-  #       sequence <- deepredeff::encode_one_hot(x, 4034)
-  #       return(sequence)
-  #     }
-  #   ) %>%
-  #   do.call(rbind, .) %>%
-  #   array(dim = c(length(sequence_list), 4034, 20))
 
   # Select ensemble method
   if (model == "bacteria") {
