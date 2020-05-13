@@ -2,16 +2,26 @@
 % Please edit documentation in R/prediction.R
 \name{predict_effector}
 \alias{predict_effector}
+\alias{predict_effector.character}
+\alias{predict_effector.DataFrame}
+\alias{predict_effector.AAStringset}
+\alias{predict_effector.default}
 \title{Predict effector}
 \usage{
-predict_effector(input, model = "all", col_names)
+predict_effector(input, model)
+
+\method{predict_effector}{character}(input, model)
+
+\method{predict_effector}{DataFrame}(input, model)
+
+\method{predict_effector}{AAStringset}(input, model)
+
+\method{predict_effector}{default}(input, model)
 }
 \arguments{
 \item{input}{FASTA path or dataframe that contains input sequences.}
 
 \item{model}{Selected model.}
-
-\item{col_names}{Optional column names for dataframe. One of them must be named 'sequence'.}
 }
 \value{
 Dataframe with sequences and effector predictions.
