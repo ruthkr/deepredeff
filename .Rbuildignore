@@ -14,3 +14,4 @@
 ^load_parallel\.R$
 ^tests_load_parallel\.Rmd$
 ^profiling\.Rmd$
+^old_func\.R$
