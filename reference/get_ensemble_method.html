@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Predict effector — predict_effector • deepredeff</title>
+<title>Get ensemble methods — get_ensemble_method • deepredeff</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Predict effector — predict_effector" />
-<meta property="og:description" content="Predict effector" />
+<meta property="og:title" content="Get ensemble methods — get_ensemble_method" />
+<meta property="og:description" content="This function is used to get the ensemble methods used for each model group. If weights are needed for a particular ensemble, then the weights will automatically follow." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -116,45 +116,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Predict effector</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ruthkr/deepredeff/blob/master/R/prediction.R'><code>R/prediction.R</code></a></small>
-    <div class="hidden name"><code>predict_effector.Rd</code></div>
+    <h1>Get ensemble methods</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ruthkr/deepredeff/blob/master/R/ensemble_methods.R'><code>R/ensemble_methods.R</code></a></small>
+    <div class="hidden name"><code>get_ensemble_method.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Predict effector</p>
+    <p>This function is used to get the ensemble methods used for each model group. If weights are needed for a particular ensemble, then the weights will automatically follow.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>predict_effector</span>(<span class='no'>input</span>, <span class='no'>model</span>)
-
-<span class='co'># S3 method for character</span>
-<span class='fu'>predict_effector</span>(<span class='no'>input</span>, <span class='no'>model</span>)
-
-<span class='co'># S3 method for DataFrame</span>
-<span class='fu'>predict_effector</span>(<span class='no'>input</span>, <span class='no'>model</span>)
-
-<span class='co'># S3 method for AAStringset</span>
-<span class='fu'>predict_effector</span>(<span class='no'>input</span>, <span class='no'>model</span>)
-
-<span class='co'># S3 method for default</span>
-<span class='fu'>predict_effector</span>(<span class='no'>input</span>, <span class='no'>model</span>)</pre>
+    <pre class="usage"><span class='fu'>get_ensemble_method</span>(<span class='no'>model</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>input</th>
-      <td><p>FASTA path or dataframe that contains input sequences.</p></td>
-    </tr>
-    <tr>
       <th>model</th>
-      <td><p>Selected model.</p></td>
+      <td><p>type model to use.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Dataframe with sequences and effector predictions.</p>
+    <p>Ensemble method and weights.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
