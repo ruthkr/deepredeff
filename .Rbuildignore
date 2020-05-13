@@ -10,3 +10,7 @@
 ^docs$
 ^pkgdown$
 ^\.github$
+^RDS$
+^load_parallel\.R$
+^tests_load_parallel\.Rmd$
+^profiling\.Rmd$
