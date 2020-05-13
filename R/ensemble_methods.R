@@ -40,3 +40,34 @@ ensemble_voting <- function(pred_list, weights = NULL) {
 
   return(ensemble_pred)
 }
+
+
+#' Get ensemble methods
+#'
+#' This function is used to get the ensemble methods used for each model group. If weights are needed for a particular ensemble, then the weights will automatically follow.
+#'
+#' @param model type model to use.
+#'
+#' @return Ensemble method and weights.
+#' @export
+get_ensemble_method <- function(model) {
+  if (model == "bacteria") {
+    ensemble_method <- ensemble_weighted
+    weights <- bacteria_weights
+  } else if (model == "all") {
+    ensemble_method <- ensemble_voting
+    weights <- bacteria_weights
+  } else {
+    ensemble_method <- function(x, y) {
+      return(x[[1]])
+    }
+    weights <- NULL
+  }
+
+  output_list <- list(
+    ensemble_method = ensemble_method,
+    weights = weights
+  )
+
+  return(output_list)
+}
