@@ -5,6 +5,8 @@
 #'
 #' @return Dataframe with sequences and effector predictions.
 #' @export
+#'
+#' @importFrom rlang .data
 predict_effector <- function(input, model) {
   UseMethod("predict_effector", input)
 }
