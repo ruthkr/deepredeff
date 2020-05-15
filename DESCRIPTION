@@ -23,7 +23,8 @@ Imports:
     rlang,
     seqinr,
     tensorflow,
-    Biostrings
+    Biostrings,
+    zeallot
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
