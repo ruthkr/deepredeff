@@ -3,7 +3,7 @@
 \name{predict_effector}
 \alias{predict_effector}
 \alias{predict_effector.character}
-\alias{predict_effector.DataFrame}
+\alias{predict_effector.data.frame}
 \alias{predict_effector.AAStringset}
 \alias{predict_effector.default}
 \title{Predict effector}
@@ -12,7 +12,7 @@ predict_effector(input, model)
 
 \method{predict_effector}{character}(input, model)
 
-\method{predict_effector}{DataFrame}(input, model)
+\method{predict_effector}{data.frame}(input, model)
 
 \method{predict_effector}{AAStringset}(input, model)
 
