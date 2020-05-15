@@ -24,7 +24,8 @@ Imports:
     seqinr,
     tensorflow,
     Biostrings,
-    zeallot
+    zeallot,
+    xfun
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
