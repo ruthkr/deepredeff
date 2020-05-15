@@ -14,8 +14,15 @@ predict_effector <- function(input, model) {
 #' @rdname predict_effector
 #' @export
 predict_effector.character <- function(input, model) {
+
+  if (tolower(xfun::file_ext(input)) %in% c("fasta", "fna", "ffn", "faa", "frn")) {
   sequence_df <- fasta_to_df(input) %>%
     dplyr::select(.data$name, .data$sequence)
+  } else {
+    sequence_df <- input %>%
+      as.data.frame() %>%
+      `colnames<-`(c("sequence"))
+  }
 
   # Make list of sequences
   sequence_list <- sequence_df %>%
@@ -44,7 +51,7 @@ predict_effector.character <- function(input, model) {
 
 #' @rdname predict_effector
 #' @export
-predict_effector.DataFrame <- function(input, model) {
+predict_effector.data.frame <- function(input, model) {
   # Make list of sequences
   sequence_list <- input %>%
     dplyr::pull(sequence) %>%
