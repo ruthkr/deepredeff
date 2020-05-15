@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Prediction mapper helper — prediction_mapper • deepredeff</title>
+<title>Get class activation value — get_class_activation_value • deepredeff</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Prediction mapper helper — prediction_mapper" />
-<meta property="og:description" content="Prediction mapper helper" />
+<meta property="og:title" content="Get class activation value — get_class_activation_value" />
+<meta property="og:description" content="This function is for getting the class activation value, which indicates how important each location with the respect to the class under consideration." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -116,33 +116,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Prediction mapper helper</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ruthkr/deepredeff/blob/master/R/prediction_helper.R'><code>R/prediction_helper.R</code></a></small>
-    <div class="hidden name"><code>prediction_mapper.Rd</code></div>
+    <h1>Get class activation value</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ruthkr/deepredeff/blob/master/R/visualise_convnet.R'><code>R/visualise_convnet.R</code></a></small>
+    <div class="hidden name"><code>get_class_activation_value.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Prediction mapper helper</p>
+    <p>This function is for getting the class activation value, which indicates how important each location with the respect to the class under consideration.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>prediction_mapper</span>(<span class='no'>sequence_list</span>, <span class='no'>model_list</span>)</pre>
+    <pre class="usage"><span class='fu'>get_class_activation_value</span>(<span class='no'>data</span>, <span class='no'>model</span>, <span class='no'>layer</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>sequence_list</th>
-      <td><p>List of sequences.</p></td>
+      <th>data</th>
+      <td><p>Encoded sequence data as input of prediction.</p></td>
     </tr>
     <tr>
-      <th>model_list</th>
-      <td><p>List of models.</p></td>
+      <th>model</th>
+      <td><p>Model to use to predict.</p></td>
+    </tr>
+    <tr>
+      <th>layer</th>
+      <td><p>Convnet layer to use.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>List of predictions.</p>
+    <p>heatmap</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
