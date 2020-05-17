@@ -27,12 +27,10 @@ prediction_mapper <- function(sequence_list, model_list) {
             return(sequence)
           }
         ) %>%
-        abind::abind(along = 0) %>%
-        array(dim = array_dim)
+        keras::array_reshape(dim = array_dim)
 
       # Make prediction
-      pred <- stats::predict(model, sequence_array) # %>%
-      # as.numeric()
+      pred <- stats::predict(model, sequence_array)
 
       return(pred)
     }

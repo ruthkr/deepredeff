@@ -7,7 +7,7 @@
 load_model <- function(pathogen = c("all", "bacteria", "fungi", "oomycete")) {
   pathogen <- match.arg(pathogen)
 
-  model_paths <- Sys.glob(paste0(system.file("extdata", "weights", package = "deepredeff"), "/", pathogen, "*.hdf5"))
+  model_paths <- package_glob("extdata/weights", pattern = paste0(pathogen, "*.hdf5"))
 
   # Model names for list
   model_names <- gsub(paste0(".*\\/", pathogen, "_|.hdf5"), "", model_paths)
