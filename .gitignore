@@ -1,8 +1,5 @@
 .Rproj.user
 .Rhistory
 .RData
-tests*.Rmd
-benchmarks.Rmd
-profiling.Rmd
 docs
-old_func.R
+/notebooks

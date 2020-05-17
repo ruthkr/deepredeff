@@ -2,16 +2,10 @@
 ^\.Rproj\.user$
 ^README\.Rmd$
 ^LICENSE\.md$
-^tests.Rmd$
-^tests2.Rmd$
 ^data-raw$
-^benchmarks\.Rmd$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
 ^\.github$
 ^RDS$
-^load_parallel\.R$
-^tests_load_parallel\.Rmd$
-^profiling\.Rmd$
-^old_func\.R$
+^notebooks$
