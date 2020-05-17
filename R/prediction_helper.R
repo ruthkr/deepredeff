@@ -27,7 +27,7 @@ prediction_mapper <- function(sequence_list, model_list) {
             return(sequence)
           }
         ) %>%
-        do.call(rbind, .) %>%
+        abind::abind(along = 0) %>%
         array(dim = array_dim)
 
       # Make prediction
@@ -40,6 +40,3 @@ prediction_mapper <- function(sequence_list, model_list) {
 
   return(pred_list)
 }
-
-
-
