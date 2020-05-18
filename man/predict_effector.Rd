@@ -4,7 +4,8 @@
 \alias{predict_effector}
 \alias{predict_effector.character}
 \alias{predict_effector.data.frame}
-\alias{predict_effector.AAStringset}
+\alias{predict_effector.AAStringSet}
+\alias{predict_effector.AAString}
 \alias{predict_effector.default}
 \title{Predict effector}
 \usage{
@@ -14,17 +15,19 @@ predict_effector(input, model)
 
 \method{predict_effector}{data.frame}(input, model)
 
-\method{predict_effector}{AAStringset}(input, model)
+\method{predict_effector}{AAStringSet}(input, model)
+
+\method{predict_effector}{AAString}(input, model)
 
 \method{predict_effector}{default}(input, model)
 }
 \arguments{
-\item{input}{FASTA path or dataframe that contains input sequences.}
+\item{input}{Input data that contains amino acid sequence(s). It can be in fasta format, strings, AAString, AAStringset, and dataframe.}
 
-\item{model}{Selected model.}
+\item{model}{Model to use in predicting the input sequence. Available models are bacteria, fungi, oomycete, and all.}
 }
 \value{
-Dataframe with sequences and effector predictions.
+Deepredeff objects that contains sequences and effector predictions.
 }
 \description{
 Predict effector
