@@ -29,27 +29,35 @@ fasta_to_df <- function(fasta_path) {
   return(data)
 }
 
+#' AAStringset class to dataframe
+#'
+#' @param aas AAStringset class object.
+#'
+#' @return Data frame.
+#' @export
+aasset_to_df <- function(aas) {
+  data <- data.frame(
+    names = names(aas),
+    seq = as.character(aas),
+    row.names = NULL
+  )
+
+  return(data)
+}
+
 #' AAString class to dataframe
 #'
-#' @param aas AAString or AAStringset class object
+#' @param aas AAString class object.
 #'
 #' @return Data frame.
 #' @export
 aas_to_df <- function(aas) {
-  if (class(aas)[[1]] == "AAString") {
-    aas <- Biostrings::AAStringSet(aas)
-    data <- data.frame(
-      names = as.character(aas),
-      seq = as.character(aas),
-      row.names = NULL
-    )
-  } else {
-    data <- data.frame(
-      names = names(aas),
-      seq = as.character(aas),
-      row.names = NULL
-    )
-  }
+  aas <- Biostrings::AAStringSet(aas)
+  data <- data.frame(
+    names = as.character(aas),
+    seq = as.character(aas),
+    row.names = NULL
+  )
 
   return(data)
 }
