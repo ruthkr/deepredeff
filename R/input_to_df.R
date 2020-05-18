@@ -35,21 +35,21 @@ fasta_to_df <- function(fasta_path) {
 #'
 #' @return Data frame.
 #' @export
-aas_to_df <- function(aas){
+aas_to_df <- function(aas) {
+  if (class(aas)[[1]] == "AAString") {
+    aas <- Biostrings::AAStringSet(aas)
+    data <- data.frame(
+      names = as.character(aas),
+      seq = as.character(aas),
+      row.names = NULL
+    )
+  } else {
+    data <- data.frame(
+      names = names(aas),
+      seq = as.character(aas),
+      row.names = NULL
+    )
+  }
 
-    if ((aas %>% class %>% .[1]) == "AAString") {
-
-      aas <- Biostrings::AAStringSet(aas)
-      data <- data.frame(names=as.character(aas),
-                         seq=as.character(aas),
-                         row.names = NULL)
-    } else {
-      data <- data.frame(names=names(aas),
-                         seq=as.character(aas),
-                         row.names = NULL)
-    }
-
-    return(data)
+  return(data)
 }
-
-
