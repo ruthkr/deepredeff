@@ -7,7 +7,7 @@
 aas_to_df(aas)
 }
 \arguments{
-\item{aas}{AAString or AAStringset class object}
+\item{aas}{AAString class object.}
 }
 \value{
 Data frame.
