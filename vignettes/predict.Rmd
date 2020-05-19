@@ -1,0 +1,100 @@
+---
+title: "How to predict using deepredeff"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{predict}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Deepredeff package allows you to predict effector protein given amino acid sequences in different format. Format that can be used for this version are fasta, dataframe, AAString, and AAStringSet. 
+
+The function that can be used to predict is `predict_effector`. There are four model available in this version, which are bacteria, fungi, oomycete, and all. Each model is specifically trained using different training data
+
+Before running the function, it is necessary to load the `deepredeff` library, and setting up the conda environment that we will use. 
+
+```{r setup, message=FALSE}
+reticulate::use_condaenv("tensorflow", conda = "/usr/local/Caskroom/miniconda/base/bin/conda")
+library(dplyr)
+library(deepredeff)
+```
+
+In this article, some examples using different input format will be shown. 
+
+## FASTA format 
+
+The fasta example that will be used is the example in this package. We can define the input as follows.
+
+```{r}
+input_fasta_path <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff")
+```
+
+
+```{r}
+pred_fungi_input_fasta <- deepredeff::predict_effector(
+  input = input_fasta_path,
+  model = "fungi"
+)
+```
+
+## Data frame format 
+
+Using the fasta path above, we can then transform the path to dataframe. We can use the function `fasta_to_df` from this package. We can define the input as follows
+
+```{r}
+input_dataframe <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
+      deepredeff::fasta_to_df() %>% tibble::as_tibble()
+```
+
+
+```{r}
+pred_fungi_input_df <- deepredeff::predict_effector(
+  input = input_dataframe,
+  model = "fungi"
+)
+```
+
+
+## AAStringSet format
+
+Using one of function from Biostrings, we can transform the fasta to AAstringSet class data. We can define the input as follows
+
+```{r}
+input_aastringset <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
+      Biostrings::readAAStringSet()
+```
+
+
+```{r}
+pred_fungi_input_aastringset <- deepredeff::predict_effector(
+  input = input_aastringset,
+  model = "fungi"
+)
+```
+
+## AAString format
+
+Similar to how we define AAStringSet, we can also use one of function from Biostrings to transform a string to AAstring class data.
+
+```{r}
+input_aastring <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
+      fasta_to_df() %>%
+      dplyr::slice(1) %>%
+      dplyr::pull(sequence) %>%
+      Biostrings::AAString()
+```
+
+
+```{r}
+pred_fungi_input_aastring <- deepredeff::predict_effector(
+  input = input_aastring,
+  model = "fungi"
+)
+```
