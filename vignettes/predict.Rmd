@@ -20,7 +20,7 @@ The function that can be used to predict is `predict_effector`. There are four m
 
 Before running the function, it is necessary to load the `deepredeff` library, and setting up the conda environment that we will use. 
 
-```{r setup, message=FALSE}
+```r
 reticulate::use_condaenv("tensorflow", conda = "/usr/local/Caskroom/miniconda/base/bin/conda")
 library(dplyr)
 library(deepredeff)
@@ -32,12 +32,12 @@ In this article, some examples using different input format will be shown.
 
 The fasta example that will be used is the example in this package. We can define the input as follows.
 
-```{r}
+```r
 input_fasta_path <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff")
 ```
 
 
-```{r}
+```r
 pred_fungi_input_fasta <- deepredeff::predict_effector(
   input = input_fasta_path,
   model = "fungi"
@@ -48,13 +48,13 @@ pred_fungi_input_fasta <- deepredeff::predict_effector(
 
 Using the fasta path above, we can then transform the path to dataframe. We can use the function `fasta_to_df` from this package. We can define the input as follows
 
-```{r}
+```r
 input_dataframe <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
       deepredeff::fasta_to_df() %>% tibble::as_tibble()
 ```
 
 
-```{r}
+```r
 pred_fungi_input_df <- deepredeff::predict_effector(
   input = input_dataframe,
   model = "fungi"
@@ -66,13 +66,13 @@ pred_fungi_input_df <- deepredeff::predict_effector(
 
 Using one of function from Biostrings, we can transform the fasta to AAstringSet class data. We can define the input as follows
 
-```{r}
+```r
 input_aastringset <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
       Biostrings::readAAStringSet()
 ```
 
 
-```{r}
+```r
 pred_fungi_input_aastringset <- deepredeff::predict_effector(
   input = input_aastringset,
   model = "fungi"
@@ -83,7 +83,7 @@ pred_fungi_input_aastringset <- deepredeff::predict_effector(
 
 Similar to how we define AAStringSet, we can also use one of function from Biostrings to transform a string to AAstring class data.
 
-```{r}
+```r
 input_aastring <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
       fasta_to_df() %>%
       dplyr::slice(1) %>%
@@ -92,7 +92,7 @@ input_aastring <- system.file("extdata/example/fungi_sample.fasta", package = "d
 ```
 
 
-```{r}
+```r
 pred_fungi_input_aastring <- deepredeff::predict_effector(
   input = input_aastring,
   model = "fungi"
