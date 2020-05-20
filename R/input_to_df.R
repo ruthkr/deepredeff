@@ -37,7 +37,7 @@ fasta_to_df <- function(fasta_path) {
 #' @export
 aasset_to_df <- function(aas) {
   data <- data.frame(
-    names = names(aas),
+    name = names(aas),
     seq = as.character(aas),
     row.names = NULL
   )
@@ -54,7 +54,7 @@ aasset_to_df <- function(aas) {
 aas_to_df <- function(aas) {
   aas <- Biostrings::AAStringSet(aas)
   data <- data.frame(
-    names = as.character(aas),
+    name = as.character(aas),
     seq = as.character(aas),
     row.names = NULL
   )
