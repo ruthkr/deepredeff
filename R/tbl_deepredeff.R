@@ -63,7 +63,8 @@ autoplot.tbl_deepredeff <- function(object, cutoff = 0.5, type = "class", ...) {
       pred_class = dplyr::case_when(
         .data$prob >= cutoff ~ 1,
         .data$prob < cutoff ~ 0
-      )
+      ) %>%
+        as.factor()
     )
 
   switch(
