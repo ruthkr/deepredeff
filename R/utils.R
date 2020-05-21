@@ -1,3 +1,7 @@
+.onLoad <- function(libname, pkgname) {
+  reticulate::use_condaenv("tensorflow", conda = "/usr/local/Caskroom/miniconda/base/bin/conda")
+}
+
 #' Title
 #'
 #' @param ... Path
