@@ -15,8 +15,7 @@ predict_effector <- function(input, model) {
 #' @export
 predict_effector.character <- function(input, model) {
   if (tolower(tools::file_ext(input)) %in% c("fasta", "fna", "ffn", "faa", "frn")) {
-    sequence_df <- fasta_to_df(input) %>%
-      dplyr::select(.data$name, .data$sequence)
+    sequence_df <- fasta_to_df(input)
   } else {
     stopifnot(grepl("^[A-Za-z]+$", input, perl = T))
 
