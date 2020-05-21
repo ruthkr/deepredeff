@@ -25,7 +25,8 @@ Imports:
     tensorflow,
     Biostrings,
     zeallot,
-    ggplot2
+    ggplot2,
+    reticulate
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
