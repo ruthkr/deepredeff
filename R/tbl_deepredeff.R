@@ -64,7 +64,8 @@ autoplot.tbl_deepredeff <- function(object, cutoff = 0.5, type = "class", ...) {
         .data$prob >= cutoff ~ 1,
         .data$prob < cutoff ~ 0
       ) %>%
-        as.factor()
+        as.factor(),
+        name = substr(.data$name, 1, 20)
     )
 
   switch(
@@ -105,5 +106,6 @@ gg_prob <- function(object, cutoff) {
       colour = "blueviolet",
       linetype = "dashed"
     ) %+%
-    ggplot2::geom_linerange()
+    ggplot2::geom_linerange() +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, hjust = 1))
 }

@@ -4,6 +4,8 @@
 #'
 #' @return Data frame.
 #' @export
+#'
+#' @importFrom rlang .data
 fasta_to_df <- function(fasta_path) {
   data_list <- seqinr::read.fasta(fasta_path)
 
@@ -25,6 +27,11 @@ fasta_to_df <- function(fasta_path) {
       }
     ) %>%
     purrr::reduce(dplyr::bind_rows)
+
+  # Drop the column name
+  data <- data %>%
+    dplyr::mutate(name = gsub(">", "", .data$Annot)) %>%
+    dplyr::select(c(.data$name, .data$sequence))
 
   return(data)
 }
