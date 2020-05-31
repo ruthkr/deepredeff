@@ -38,9 +38,7 @@ autoplot.heatmap_deepredeff <- function(object, n = 50, ...) {
     ggplot2::aes(
       x = .data$index
     ) +
-    # ggplot2::geom_point(aes(y = .data$value_raw, color = "value_raw")) +
     ggplot2::geom_line(ggplot2::aes(y = .data$value_raw, color = "value_raw")) +
-    # ggplot2::geom_point(aes(y = .data$value_smooth, color = "value_smooth")) +
     ggplot2::geom_line(ggplot2::aes(y = .data$value_smooth, color = "value_smooth"))
 
   return(gg)
