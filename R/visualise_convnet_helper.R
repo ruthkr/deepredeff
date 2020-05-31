@@ -18,7 +18,7 @@ get_class_activation_each_seq <- function(data, loaded_model, layer) {
 
   with(tensorflow::tf$GradientTape() %as% gtape, {
     c(conv_output, predictions) %<-% heatmap_model(data)
-    loss <- predictions[,1]
+    loss <- predictions[, 1]
   })
 
   # Get the gradient with regard to the output feature map of "conv1d_1"
