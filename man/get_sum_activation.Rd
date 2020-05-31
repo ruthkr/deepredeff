@@ -2,9 +2,15 @@
 % Please edit documentation in R/visualise_convnet.R
 \name{get_sum_activation}
 \alias{get_sum_activation}
+\alias{get_sum_activation.character}
+\alias{get_sum_activation.data.frame}
 \title{Get sum activation class}
 \usage{
 get_sum_activation(input, model)
+
+\method{get_sum_activation}{character}(input, model)
+
+\method{get_sum_activation}{data.frame}(input, model)
 }
 \arguments{
 \item{input}{Input sequence data.}
