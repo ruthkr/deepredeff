@@ -1,5 +1,6 @@
 .onLoad <- function(libname, pkgname) {
   reticulate::use_condaenv("tensorflow", conda = "/usr/local/Caskroom/miniconda/base/bin/conda")
+  # reticulate::configure_environment(pkgname)
 }
 
 #' Title

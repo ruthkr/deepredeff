@@ -52,7 +52,7 @@ summary.tbl_deepredeff <- function(object, cutoff = 0.5, ...) {
 #' @param type Type plot to generate. Type class will generate histogram of each prediction class, while prob will show each sequence prediction value and the cutoff value. Default type is class.
 #' @param ... Additional arguments ignored.
 #'
-#' @return plot depends on the chosen type
+#' @return Plot depending on the chosen type.
 #' @export
 #' @importFrom rlang .data
 #' @importFrom ggplot2 autoplot
