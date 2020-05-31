@@ -60,10 +60,10 @@ load_model_to_visualise <- function(model = c("all", "bacteria", "fungi", "oomyc
 
 #' Get the smooth function using fourier transformation
 #'
-#' @param x the input data
-#' @param n the number of harmonics
+#' @param x Input data.
+#' @param n Number of harmonics.
 #'
-#' @return
+#' @return Smooth input using FFT.
 #' @export
 get_fft_smooth <- function(x = NULL, n = NULL) {
   # The direct transformation
