@@ -10,6 +10,12 @@
 #' @usage lhs \%>\% rhs
 NULL
 
+#' As operator
+#'
+#' @importFrom reticulate %as%
+#' @export
+reticulate::`%as%`
+
 #' Assign values to names
 #'
 #' See \code{\link[zeallot]{\%<-\%}} for more details.
@@ -21,3 +27,4 @@ NULL
 #' @import zeallot
 #' @usage x \%<-\% value
 NULL
+
