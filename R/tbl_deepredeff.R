@@ -57,7 +57,6 @@ summary.tbl_deepredeff <- function(object, cutoff = 0.5, ...) {
 #' @importFrom rlang .data
 #' @importFrom ggplot2 autoplot
 autoplot.tbl_deepredeff <- function(object, cutoff = 0.5, type = "class", ...) {
-
   object <- object %>%
     dplyr::mutate(
       pred_class = dplyr::case_when(
@@ -65,7 +64,7 @@ autoplot.tbl_deepredeff <- function(object, cutoff = 0.5, type = "class", ...) {
         .data$prob < cutoff ~ 0
       ) %>%
         as.factor(),
-        name = substr(.data$name, 1, 20)
+      name = substr(.data$name, 1, 20)
     )
 
   switch(

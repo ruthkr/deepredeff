@@ -4,7 +4,7 @@ test_that("One-hot encoding works", {
       deepredeff::encode_one_hot(max_length = 20) %>%
       diag(),
     rep(1, 20)
-    )
+  )
 })
 
 test_that("One-hot encoding returns 2D matrix", {

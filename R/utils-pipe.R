@@ -27,4 +27,3 @@ reticulate::`%as%`
 #' @import zeallot
 #' @usage x \%<-\% value
 NULL
-
