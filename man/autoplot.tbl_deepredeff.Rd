@@ -16,7 +16,7 @@
 \item{...}{Additional arguments ignored.}
 }
 \value{
-plot depends on the chosen type
+Plot depending on the chosen type.
 }
 \description{
 Plot the results of prediction
