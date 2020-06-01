@@ -22,7 +22,7 @@ get_sum_activation.character <- function(input, model) {
     sequence_df <- input %>%
       toupper() %>%
       as.data.frame() %>%
-      colnames() <- (c("sequence"))
+      `colnames<-`(c("sequence"))
   }
 
   # Make list of sequences
@@ -112,4 +112,113 @@ get_sum_activation.data.frame <- function(input, model) {
   sum_heatmap <- as.numeric(sum_heatmap / max(sum_heatmap))
 
   return(new_heatmap_deepredeff(sum_heatmap))
+}
+
+
+#' @rdname get_sum_activation
+#' @export
+get_sum_activation.AAString  <- function(input, model) {
+
+  # Make list of sequences
+  sequence_df <- aas_to_df(input) %>%
+    dplyr::rename(sequence = seq)
+
+  # Make list of sequences
+  sequence_list <- sequence_df %>%
+    dplyr::pull(sequence) %>%
+    as.list()
+
+  # Load model
+  loaded_model <- load_model_to_visualise(model)
+
+  # Get the dim of the data
+  max_length <- unlist(loaded_model$layers[[1]]$input_shape)[[1]]
+  array_dim <- c(length(sequence_list), max_length, 20)
+
+  # Get the encoded sequences in array
+  sequence_array <- sequence_list %>%
+    purrr::map(
+      .f = function(x) {
+        sequence <- encode_one_hot(x, max_length)
+        return(sequence)
+      }
+    ) %>%
+    keras::array_reshape(dim = array_dim)
+
+  sum_heatmap <- array(0, dim = max_length)
+
+  for (i in 1:dim(sequence_array)[1]) {
+    seq_each <- array(sequence_array[i, , ], dim = c(1, max_length, 20))
+    print(seq_each %>% dim())
+
+    heatmap_each_seq <- get_class_activation_each_seq(
+      data = seq_each,
+      loaded_model = loaded_model,
+      layer = "conv1d_1"
+    )
+
+    sum_heatmap <- sum_heatmap + heatmap_each_seq
+  }
+
+  sum_heatmap <- as.numeric(sum_heatmap / max(sum_heatmap))
+
+  return(new_heatmap_deepredeff(sum_heatmap))
+}
+
+
+#' @rdname get_sum_activation
+#' @export
+get_sum_activation.AAStringSet <- function(input, model) {
+
+  # Make list of sequences
+  sequence_df <- aasset_to_df(input) %>%
+    dplyr::rename(sequence = seq)
+
+  # Make list of sequences
+  sequence_list <- sequence_df %>%
+    dplyr::pull(sequence) %>%
+    as.list()
+
+  # Load model
+  loaded_model <- load_model_to_visualise(model)
+
+  # Get the dim of the data
+  max_length <- unlist(loaded_model$layers[[1]]$input_shape)[[1]]
+  array_dim <- c(length(sequence_list), max_length, 20)
+
+  # Get the encoded sequences in array
+  sequence_array <- sequence_list %>%
+    purrr::map(
+      .f = function(x) {
+        sequence <- encode_one_hot(x, max_length)
+        return(sequence)
+      }
+    ) %>%
+    keras::array_reshape(dim = array_dim)
+
+  sum_heatmap <- array(0, dim = max_length)
+
+  for (i in 1:dim(sequence_array)[1]) {
+    seq_each <- array(sequence_array[i, , ], dim = c(1, max_length, 20))
+    print(seq_each %>% dim())
+
+    heatmap_each_seq <- get_class_activation_each_seq(
+      data = seq_each,
+      loaded_model = loaded_model,
+      layer = "conv1d_1"
+    )
+
+    sum_heatmap <- sum_heatmap + heatmap_each_seq
+  }
+
+  sum_heatmap <- as.numeric(sum_heatmap / max(sum_heatmap))
+
+  return(new_heatmap_deepredeff(sum_heatmap))
+}
+
+
+#' @rdname get_sum_activation
+#' @export
+get_sum_activation.default <- function(input, model) {
+  warning(paste("deepredeff does not know how to handle input", class(input), "and currently can only be used on fasta, AAStringset, and dataframe input"))
 }
