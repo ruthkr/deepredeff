@@ -4,6 +4,9 @@
 \alias{get_sum_activation}
 \alias{get_sum_activation.character}
 \alias{get_sum_activation.data.frame}
+\alias{get_sum_activation.AAString}
+\alias{get_sum_activation.AAStringSet}
+\alias{get_sum_activation.default}
 \title{Get sum activation class}
 \usage{
 get_sum_activation(input, model)
@@ -11,6 +14,12 @@ get_sum_activation(input, model)
 \method{get_sum_activation}{character}(input, model)
 
 \method{get_sum_activation}{data.frame}(input, model)
+
+\method{get_sum_activation}{AAString}(input, model)
+
+\method{get_sum_activation}{AAStringSet}(input, model)
+
+\method{get_sum_activation}{default}(input, model)
 }
 \arguments{
 \item{input}{Input sequence data.}
