@@ -1,0 +1,68 @@
+---
+title: "Visualise class activation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{visualise}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+After getting prediction of the sequences you have, then you can visualise the class activation from one of convolutional neural network layers from the model used to predict. 
+
+Before running all of the codes presented in this articles, it is necessary to set up the conda environment that you will use. 
+
+```r
+reticulate::use_condaenv("tensorflow", conda = "/usr/local/Caskroom/miniconda/base/bin/conda")
+library(dplyr)
+library(deepredeff)
+``` 
+
+## Calculate class activaton heatmap
+
+You can easily calculate class activation heatmap of your sequences by doing the following steps. In this article, we will be using the example data which is part of the package. 
+
+```r
+data_input <- system.file("extdata", "example", paste0("bacteria_sample", ".fasta"), package = "deepredeff") %>%
+  deepredeff::fasta_to_df()
+
+data_input %>% 
+  dplyr::mutate(name = substr(name, 1, 25), 
+                sequence = substr(sequence, 1, 25))
+#>                         name                  sequence
+#> 1  tr|A0A0N8SZV2|A0A0N8SZV2_ MPINRPAFNLKLNTAIAQPTLKKDA
+#> 2  tr|A5CLR7|A5CLR7_CLAM3 Pa MQFMSRINRILFVAVVSLLSVLGCC
+#> 3  sp|B2SU53|PTHX1_XANOP TAL MDPIRSRTPSPARELLPGPQPDRVQ
+#> 4  tr|C0SPN9|C0SPN9_RALSL Un MSIGRSKSVAGASASHALASGENGS
+#> 5  tr|D2Z000|D2Z000_RALSL Ty MPPPIRNARTTPPSFDPSAAGDDLR
+#> 6  tr|Q8XX20|Q8XX20_RALSO Pu MSHMTFNTWKAGLWRLAAAAVLSLL
+#> 7  tr|Q87UH8|Q87UH8_PSESM Ta MKLHFSLRLLTALSLTGATFLAQAA
+#> 8  tr|Q4ZTI0|Q4ZTI0_PSEU2 Am MHRGPSFVKACAFVLSASFMLANTV
+#> 9  tr|Q4ZR15|Q4ZR15_PSEU2 Se MRRQPSLTLRSTLAFALVAMLTVSG
+#> 10 tr|D4I1R4|D4I1R4_ERWAC Ou MLSSNRRLLRLLPLASLLLTACGLH
+```
+
+We can calculate all of the heatmap together by using `get_sum_activation()` as shown below. 
+
+```r
+heatmap_sum <- get_sum_activation(data, model = "bacteria")
+
+heatmap_sum %>% length()
+#> [1] 2574
+````
+
+## Plot heatmap
+
+You can also visualise the heatmap value calculated above by doing: 
+
+```r
+ggplot2::autoplot(heatmap_sum[1:1000], n = 15)
+```
+
+![](https://i.imgur.com/IveYk3l.png)
