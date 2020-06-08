@@ -14,7 +14,7 @@ predict_effector <- function(input, model) {
 #' @rdname predict_effector
 #' @export
 predict_effector.character <- function(input, model) {
-  if (tolower(tools::file_ext(input)) %in% c("fasta", "fna", "ffn", "faa", "frn")) {
+  if (tolower(tools::file_ext(input)) %in% c("fasta", "fna", "ffn", "faa", "frn", "txt", "csv")) {
     sequence_df <- fasta_to_df(input)
   } else {
     stopifnot(grepl("^[A-Za-z]+$", input, perl = T))
