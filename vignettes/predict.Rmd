@@ -175,37 +175,25 @@ pred_bacteria_input_aastring  %>%
 
 ## Summarise and plot
 
-Using the results you obtained as presented above, you can then take a look on the summary of the prediction. As well as plot them. In this section, we will show you how to do that. Let us take the frist prediction result using fasta as the input data. If you want to take a look on the summary of your prediction, you can do this following step: 
+Using the results you obtained as presented above, you can then take a look on the summary of the prediction, and also plot them. In this section, we will show you how to do that. Let us take one of the first prediction results we claculated above. If you want to take a look on the summary of your prediction, you can do this following step: 
 
-```r
-summary(pred_fungi_input_fasta)
-#> # A tibble: 2 x 3
-#>   pred_class count ratio
-#>        <dbl> <int> <dbl>
-#> 1          0     5   0.5
-#> 2          1     5   0.5
-```
 
 ```r
 summary(pred_oomycete_input_df)
 #> # A tibble: 2 x 3
-#>   pred_class count ratio
-#>        <dbl> <int> <dbl>
-#> 1          0     7   0.7
-#> 2          1     3   0.3
+#>   pred_class count proportion
+#>        <dbl> <int>      <dbl>
+#> 1          0     7        0.7
+#> 2          1     3        0.3
 ```
-You can also plot the results depends on which data output you want to plot. Let us take the results from the oomycete prediction. 
+
+You can also plot the probability distribution of the results as following:
 
 ```r
-ggplot2::autoplot(pred_oomycete_input_df, type = "class")
+ggplot2::autoplot(pred_oomycete_input_df)
 ```
 
+![](https://i.imgur.com/OWGh8JS.png)
 
-![](https://i.imgur.com/Vhq4a5o.png)
 
-```r
-ggplot2::autoplot(pred_oomycete_input_df, type = "prob")
-```
-
-![](https://i.imgur.com/ysswJAB.png)
 
