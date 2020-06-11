@@ -4,14 +4,12 @@
 \alias{autoplot.tbl_deepredeff}
 \title{Plot the results of prediction}
 \usage{
-\method{autoplot}{tbl_deepredeff}(object, cutoff = 0.5, type = "class", ...)
+\method{autoplot}{tbl_deepredeff}(object, cutoff = 0.5, ...)
 }
 \arguments{
 \item{object}{Results of prediction from deepredeff::predict_effector().}
 
 \item{cutoff}{Cutoff value to determine the prediction class (1 for effector and 0 for non-effector). The default value is 0.5.}
-
-\item{type}{Type plot to generate. Type class will generate histogram of each prediction class, while prob will show each sequence prediction value and the cutoff value. Default type is class.}
 
 \item{...}{Additional arguments ignored.}
 }
