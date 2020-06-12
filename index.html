@@ -100,10 +100,10 @@
 <div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu">install_github</span>(<span class="st">"ruthkr/deepredeff"</span>)</pre></div>
 </div>
-<div id="example" class="section level2">
+<div id="running-prediction-function" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
+<a href="#running-prediction-function" class="anchor"></a>Running prediction function</h2>
+<p>This is a basic example which shows you how to predict effector sequences if you have fasta file:</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="co"># Specify the conda environment</span>
 <span class="kw pkg">reticulate</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/use_python.html">use_condaenv</a></span>(<span class="st">"tensorflow"</span>, <span class="kw">conda</span> <span class="kw">=</span> <span class="st">"/usr/local/Caskroom/miniconda/base/bin/conda"</span>)
 
@@ -113,7 +113,7 @@
 <span class="co"># Define the fasta path from the sample data</span>
 <span class="no">bacteria_fasta_path</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"example"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"bacteria_sample"</span>, <span class="st">".fasta"</span>), <span class="kw">package</span> <span class="kw">=</span> <span class="st">"deepredeff"</span>)
 
-<span class="co"># Predict the effector candidate</span>
+<span class="co"># Predict the effector candidate using bacteria model</span>
 <span class="no">pred_result</span> <span class="kw">&lt;-</span> <span class="kw pkg">deepredeff</span><span class="kw ns">::</span><span class="fu"><a href="reference/predict_effector.html">predict_effector</a></span>(
   <span class="kw">input</span> <span class="kw">=</span> <span class="no">bacteria_fasta_path</span>,
   <span class="kw">model</span> <span class="kw">=</span> <span class="st">"bacteria"</span>
@@ -192,6 +192,9 @@
 </tr>
 </tbody>
 </table>
+<p>After getting the result, you can plot the probability distribution of the result as follows:</p>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span>(<span class="no">pred_result</span>)</pre></div>
+<p><img src="reference/figures/README-pred_result_plot-1.png" width="100%"> More examples with different input formats are available on functions documentations and vignettes, please refer to the documentation.</p>
 </div>
 </div>
   </div>
