@@ -24,9 +24,10 @@ install.packages("devtools")
 devtools::install_github("ruthkr/deepredeff")
 ```
 
-## Example
+## Running prediction function
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to predict effector
+sequences if you have fasta file:
 
 ``` r
 # Specify the conda environment
@@ -38,7 +39,7 @@ library(deepredeff)
 # Define the fasta path from the sample data
 bacteria_fasta_path <- system.file("extdata", "example", paste0("bacteria_sample", ".fasta"), package = "deepredeff")
 
-# Predict the effector candidate
+# Predict the effector candidate using bacteria model
 pred_result <- deepredeff::predict_effector(
   input = bacteria_fasta_path,
   model = "bacteria"
@@ -67,3 +68,14 @@ pred_result %>%
 | tr⎮Q4ZTI0⎮Q4ZTI0\_PSEU2 Amino acid ABC transporter substrate-binding protein, PAAT family OS=Pseudomonas syringae pv. syringae (strain B728a) OX=205918 GN=Psyr\_2503 PE=4 SV=1    | MHRGPSFVKACAFVLSASFMLANTV | 0.3061618 |
 | tr⎮Q4ZR15⎮Q4ZR15\_PSEU2 Sensor protein OS=Pseudomonas syringae pv. syringae (strain B728a) OX=205918 GN=Psyr\_3375 PE=4 SV=1                                                       | MRRQPSLTLRSTLAFALVAMLTVSG | 0.0722144 |
 | tr⎮D4I1R4⎮D4I1R4\_ERWAC Outer-membrane lipoprotein LolB OS=Erwinia amylovora (strain CFBP1430) OX=665029 GN=lolB PE=3 SV=1                                                         | MLSSNRRLLRLLPLASLLLTACGLH | 0.0489914 |
+
+After getting the result, you can plot the probability distribution of
+the result as follows:
+
+``` r
+ggplot2::autoplot(pred_result)
+```
+
+<img src="man/figures/README-pred_result_plot-1.png" width="100%" />
+More examples with different input formats are available on functions
+documentations and vignettes, please refer to the documentation.

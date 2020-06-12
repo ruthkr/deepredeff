@@ -11,6 +11,8 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+
+ggplot2::theme_set(ggplot2::theme_bw())
 ```
 
 # deepredeff <img src="man/figures/logo.png" align="right" width="120" />
@@ -32,9 +34,9 @@ The development version can be installed from [GitHub](https://github.com/) with
 install.packages("devtools")
 devtools::install_github("ruthkr/deepredeff")
 ```
-## Example
+## Running prediction function
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to predict effector sequences if you have fasta file:
 
 ```{r example}
 # Specify the conda environment
@@ -46,7 +48,7 @@ library(deepredeff)
 # Define the fasta path from the sample data
 bacteria_fasta_path <- system.file("extdata", "example", paste0("bacteria_sample", ".fasta"), package = "deepredeff")
 
-# Predict the effector candidate
+# Predict the effector candidate using bacteria model
 pred_result <- deepredeff::predict_effector(
   input = bacteria_fasta_path,
   model = "bacteria"
@@ -61,5 +63,10 @@ pred_result %>%
   knitr::kable()
 ```
 
+After getting the result, you can plot the probability distribution of the result as follows:
 
+```{r pred_result_plot}
+ggplot2::autoplot(pred_result)
+```
+More examples with different input formats are available on functions documentations and vignettes, please refer to the documentation.
 
