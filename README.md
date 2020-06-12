@@ -29,7 +29,7 @@ devtools::install_github("ruthkr/deepredeff")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-# Specify the conda environment 
+# Specify the conda environment
 reticulate::use_condaenv("tensorflow", conda = "/usr/local/Caskroom/miniconda/base/bin/conda")
 
 # Load the package
@@ -38,29 +38,32 @@ library(deepredeff)
 # Define the fasta path from the sample data
 bacteria_fasta_path <- system.file("extdata", "example", paste0("bacteria_sample", ".fasta"), package = "deepredeff")
 
-# Predict the effector candidate 
-pred_bacteria_fasta_input <- deepredeff::predict_effector(
+# Predict the effector candidate
+pred_result <- deepredeff::predict_effector(
   input = bacteria_fasta_path,
   model = "bacteria"
-  )
+)
 #> Loaded models: cnn_gru, cnn_lstm, gru_emb, lstm_emb for pathogen bacteria.
 #> Loaded models successfully!
 
 # View results
-pred_bacteria_fasta_input %>% 
-  dplyr::mutate(sequence = stringr::str_sub(sequence, 1, 50)) %>% 
+pred_result %>%
+  dplyr::mutate(
+    name = stringr::str_replace_all(name, "\\|", "⎮"),
+    sequence = stringr::str_sub(sequence, 1, 25)
+  ) %>%
   knitr::kable()
 ```
 
-| name                                                                                                                                                                               | sequence                                           |      prob |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------- | --------: |
-| tr|A0A0N8SZV2|A0A0N8SZV2\_PSESY Type III secretion system effector HopAI1 OS=Pseudomonas syringae pv. syringae OX=321 GN=ALO45\_04155 PE=4 SV=1                                    | MPINRPAFNLKLNTAIAQPTLKKDAGAELRRLNQSEVRANTQTRFAVNHR | 0.9483424 |
-| tr|A5CLR7|A5CLR7\_CLAM3 Pat-1 protein OS=Clavibacter michiganensis subsp. michiganensis (strain NCPPB 382) OX=443906 GN=pat-1 PE=4 SV=1                                            | MQFMSRINRILFVAVVSLLSVLGCCVAAAPAQAVDRIARVSLPVRAGTHL | 0.0798177 |
-| sp|B2SU53|PTHX1\_XANOP TAL effector protein PthXo1 OS=Xanthomonas oryzae pv. oryzae (strain PXO99A) OX=360094 GN=pthXo1 PE=1 SV=2                                                  | MDPIRSRTPSPARELLPGPQPDRVQPTADRGGAPPAGGPLDGLPARRTMS | 0.9943361 |
-| tr|C0SPN9|C0SPN9\_RALSL Uncharacterized protein RSc2139 OS=Ralstonia solanacearum OX=305 GN=RSc2139 PE=4 SV=1                                                                      | MSIGRSKSVAGASASHALASGENGSPQPQTVTLLAGATRRRRNSGLLCEL | 0.8418444 |
-| tr|D2Z000|D2Z000\_RALSL Type III effector protein OS=Ralstonia solanacearum OX=305 GN=rip61 PE=4 SV=1                                                                              | MPPPIRNARTTPPSFDPSAAGDDLRATPPRVAAATPTHRTAPSQLAGLPS | 0.9953785 |
-| tr|Q8XX20|Q8XX20\_RALSO Putative multicopper oxidase, type 3 signal peptide protein OS=Ralstonia solanacearum (strain GMI1000) OX=267608 GN=RSc2298 PE=4 SV=1                      | MSHMTFNTWKAGLWRLAAAAVLSLLPVVARAAVPGITGPTFDLTAQPGRA | 0.0645516 |
-| tr|Q87UH8|Q87UH8\_PSESM Taurine ABC transporter, periplasmic taurine-binding protein OS=Pseudomonas syringae pv. tomato (strain ATCC BAA-871 / DC3000) OX=223283 GN=tauA PE=4 SV=1 | MKLHFSLRLLTALSLTGATFLAQAADFTVAYQTTVDPAKVAQADNAYEKA | 0.0492858 |
-| tr|Q4ZTI0|Q4ZTI0\_PSEU2 Amino acid ABC transporter substrate-binding protein, PAAT family OS=Pseudomonas syringae pv. syringae (strain B728a) OX=205918 GN=Psyr\_2503 PE=4 SV=1    | MHRGPSFVKACAFVLSASFMLANTVQAAEGSKLDAVLKRGNLVVGTGSTN | 0.3061618 |
-| tr|Q4ZR15|Q4ZR15\_PSEU2 Sensor protein OS=Pseudomonas syringae pv. syringae (strain B728a) OX=205918 GN=Psyr\_3375 PE=4 SV=1                                                       | MRRQPSLTLRSTLAFALVAMLTVSGAGLYLYQSIEETVMQRSDHAVLARL | 0.0722144 |
-| tr|D4I1R4|D4I1R4\_ERWAC Outer-membrane lipoprotein LolB OS=Erwinia amylovora (strain CFBP1430) OX=665029 GN=lolB PE=3 SV=1                                                         | MLSSNRRLLRLLPLASLLLTACGLHTQPQKPGQSPTAVQWRQHQQAVQNI | 0.0489914 |
+| name                                                                                                                                                                               | sequence                  |      prob |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------ | --------: |
+| tr⎮A0A0N8SZV2⎮A0A0N8SZV2\_PSESY Type III secretion system effector HopAI1 OS=Pseudomonas syringae pv. syringae OX=321 GN=ALO45\_04155 PE=4 SV=1                                    | MPINRPAFNLKLNTAIAQPTLKKDA | 0.9483424 |
+| tr⎮A5CLR7⎮A5CLR7\_CLAM3 Pat-1 protein OS=Clavibacter michiganensis subsp. michiganensis (strain NCPPB 382) OX=443906 GN=pat-1 PE=4 SV=1                                            | MQFMSRINRILFVAVVSLLSVLGCC | 0.0798177 |
+| sp⎮B2SU53⎮PTHX1\_XANOP TAL effector protein PthXo1 OS=Xanthomonas oryzae pv. oryzae (strain PXO99A) OX=360094 GN=pthXo1 PE=1 SV=2                                                  | MDPIRSRTPSPARELLPGPQPDRVQ | 0.9943361 |
+| tr⎮C0SPN9⎮C0SPN9\_RALSL Uncharacterized protein RSc2139 OS=Ralstonia solanacearum OX=305 GN=RSc2139 PE=4 SV=1                                                                      | MSIGRSKSVAGASASHALASGENGS | 0.8418444 |
+| tr⎮D2Z000⎮D2Z000\_RALSL Type III effector protein OS=Ralstonia solanacearum OX=305 GN=rip61 PE=4 SV=1                                                                              | MPPPIRNARTTPPSFDPSAAGDDLR | 0.9953785 |
+| tr⎮Q8XX20⎮Q8XX20\_RALSO Putative multicopper oxidase, type 3 signal peptide protein OS=Ralstonia solanacearum (strain GMI1000) OX=267608 GN=RSc2298 PE=4 SV=1                      | MSHMTFNTWKAGLWRLAAAAVLSLL | 0.0645516 |
+| tr⎮Q87UH8⎮Q87UH8\_PSESM Taurine ABC transporter, periplasmic taurine-binding protein OS=Pseudomonas syringae pv. tomato (strain ATCC BAA-871 / DC3000) OX=223283 GN=tauA PE=4 SV=1 | MKLHFSLRLLTALSLTGATFLAQAA | 0.0492858 |
+| tr⎮Q4ZTI0⎮Q4ZTI0\_PSEU2 Amino acid ABC transporter substrate-binding protein, PAAT family OS=Pseudomonas syringae pv. syringae (strain B728a) OX=205918 GN=Psyr\_2503 PE=4 SV=1    | MHRGPSFVKACAFVLSASFMLANTV | 0.3061618 |
+| tr⎮Q4ZR15⎮Q4ZR15\_PSEU2 Sensor protein OS=Pseudomonas syringae pv. syringae (strain B728a) OX=205918 GN=Psyr\_3375 PE=4 SV=1                                                       | MRRQPSLTLRSTLAFALVAMLTVSG | 0.0722144 |
+| tr⎮D4I1R4⎮D4I1R4\_ERWAC Outer-membrane lipoprotein LolB OS=Erwinia amylovora (strain CFBP1430) OX=665029 GN=lolB PE=3 SV=1                                                         | MLSSNRRLLRLLPLASLLLTACGLH | 0.0489914 |
