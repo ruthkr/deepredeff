@@ -58,11 +58,14 @@ encode_integer <- function(sequence, max_length = 4034) {
 
   # Split the amino acid letter in the sequence
   sequence <- sequence %>%
+    # Capitalize
+    toupper() %>%
+    # Remove non-letter chars
+    gsub("[^A-Z]", "", .) %>%
     # Cut or pad sequence
     substr(1, max_length) %>%
     sprintf(paste0("%-", max_length, "s"), .) %>%
-    # Capitalize and split
-    toupper() %>%
+    # Split
     strsplit("") %>%
     unlist()
 
