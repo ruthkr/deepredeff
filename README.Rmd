@@ -65,8 +65,9 @@ pred_result %>%
 
 After getting the result, you can plot the probability distribution of the result as follows:
 
-```{r pred_result_plot}
+```{r pred_result_plot, fig.height=4, fig.width=8, out.width=NULL, fig.align='center'}
 ggplot2::autoplot(pred_result)
 ```
+
 More examples with different input formats are available on functions documentations and vignettes, please refer to the documentation.
 

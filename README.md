@@ -76,6 +76,7 @@ the result as follows:
 ggplot2::autoplot(pred_result)
 ```
 
-<img src="man/figures/README-pred_result_plot-1.png" width="100%" />
+<img src="man/figures/README-pred_result_plot-1.png" style="display: block; margin: auto;" />
+
 More examples with different input formats are available on functions
 documentations and vignettes, please refer to the documentation.
