@@ -22,10 +22,12 @@ new_tbl_deepredeff <- function(x, description = names(x)) {
 #' @importFrom rlang .data
 summary.tbl_deepredeff <- function(object, cutoff = 0.5, ...) {
   object <- object %>%
-    dplyr::mutate(pred_class = dplyr::case_when(
-      .data$prob >= cutoff ~ 1,
-      .data$prob < cutoff ~ 0
-    ))
+    dplyr::mutate(
+      pred_class = dplyr::case_when(
+        .data$prob >= cutoff ~ 1,
+        .data$prob < cutoff ~ 0
+      )
+    )
 
   count_per_class <- object %>%
     dplyr::group_by(.data$pred_class) %>%
@@ -54,7 +56,13 @@ summary.tbl_deepredeff <- function(object, cutoff = 0.5, ...) {
 autoplot.tbl_deepredeff <- function(object, cutoff = 0.5, ...) {
   `%+%` <- ggplot2::`%+%`
   object <- object %>%
-    dplyr::mutate(class = factor(ifelse(.data$prob >= cutoff, 1, 0), levels = c(1,0), labels = c("effector", "non-effector")))
+    dplyr::mutate(
+      class = factor(
+        ifelse(.data$prob >= cutoff, 1, 0),
+        levels = c(1, 0),
+        labels = c("effector", "non-effector")
+      )
+    )
 
   plot <- object %>%
     ggplot2::ggplot() +
@@ -62,15 +70,8 @@ autoplot.tbl_deepredeff <- function(object, cutoff = 0.5, ...) {
       x = .data$prob,
       fill = .data$class
     ) +
-    ggplot2::geom_density() +
-    ggplot2::scale_x_continuous(breaks = seq(0, 1, 0.1), minor_breaks = seq(0, 1, 0.025)) +
-    ggplot2::scale_y_continuous(breaks = seq(0, 1000, 1), minor_breaks = NULL) +
-    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1)) +
-    ggplot2::theme_bw()
+    ggplot2::geom_density(alpha = 0.5) +
+    ggplot2::scale_x_continuous(breaks = seq(0, 1, 0.1))
 
   return(plot)
 }
-
-
-
-
