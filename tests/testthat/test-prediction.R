@@ -1,10 +1,9 @@
 # helper function to skip tests if we don't have the 'tensorflow' module
 skip_if_no_tf <- function() {
   have_tf <- reticulate::py_module_available("tensorflow")
-  have_keras <- reticulate::py_module_available("keras")
 
-  if (!as.logical(have_tf * have_keras)) {
-    skip("TensorFlow and Keras not available for testing")
+  if (!have_tf) {
+    skip("TensorFlow is not available for testing")
   }
 }
 
