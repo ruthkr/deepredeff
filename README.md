@@ -16,11 +16,27 @@ different pathogens, which are oomycete, fungi, and bacteria.
 
 ## Installation
 
+### Requirements
+
+This package requires TensorFlow 2.0, for this reason we recommend first
+running:
+
+``` r
+reticulate::install_miniconda()
+reticulate::conda_install(envname = "r-reticulate", packages = "tensorflow==2.0.0")
+```
+
+In some operating systems, you may also require to specify the `conda`
+path of your `r-miniconda` installation when calling
+`reticulate::conda_install()`.
+
+### deepredeff package
+
 The development version can be installed from
 [GitHub](https://github.com/) with:
 
 ``` r
-install.packages("devtools")
+# install.packages("devtools")
 devtools::install_github("ruthkr/deepredeff")
 ```
 
@@ -30,21 +46,21 @@ This is a basic example which shows you how to predict effector
 sequences if you have fasta file:
 
 ``` r
-# Specify the conda environment
-reticulate::use_condaenv("tensorflow", conda = "/usr/local/Caskroom/miniconda/base/bin/conda")
-
 # Load the package
 library(deepredeff)
 
 # Define the fasta path from the sample data
-bacteria_fasta_path <- system.file("extdata", "example", paste0("bacteria_sample", ".fasta"), package = "deepredeff")
+bacteria_fasta_path <- system.file(
+  "extdata/example", "bacteria_sample.fasta", 
+  package = "deepredeff"
+)
 
 # Predict the effector candidate using bacteria model
 pred_result <- deepredeff::predict_effector(
   input = bacteria_fasta_path,
   model = "bacteria"
 )
-#> Loaded models: cnn_gru, cnn_lstm, gru_emb, lstm_emb for pathogen bacteria.
+#> Loaded models: cnn_gru, cnn_lstm, gru_emb, lstm_emb for bacteria.
 #> Loaded models successfully!
 
 # View results
