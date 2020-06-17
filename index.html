@@ -62,6 +62,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="articles/install_python.html">Installing Python</a>
+    </li>
+    <li>
       <a href="articles/predict.html">Predict sequences</a>
     </li>
   </ul>
@@ -96,38 +99,56 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
+<div id="requirements" class="section level3">
+<h3 class="hasAnchor">
+<a href="#requirements" class="anchor"></a>Requirements</h3>
+<p>This package requires TensorFlow 2.0, for this reason we recommend first running:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw">reticulate</span>::<span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/install_miniconda.html">install_miniconda</a></span>()
+<span class="kw">reticulate</span>::<span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/conda-tools.html">conda_install</a></span>(envname = <span class="st">"r-reticulate"</span>, packages = <span class="st">"tensorflow==2.0.0"</span>)
+</pre></div>
+<p>In some operating systems, you may also require to specify the <code>conda</code> path of your <code>r-miniconda</code> installation when calling <code><a href="https://rdrr.io/pkg/reticulate/man/conda-tools.html">reticulate::conda_install()</a></code>.</p>
+</div>
+<div id="deepredeff-package" class="section level3">
+<h3 class="hasAnchor">
+<a href="#deepredeff-package" class="anchor"></a>deepredeff package</h3>
 <p>The development version can be installed from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu">install_github</span>(<span class="st">"ruthkr/deepredeff"</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="co"># install.packages("devtools")</span>
+<span class="kw">devtools</span>::<span class="fu">install_github</span>(<span class="st">"ruthkr/deepredeff"</span>)
+</pre></div>
+</div>
 </div>
 <div id="running-prediction-function" class="section level2">
 <h2 class="hasAnchor">
 <a href="#running-prediction-function" class="anchor"></a>Running prediction function</h2>
 <p>This is a basic example which shows you how to predict effector sequences if you have fasta file:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="co"># Specify the conda environment</span>
-<span class="kw pkg">reticulate</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/use_python.html">use_condaenv</a></span>(<span class="st">"tensorflow"</span>, <span class="kw">conda</span> <span class="kw">=</span> <span class="st">"/usr/local/Caskroom/miniconda/base/bin/conda"</span>)
-
+<div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="co"># Load the package</span>
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">deepredeff</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/ruthkr/deepredeff">deepredeff</a></span>)
 
 <span class="co"># Define the fasta path from the sample data</span>
-<span class="no">bacteria_fasta_path</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"example"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"bacteria_sample"</span>, <span class="st">".fasta"</span>), <span class="kw">package</span> <span class="kw">=</span> <span class="st">"deepredeff"</span>)
+<span class="kw">bacteria_fasta_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(
+  <span class="st">"extdata/example"</span>, <span class="st">"bacteria_sample.fasta"</span>, 
+  package = <span class="st">"deepredeff"</span>
+)
 
 <span class="co"># Predict the effector candidate using bacteria model</span>
-<span class="no">pred_result</span> <span class="kw">&lt;-</span> <span class="kw pkg">deepredeff</span><span class="kw ns">::</span><span class="fu"><a href="reference/predict_effector.html">predict_effector</a></span>(
-  <span class="kw">input</span> <span class="kw">=</span> <span class="no">bacteria_fasta_path</span>,
-  <span class="kw">model</span> <span class="kw">=</span> <span class="st">"bacteria"</span>
+<span class="kw">pred_result</span> <span class="op">&lt;-</span> <span class="kw">deepredeff</span>::<span class="fu"><a href="reference/predict_effector.html">predict_effector</a></span>(
+  input = <span class="kw">bacteria_fasta_path</span>,
+  model = <span class="st">"bacteria"</span>
 )
-<span class="co">#&gt; Loaded models: cnn_gru, cnn_lstm, gru_emb, lstm_emb for pathogen bacteria.</span>
+<span class="co">#&gt; Loaded models: cnn_gru, cnn_lstm, gru_emb, lstm_emb for bacteria.</span>
 <span class="co">#&gt; Loaded models successfully!</span>
 
 <span class="co"># View results</span>
-<span class="no">pred_result</span> <span class="kw">%&gt;%</span>
-  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
-    <span class="kw">name</span> <span class="kw">=</span> <span class="kw pkg">stringr</span><span class="kw ns">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span>(<span class="no">name</span>, <span class="st">"\\|"</span>, <span class="st">"⎮"</span>),
-    <span class="kw">sequence</span> <span class="kw">=</span> <span class="kw pkg">stringr</span><span class="kw ns">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span>(<span class="no">sequence</span>, <span class="fl">1</span>, <span class="fl">25</span>)
-  ) <span class="kw">%&gt;%</span>
-  <span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>()</pre></div>
+<span class="kw">pred_result</span> <span class="op">%&gt;%</span>
+  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(
+    name = <span class="kw">stringr</span>::<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace_all</a></span>(<span class="kw">name</span>, <span class="st">"\\|"</span>, <span class="st">"⎮"</span>),
+    sequence = <span class="kw">stringr</span>::<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span>(<span class="kw">sequence</span>, <span class="fl">1</span>, <span class="fl">25</span>)
+  ) <span class="op">%&gt;%</span>
+  <span class="kw">knitr</span>::<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>()
+</pre></div>
 <table class="table">
 <colgroup>
 <col width="83%">
@@ -193,7 +214,9 @@
 </tbody>
 </table>
 <p>After getting the result, you can plot the probability distribution of the result as follows:</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span>(<span class="no">pred_result</span>)</pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="kw">ggplot2</span>::<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span>(<span class="kw">pred_result</span>)
+</pre></div>
 <p><img src="reference/figures/README-pred_result_plot-1.png" style="display: block; margin: auto;"></p>
 <p>More examples with different input formats are available on functions documentations and vignettes, please refer to the documentation.</p>
 </div>
