@@ -1,0 +1,87 @@
+---
+title: "Installing Python"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{install_python}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Installing Miniconda 
+
+```r
+reticulate::install_miniconda()
+#> * Downloading 'https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh' ...
+#> trying URL 'https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh'
+#> Content type 'application/x-sh' length 54829425 bytes (52.3 MB)
+#> ==================================================
+#> downloaded 52.3 MB
+#> 
+#> * Installing Miniconda -- please wait a moment ...
+#> PREFIX=/Users/<user>/Library/r-miniconda
+#> Unpacking payload ...
+#> Collecting package metadata (current_repodata.json): ...working... done                               #>          
+#> Solving environment: ...working... done
+#> 
+#> ...
+#> 
+#> * Miniconda has been successfully installed at '/Users/<user>/Library/r-miniconda'.
+#> [1] "/Users/<user>/Library/r-miniconda"
+```
+
+This command will install Miniconda and create the `r-reticulate` environment in `"/Users/<user>/Library/r-miniconda/envs/r-reticulate"`.
+
+
+```r
+reticulate::conda_install(envname = "r-reticulate", packages = "tensorflow==2.0.0")
+#> Collecting package metadata (current_repodata.json): ...working... done
+#> Solving environment: ...working... done
+#> 
+#> # All requested packages already installed.
+#> 
+#> Collecting package metadata (current_repodata.json): ...working... done
+#> Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+#> Solving environment: ...working... failed with repodata from current_repodata.json, will retry with #> next repodata source.
+#> Collecting package metadata (repodata.json): ...working... done
+#> Solving environment: ...working... done
+#> 
+#> ## Package Plan ##
+#> 
+#>   environment location: /Users/<user>/Library/r-miniconda/envs/r-reticulate
+#> 
+#>   added / updated specs:
+#>     - python
+#>     - tensorflow==2.0.0
+#> 
+#> ...
+#> 
+#> Preparing transaction: ...working... done
+#> Verifying transaction: ...working... done
+#> Executing transaction: ...working... done
+```
+
+
+
+## Possible issues
+```r
+reticulate::conda_install(envname = "r-reticulate", packages = "tensorflow==2.0.0")
+
+#> EnvironmentLocationNotFound: Not a conda environment: 
+#> /usr/local/Caskroom/miniconda/base/envs/r-reticulate
+#> 
+#> Error: installation of 'python' into environment 'r-reticulate' failed [error code 1]
+```
+
+```r
+reticulate::conda_install(envname = "r-reticulate", packages = "tensorflow==2.0.0", conda = "/Users/<user>/Library/r-miniconda/envs/r-reticulate")
+#> Collecting package metadata (current_repodata.json): ...working... done
+#> Solving environment: ...working... done
+#> ...
+```
