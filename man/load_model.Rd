@@ -4,13 +4,13 @@
 \alias{load_model}
 \title{Load model in HDF5 format}
 \usage{
-load_model(pathogen = c("all", "bacteria", "fungi", "oomycete"))
+load_model(model = c("all", "bacteria", "fungi", "oomycete"))
 }
 \arguments{
-\item{pathogen}{Name of pathogen.}
+\item{model}{Name of model.}
 }
 \value{
-all of the hyperparamaters and parameters of particula model from specific chosen pathogen.
+all of the hyperparamaters and parameters of particula model from specific chosen model.
 }
 \description{
 Load model in HDF5 format

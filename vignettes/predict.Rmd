@@ -112,7 +112,6 @@ input_aastringset <- system.file("extdata/example/bacteria_sample.fasta", packag
       Biostrings::readAAStringSet()
 ```
 
-
 ```r
 pred_bacteria_input_aastringset <- deepredeff::predict_effector(
   input = input_aastringset,
@@ -151,7 +150,6 @@ input_aastring <- system.file("extdata/example/bacteria_sample.fasta", package =
       Biostrings::AAString()
 ```
 
-
 ```r
 pred_bacteria_input_aastring <- deepredeff::predict_effector(
   input = input_aastring,
@@ -169,12 +167,9 @@ pred_bacteria_input_aastring  %>%
 #> 1 MPINRPAFNLKLNTAIAQPTLKKDA 0.9483424
 ```
 
-
-
 ## Summarise and plot
 
 Using the results you obtained as presented above, you can then take a look on the summary of the prediction, and also plot them. In this section, we will show you how to do that. Let us take one of the first prediction results we claculated above. If you want to take a look on the summary of your prediction, you can do this following step: 
-
 
 ```r
 summary(pred_oomycete_input_df)
@@ -192,6 +187,3 @@ ggplot2::autoplot(pred_oomycete_input_df)
 ```
 
 ![](https://i.imgur.com/OWGh8JS.png)
-
-
-

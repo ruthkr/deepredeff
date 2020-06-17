@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{package_glob}
 \alias{package_glob}
-\title{Title}
+\title{Wildcard Expansion on File Paths}
 \usage{
 package_glob(..., pattern)
 }
@@ -15,5 +15,5 @@ package_glob(..., pattern)
 Glob
 }
 \description{
-Title
+Wildcard Expansion on File Paths
 }
