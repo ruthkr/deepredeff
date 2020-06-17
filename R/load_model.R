@@ -1,16 +1,16 @@
 #' Load model in HDF5 format
 #'
-#' @param pathogen Name of pathogen.
+#' @param model Name of model.
 #'
-#' @return all of the hyperparamaters and parameters of particula model from specific chosen pathogen.
+#' @return all of the hyperparamaters and parameters of particula model from specific chosen model.
 #' @export
-load_model <- function(pathogen = c("all", "bacteria", "fungi", "oomycete")) {
-  pathogen <- match.arg(pathogen)
+load_model <- function(model = c("all", "bacteria", "fungi", "oomycete")) {
+  model <- match.arg(model)
 
-  model_paths <- package_glob("extdata/weights", pattern = paste0(pathogen, "*.hdf5"))
+  model_paths <- package_glob("extdata/weights", pattern = paste0(model, "*.hdf5"))
 
   # Model names for list
-  model_names <- gsub(paste0(".*\\/", pathogen, "_|.hdf5"), "", model_paths)
+  model_names <- gsub(paste0(".*\\/", model, "_|.hdf5"), "", model_paths)
 
   # Clear Keras session graph
   keras::k_clear_session()
@@ -22,7 +22,7 @@ load_model <- function(pathogen = c("all", "bacteria", "fungi", "oomycete")) {
     ) %>%
     `names<-`(model_names)
 
-  message(paste0("Loaded models: ", paste(model_names, collapse = ", "), " for pathogen ", pathogen, "."))
+  message(paste0("Loaded models: ", paste(model_names, collapse = ", "), " for ", model, "."))
 
   return(model_list)
 }

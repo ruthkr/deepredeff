@@ -14,15 +14,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 Deepredeff package allows you to predict effector protein given amino acid sequences in different format. Format that can be used for this version are fasta, dataframe, AAString, and AAStringSet. 
 
-How do you predict your sequences using deepredeff? In this article, we will walk you through the steps. The function to predict is `predict_effector`. There are four model available in this version, which are bacteria, fungi, oomycete, and all. Each model is specifically trained using different class of training data.
+How do you predict your sequences using deepredeff? In this article, we will walk you through the steps. The function to predict is `predict_effector()`. There are four model available in this version, which are bacteria, fungi, oomycete, and all. Each model is specifically trained using different class of training data.
 
 To use code in this article, you will need to install the following packages: `reticulate`, `dplyr`, and `deepredeff`. Before running the function, it is necessary to set up the conda environment that you will use. 
 
 ```r
-reticulate::use_condaenv("tensorflow", conda = "/usr/local/Caskroom/miniconda/base/bin/conda")
 library(dplyr)
 library(deepredeff)
 ```
@@ -45,7 +43,7 @@ pred_fungi_input_fasta <- deepredeff::predict_effector(
   input = input_fasta_path,
   model = "fungi"
 )
-#> Loaded models: cnn_lstm for pathogen fungi.
+#> Loaded models: cnn_lstm for fungi.
 #> Loaded models successfully!
 ```
 
@@ -82,7 +80,7 @@ pred_oomycete_input_df <- deepredeff::predict_effector(
   input = input_dataframe,
   model = "oomycete"
 )
-#> Loaded models: cnn_lstm for pathogen oomycete.
+#> Loaded models: cnn_lstm for oomycete.
 #> Loaded models successfully!
 ```
 
@@ -120,7 +118,7 @@ pred_bacteria_input_aastringset <- deepredeff::predict_effector(
   input = input_aastringset,
   model = "bacteria"
 )
-#> Loaded models: cnn_gru, cnn_lstm, gru_emb, lstm_emb for pathogen bacteria.
+#> Loaded models: cnn_gru, cnn_lstm, gru_emb, lstm_emb for bacteria.
 #> Loaded models successfully!
 ```
 
@@ -159,7 +157,7 @@ pred_bacteria_input_aastring <- deepredeff::predict_effector(
   input = input_aastring,
   model = "bacteria"
 )
-#> Loaded models: cnn_gru, cnn_lstm, gru_emb, lstm_emb for pathogen bacteria.
+#> Loaded models: cnn_gru, cnn_lstm, gru_emb, lstm_emb for bacteria.
 #> Loaded models successfully!
 ```
 
