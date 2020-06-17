@@ -2,7 +2,7 @@
 
 dist: trusty
 sudo: required
-language: R
+language: r
 latex: true
 cache: packages
 
@@ -14,9 +14,7 @@ addons:
       - python-virtualenv
 
 r:
- - devel
  - release
- - oldrel
 
 repos:
   CRAN: https://cloud.r-project.org
