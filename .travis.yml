@@ -17,12 +17,10 @@ repos:
 r_packages:
   - testthat
   - reticulate
-  - tensorflow
 
 before_script:
   - R -e "reticulate::install_miniconda()"
-  - R -e "reticulate::conda_install(envname = 'r-reticulate', 'tensorflow==2.0.0')"
-  - Rscript -e "reticulate::use_condaenv('r-reticulate')"
+  - R -e "reticulate::conda_install(envname = 'r-reticulate', 'tensorflow==2.0.0', pip = TRUE)"
 
 after_success:
   - find . -name *.Rout | xargs cat
