@@ -17,6 +17,7 @@ repos:
 r_packages:
   - testthat
   - reticulate
+  - devtools
 
 before_script:
   - R -e "reticulate::install_miniconda()"
