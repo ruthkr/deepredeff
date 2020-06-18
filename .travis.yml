@@ -40,6 +40,8 @@ script:
 
 after_success:
   - find . -name *.Rout | xargs cat
+  - Rscript -e 'covr::codecov()'
+
 
 after_failure:
   - find . -name *.Rout | xargs cat
