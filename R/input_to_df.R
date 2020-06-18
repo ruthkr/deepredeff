@@ -46,7 +46,8 @@ aasset_to_df <- function(aas) {
   data <- data.frame(
     name = names(aas),
     seq = as.character(aas),
-    row.names = NULL
+    row.names = NULL,
+    stringsAsFactors = FALSE
   )
 
   return(data)
@@ -63,7 +64,8 @@ aas_to_df <- function(aas) {
   data <- data.frame(
     name = as.character(aas),
     seq = as.character(aas),
-    row.names = NULL
+    row.names = NULL,
+    stringsAsFactors = FALSE
   )
 
   return(data)
