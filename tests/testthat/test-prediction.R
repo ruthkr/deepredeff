@@ -5,7 +5,7 @@ skip_if_no_tf <- function() {
   if (!have_tf) {
     skip(paste0(
       "TensorFlow is not available for testing",
-      "(using Python from",
+      " (using Python from ",
       reticulate::conda_binary(),
       ")"
     ))
