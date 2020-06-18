@@ -24,3 +24,43 @@ test_that("Prediction function works", {
     "tbl_deepredeff"
   )
 })
+
+test_that("Prediction with input FASTA return S3 class", {
+  skip_if_no_tf()
+  expect_s3_class(
+    deepredeff::predict_effector(
+      input = system.file("extdata/example/fungi_sample.fasta", package = "deepredeff"),
+      model = "fungi"
+    ),
+    "tbl_deepredeff"
+  )
+})
+
+test_that("Prediction with input AAStringset return S3 class", {
+  skip_if_no_tf()
+  expect_s3_class(
+    deepredeff::predict_effector(
+      input = system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
+        Biostrings::readAAStringSet(),
+      model = "fungi"
+    ),
+    "tbl_deepredeff"
+  )
+})
+
+test_that("Prediction with input AAString return S3 class", {
+  skip_if_no_tf()
+  expect_s3_class(
+    deepredeff::predict_effector(
+      input = system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
+        fasta_to_df() %>%
+        dplyr::slice(1) %>%
+        dplyr::pull(sequence) %>%
+        Biostrings::AAString(),
+      model = "fungi"
+    ),
+    "tbl_deepredeff"
+  )
+})
+
+
