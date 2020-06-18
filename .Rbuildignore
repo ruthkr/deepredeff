@@ -11,3 +11,4 @@
 ^notebooks$
 ^\.travis\.yml$
 ^codecov\.yml$
+^\.covrignore$
