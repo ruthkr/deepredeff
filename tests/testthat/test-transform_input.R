@@ -56,14 +56,14 @@ test_that("AAString conversion to data frame works", {
   )
 })
 
-# test_that("FASTA and AAStringset conversion to data frame works", {
-#   expect_equal(
-#     system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
-#       fasta_to_df() %>%
-#       .[["sequence"]],
-#     system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
-#       Biostrings::readAAStringSet() %>%
-#       aasset_to_df() %>%
-#       .[["seq"]]
-#   )
-# })
+test_that("FASTA and AAStringset conversion are identical", {
+  expect_equal(
+    system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
+      fasta_to_df() %>%
+      .[["sequence"]],
+    system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
+      Biostrings::readAAStringSet() %>%
+      aasset_to_df() %>%
+      .[["seq"]]
+  )
+})
