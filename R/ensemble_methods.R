@@ -56,7 +56,7 @@ get_ensemble_method <- function(model) {
     weights <- bacteria_weights
   } else if (model == "all") {
     ensemble_method <- ensemble_voting
-    weights <- bacteria_weights
+    weights <- NULL
   } else {
     ensemble_method <- function(x, y) {
       return(x[[1]])
