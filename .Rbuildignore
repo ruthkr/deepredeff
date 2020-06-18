@@ -10,3 +10,4 @@
 ^RDS$
 ^notebooks$
 ^\.travis\.yml$
+^codecov\.yml$

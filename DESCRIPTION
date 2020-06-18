@@ -29,7 +29,8 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown,
-    testthat
+    testthat,
+    covr
 Config/reticulate:
   list(
     packages = list(
