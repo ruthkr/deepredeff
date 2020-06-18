@@ -8,7 +8,10 @@
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/deepredeff)](https://cran.r-project.org/package=deepredeff)
 [![CRAN\_Status\_Badge](https://github.com/ruthkr/deepredeff/workflows/pkgdown/badge.svg)](https://ruthkr.github.io/deepredeff/)
-[![Travis build status](https://travis-ci.com/ruthkr/deepredeff.svg?branch=master)](https://travis-ci.com/ruthkr/deepredeff)
+[![Travis build
+status](https://travis-ci.com/ruthkr/deepredeff.svg?branch=master)](https://travis-ci.com/ruthkr/deepredeff)
+[![Codecov test
+coverage](https://codecov.io/gh/ruthkr/deepredeff/branch/master/graph/badge.svg)](https://codecov.io/gh/ruthkr/deepredeff?branch=master)
 <!-- badges: end -->
 
 **deepredeff** is a package to predict effector protein given amino acid
