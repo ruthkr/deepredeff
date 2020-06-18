@@ -20,7 +20,8 @@ r_packages:
 
 before_script:
   - R -e "reticulate::install_miniconda()"
-  - R -e "reticulate::conda_install(envname = 'r-reticulate', 'tensorflow==2.0.0', pip = TRUE)"
+  - R -e "reticulate::conda_install(envname = 'r-reticulate', 'tensorflow==2.0.0', pip = TRUE, conda = '/home/travis/.local/share/r-miniconda/bin/conda')"
+  - R -e "reticulate::py_discover_config()"
 
 after_success:
   - find . -name *.Rout | xargs cat
