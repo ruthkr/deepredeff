@@ -25,7 +25,53 @@ test_that("Prediction function works", {
   )
 })
 
-test_that("Prediction with input FASTA return S3 class", {
+test_that("Detection of non-aminoacid sequence works", {
+  skip_if_no_tf()
+  expect_error(
+    deepredeff::predict_effector(
+      input = "VERYWRONGSEQUENCE123+",
+      model = "fungi"
+    )
+  )
+})
+
+test_that("Detection of valid input class works", {
+  skip_if_no_tf()
+  expect_warning(
+    deepredeff::predict_effector(
+      input = NULL,
+      model = "fungi"
+    )
+  )
+})
+
+test_that("Prediction with input data frame returns S3 class", {
+  skip_if_no_tf()
+  expect_s3_class(
+    deepredeff::predict_effector(
+      input = system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
+        fasta_to_df(),
+      model = "fungi"
+    ),
+    "tbl_deepredeff"
+  )
+})
+
+test_that("Prediction with input string returns S3 class", {
+  skip_if_no_tf()
+  expect_s3_class(
+    deepredeff::predict_effector(
+      input = system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
+        fasta_to_df() %>%
+        dplyr::slice(1) %>%
+        dplyr::pull(sequence),
+      model = "fungi"
+    ),
+    "tbl_deepredeff"
+  )
+})
+
+test_that("Prediction with input FASTA returns S3 class", {
   skip_if_no_tf()
   expect_s3_class(
     deepredeff::predict_effector(
@@ -36,7 +82,7 @@ test_that("Prediction with input FASTA return S3 class", {
   )
 })
 
-test_that("Prediction with input AAStringset return S3 class", {
+test_that("Prediction with input AAStringset returns S3 class", {
   skip_if_no_tf()
   expect_s3_class(
     deepredeff::predict_effector(
@@ -48,7 +94,7 @@ test_that("Prediction with input AAStringset return S3 class", {
   )
 })
 
-test_that("Prediction with input AAString return S3 class", {
+test_that("Prediction with input AAString returns S3 class", {
   skip_if_no_tf()
   expect_s3_class(
     deepredeff::predict_effector(
@@ -62,5 +108,3 @@ test_that("Prediction with input AAString return S3 class", {
     "tbl_deepredeff"
   )
 })
-
-
