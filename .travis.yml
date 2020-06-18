@@ -22,13 +22,11 @@ r_packages:
 before_script:
   - R -e "reticulate::install_miniconda()"
   - R -e "reticulate::conda_install(envname = 'r-reticulate', 'tensorflow==2.0.0')"
-  - Rscript -e "reticulate::conda_binary()"
+  - Rscript -e "reticulate::use_condaenv('r-reticulate')"
 
 after_success:
   - find . -name *.Rout | xargs cat
-  - Rscript -e 'reticulate::py_module_available("tensorflow")'
   - Rscript -e 'covr::codecov()'
 
 after_failure:
   - find . -name *.Rout | xargs cat
-  - Rscript -e 'reticulate::py_module_available("tensorflow")'
