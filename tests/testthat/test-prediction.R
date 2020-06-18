@@ -3,7 +3,7 @@ skip_if_no_tf <- function() {
   have_tf <- reticulate::py_module_available("tensorflow")
 
   if (!have_tf) {
-    skip("TensorFlow is not available for testing")
+    skip(paste("TensorFlow is not available for testing.", "Using Python from", reticulate::conda_binary()))
   }
 }
 
