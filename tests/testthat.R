@@ -1,5 +1,5 @@
 library(testthat)
+reticulate::use_condaenv('r-reticulate')
 library(deepredeff)
-library(tensorflow)
 
 test_check("deepredeff", reporter = c('progress', 'fail'))

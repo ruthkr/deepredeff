@@ -13,7 +13,7 @@ skip_if_no_tf <- function() {
 }
 
 test_that("Prediction function works", {
-  # skip_if_no_tf()
+  skip_if_no_tf()
   expect_equal(
     deepredeff::predict_effector(
       input = system.file("extdata/example/fungi_sample.fasta", package = "deepredeff"),
