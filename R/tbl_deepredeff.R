@@ -24,8 +24,8 @@ summary.tbl_deepredeff <- function(object, cutoff = 0.5, ...) {
   object <- object %>%
     dplyr::mutate(
       pred_class = dplyr::case_when(
-        .data$prob >= cutoff ~ 1,
-        .data$prob < cutoff ~ 0
+        .data$prob >= cutoff ~ "effector",
+        .data$prob < cutoff ~ "non-effector"
       )
     )
 
