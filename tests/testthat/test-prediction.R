@@ -108,3 +108,40 @@ test_that("Prediction with input AAString returns S3 class", {
     "tbl_deepredeff"
   )
 })
+
+test_that("Summary of prediction result return data frame", {
+  skip_if_no_tf()
+    class_summary <- deepredeff::predict_effector(
+      input = system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
+        fasta_to_df() %>%
+        dplyr::slice(1) %>%
+        dplyr::pull(sequence),
+      model = "fungi"
+    ) %>%
+      summary() %>%
+      class()
+
+    expect_equal(class_summary[1], "tbl_df")
+    expect_equal(class_summary[2], "tbl")
+    expect_equal(class_summary[3], "data.frame")
+})
+
+
+test_that("Plot of prediction result return gg/ggplot object", {
+  skip_if_no_tf()
+  class_plot <- deepredeff::predict_effector(
+    input = system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
+      fasta_to_df() %>%
+      dplyr::slice(1) %>%
+      dplyr::pull(sequence),
+    model = "fungi"
+  ) %>%
+    ggplot2::autoplot() %>%
+    class()
+
+  expect_equal(class_plot[1], "gg")
+  expect_equal(class_plot[2], "ggplot")
+})
+
+
+
