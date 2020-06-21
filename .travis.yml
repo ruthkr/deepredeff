@@ -4,6 +4,13 @@ language: r
 warnings_are_errors: false
 sudo: required
 
+jobs:
+  include:
+    - os: linux
+      dist: xenial
+    - os: osx
+      osx_image: xcode11.3
+
 r:
   - devel
   - release
