@@ -71,9 +71,13 @@ jobs:
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
-      - name: Install Python dependencies
+      - name: Install Miniconda
         run: |
           reticulate::install_miniconda()
+        shell: Rscript {0}
+
+      - name: Install TensorFlow
+        run: |
           reticulate::conda_install(envname = 'r-reticulate', packages = 'tensorflow==2.0.0', pip = FALSE, conda = "/home/runner/.local/share/r-miniconda/bin/conda")
         shell: Rscript {0}
 
