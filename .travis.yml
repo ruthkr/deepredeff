@@ -18,9 +18,9 @@ matrix:
     - r: oldrel
       os: linux
       dist: xenial
-    - r: release
-      os: osx
-      osx_image: xcode11.3
+    # - r: release
+    #   os: osx
+    #   osx_image: xcode11.3
     # - r: devel
     #   os: osx
     #   osx_image: xcode11.3
