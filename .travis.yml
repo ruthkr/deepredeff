@@ -11,6 +11,7 @@ matrix:
       dist: xenial
       after_success:
         - Rscript -e 'covr::codecov()'
+        - find . -name *.Rout | xargs cat
     - r: devel
       os: linux
       dist: xenial
@@ -20,9 +21,9 @@ matrix:
     - r: release
       os: osx
       osx_image: xcode11.3
-    - r: devel
-      os: osx
-      osx_image: xcode11.3
+    # - r: devel
+    #   os: osx
+    #   osx_image: xcode11.3
 
 repos:
   CRAN: https://cloud.r-project.org
