@@ -8,13 +8,17 @@ jobs:
   include:
     - os: linux
       dist: xenial
+      r:
+        - devel
+        - release
+        - oldrel
     - os: osx
       osx_image: xcode11.3
-
-r:
-  - devel
-  - release
-  - oldrel
+      r:
+        - release
+    - os: windows
+      r:
+        - release
 
 repos:
   CRAN: https://cloud.r-project.org
