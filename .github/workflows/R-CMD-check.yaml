@@ -74,7 +74,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           reticulate::install_miniconda()
-          reticulate::conda_install(envname = 'r-reticulate', 'tensorflow==2.0.0', pip = FALSE)
+          reticulate::conda_install(envname = 'r-reticulate', packages = 'tensorflow==2.0.0', pip = FALSE, conda = "/home/runner/.local/share/r-miniconda/bin/conda")
         shell: Rscript {0}
 
       - name: Session info
