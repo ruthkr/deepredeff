@@ -94,6 +94,12 @@ jobs:
           reticulate::conda_install(envname = 'r-reticulate', packages = 'tensorflow==2.0.0', pip = FALSE, conda = "C:/Users/runneradmin/AppData/Local/r-miniconda/condabin/conda.bat")
         shell: Rscript {0}
 
+      - name: Conda environment info
+        run: |
+          reticulate::conda_binary()
+          reticulate::conda_list()
+        shell: Rscript {0}
+
       - name: Session info
         run: |
           options(width = 100)

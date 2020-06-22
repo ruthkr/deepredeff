@@ -12,6 +12,18 @@ skip_if_no_tf <- function() {
   }
 }
 
+test_that("Reticulate py_module_available doesn't work on macOS", {
+  expect_error(
+    reticulate::py_module_available("tensorflow")
+  )
+})
+
+test_that("Reticulate conda_binary doesn't work on macOS", {
+  expect_error(
+    reticulate::conda_binary()
+  )
+})
+
 test_that("Prediction function works", {
   # skip_if_no_tf()
   # skip("skip 1")
