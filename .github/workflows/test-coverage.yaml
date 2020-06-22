@@ -10,7 +10,7 @@ name: test-coverage
 
 jobs:
   test-coverage:
-    runs-on: macOS-latest
+    runs-on: ubuntu-16.04
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -41,10 +41,14 @@ jobs:
           remotes::install_cran("covr")
         shell: Rscript {0}
 
+      - name: Install Miniconda
+        run: |
+          reticulate::install_miniconda()
+        shell: Rscript {0}
+
       - name: Install TensorFlow
         run: |
-          system('sudo chown -R 501:20 /usr/local/miniconda')
-          reticulate::conda_install(packages = 'tensorflow==2.0.0', pip = FALSE, conda = "/usr/local/miniconda/bin/conda")
+          reticulate::conda_install(envname = 'r-reticulate', packages = 'tensorflow==2.0.0', pip = FALSE, conda = "/home/runner/.local/share/r-miniconda/bin/conda")
         shell: Rscript {0}
 
       - name: Test coverage
