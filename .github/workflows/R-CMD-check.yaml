@@ -86,7 +86,7 @@ jobs:
       - name: Install TensorFlow (macOS)
         if: runner.os == 'macOS'
         run: |
-          system('sudo chown 501:20 /usr/local/miniconda/envs/.conda_envs_dir_test')
+          system('sudo chown -R 501:20 /usr/local/miniconda')
           reticulate::conda_install(envname = 'miniconda', packages = 'tensorflow==2.0.0', pip = FALSE, conda = "/usr/local/miniconda/bin/conda")
         shell: Rscript {0}
 
