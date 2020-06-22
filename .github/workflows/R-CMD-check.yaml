@@ -87,7 +87,7 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           system('sudo chown -R 501:20 /usr/local/miniconda')
-          reticulate::conda_install(envname = 'miniconda', packages = 'tensorflow==2.0.0', pip = FALSE, conda = "/usr/local/miniconda/bin/conda")
+          reticulate::conda_install(packages = 'tensorflow==2.0.0', pip = FALSE, conda = "/usr/local/miniconda/bin/conda")
         shell: Rscript {0}
 
       - name: Install TensorFlow (Windows)
