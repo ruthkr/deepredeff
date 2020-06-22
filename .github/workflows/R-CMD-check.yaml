@@ -99,6 +99,7 @@ jobs:
       - name: Conda environment info
         run: |
           reticulate::conda_binary()
+          reticulate::conda_python()
           reticulate::conda_list()
         shell: Rscript {0}
 

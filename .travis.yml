@@ -30,6 +30,7 @@ r_packages:
 before_script:
   - R -e "reticulate::install_miniconda()"
   - R -e "reticulate::conda_install(envname = 'r-reticulate', 'tensorflow==2.0.0', pip = FALSE)"
+  - R -e "reticulate::conda_python()"
 
 after_success:
   - find . -name *.Rout | xargs cat
