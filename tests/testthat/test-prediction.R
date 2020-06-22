@@ -14,7 +14,17 @@ skip_if_no_tf <- function() {
 
 test_that("Prediction function works", {
   # skip_if_no_tf()
-  skip("skip 1")
+  # skip("skip 1")
+
+  if (!reticulate::py_module_available("tensorflow")) {
+    skip(paste0(
+      "TensorFlow is not available for testing",
+      " (using Python from ",
+      reticulate::conda_binary(),
+      ")"
+    ))
+  }
+
   expect_equal(
     deepredeff::predict_effector(
       input = system.file("extdata/example/fungi_sample.fasta", package = "deepredeff"),
