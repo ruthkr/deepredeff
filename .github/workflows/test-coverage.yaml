@@ -1,10 +1,12 @@
 on:
   push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+    branches-ignore:
+      - '**'
+  #   branches:
+  #     - master
+  # pull_request:
+  #   branches:
+  #     - master
 
 name: test-coverage
 
@@ -48,7 +50,6 @@ jobs:
 
       - name: Install TensorFlow
         run: |
-          system('sudo chown -R 501:20 /usr/local/miniconda')
           reticulate::conda_install(packages = 'tensorflow==2.0.0', pip = FALSE, conda = "/usr/share/miniconda/bin/conda")
         shell: Rscript {0}
 
