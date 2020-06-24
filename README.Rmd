@@ -18,8 +18,8 @@ ggplot2::theme_set(ggplot2::theme_bw())
 # deepredeff <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
-`r badgecreatr::badge_lifecycle("maturing")`
 <!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/deepredeff)](https://cran.r-project.org/package=deepredeff) -->
+`r badgecreatr::badge_lifecycle("maturing")`
 [![CRAN_Status_Badge](https://github.com/ruthkr/deepredeff/workflows/pkgdown/badge.svg)](https://ruthkr.github.io/deepredeff/)
 [![Travis build status](https://travis-ci.com/ruthkr/deepredeff.svg?branch=master)](https://travis-ci.com/ruthkr/deepredeff)
 [![Codecov test coverage](https://codecov.io/gh/ruthkr/deepredeff/branch/master/graph/badge.svg)](https://codecov.io/gh/ruthkr/deepredeff?branch=master)
@@ -33,25 +33,33 @@ ggplot2::theme_set(ggplot2::theme_bw())
 
 ### Requirements
 
-This package requires TensorFlow 2.0, for this reason we recommend first running:
-
-```r
-reticulate::install_miniconda()
-reticulate::conda_install(envname = "r-reticulate", packages = "tensorflow==2.0.0")
-```
-
-In some operating systems, you may also require to specify the `conda` path of your `r-miniconda` installation when calling `reticulate::conda_install()`.
-
-### deepredeff package
-
-The development version can be installed from [GitHub](https://github.com/) with:
+First, install the deepredeff package from GitHub as follows:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("ruthkr/deepredeff")
 ```
 
-## Running prediction function
+The deepredeff package uses the Keras and tensorflow. To install both the core Keras library as well as the TensorFlow backend use the install_keras() function:
+
+```r
+library(deepredeff)
+install_keras()
+```
+
+This will provide you with default CPU-based installations of Keras and TensorFlow. If you want a more customized installation, you can see the documentation for install_keras().
+
+
+
+## Documentation
+
+To use deepredeff, you can read the documentations on the following topics:
+
+
+
+
+
+## Quick start
 
 This is a basic example which shows you how to predict effector sequences if you have fasta file:
 
