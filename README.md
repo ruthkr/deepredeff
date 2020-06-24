@@ -4,12 +4,9 @@
 # deepredeff <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
-
 <!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/deepredeff)](https://cran.r-project.org/package=deepredeff) -->
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![CRAN\_Status\_Badge](https://github.com/ruthkr/deepredeff/workflows/pkgdown/badge.svg)](https://ruthkr.github.io/deepredeff/)
-[![Travis build
-status](https://travis-ci.com/ruthkr/deepredeff.svg?branch=master)](https://travis-ci.com/ruthkr/deepredeff)
 [![Codecov test
 coverage](https://codecov.io/gh/ruthkr/deepredeff/branch/master/graph/badge.svg)](https://codecov.io/gh/ruthkr/deepredeff?branch=master)
 [![R build
