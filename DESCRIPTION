@@ -31,6 +31,12 @@ Suggests:
     knitr,
     rmarkdown,
     testthat
+Config/reticulate:
+  list(
+    packages = list(
+      list(package = "tensorflow", version = "2.0.0", pip = FALSE)
+    )
+  )
 VignetteBuilder: 
     knitr
 biocViews:
