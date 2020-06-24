@@ -5,10 +5,10 @@
 \title{Install Keras and the TensorFlow backend}
 \usage{
 install_keras(
-  method = c("auto", "virtualenv", "conda"),
+  method = c("conda", "virtualenv"),
   conda = "auto",
   version = "default",
-  tensorflow = "default",
+  tensorflow = "2.0.0",
   extra_packages = c("tensorflow-hub"),
   ...
 )
@@ -115,7 +115,6 @@ install_keras(tensorflow = "gpu")
 # install a specific version of TensorFlow
 install_keras(tensorflow = "1.2.1")
 install_keras(tensorflow = "1.2.1-gpu")
-
 }
 
 }
