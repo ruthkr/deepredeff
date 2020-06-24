@@ -1,13 +1,12 @@
 on:
   push:
-    branches-ignore:
-      - '**'
-#   push:
-#     branches:
-#       - master
-#   pull_request:
-#     branches:
-#       - master
+  #   branches-ignore:
+  #     - '**'
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 name: R-CMD-check
 
@@ -74,36 +73,28 @@ jobs:
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
-      - name: Install Miniconda
-        if: runner.os != 'macOS'
-        run: |
-          reticulate::install_miniconda()
-        shell: Rscript {0}
-
       - name: Install TensorFlow (Linux)
         if: runner.os == 'Linux'
         run: |
-          reticulate::conda_install(envname = 'r-reticulate', packages = 'tensorflow==2.0.0', pip = FALSE, conda = "/home/runner/.local/share/r-miniconda/bin/conda")
+          deepredeff::install_keras()
         shell: Rscript {0}
 
       - name: Install TensorFlow (macOS)
         if: runner.os == 'macOS'
         run: |
-          system('sudo chown -R 501:20 /usr/local/miniconda')
-          reticulate::conda_install(packages = 'tensorflow==2.0.0', pip = FALSE, conda = "/usr/local/miniconda/bin/conda")
+          deepredeff::install_keras()
         shell: Rscript {0}
 
       - name: Install TensorFlow (Windows)
         if: runner.os == 'Windows'
         run: |
-          reticulate::conda_install(envname = 'r-reticulate', packages = 'tensorflow==2.0.0', pip = FALSE, conda = "C:/Users/runneradmin/AppData/Local/r-miniconda/condabin/conda.bat")
+          reticulate::install_miniconda()
+          deepredeff::install_keras()
         shell: Rscript {0}
 
       - name: Conda environment info
         run: |
-          reticulate::conda_binary()
-          reticulate::conda_python()
-          reticulate::conda_list()
+          reticulate::py_config()$python
         shell: Rscript {0}
 
       - name: Session info
