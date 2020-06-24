@@ -20,9 +20,9 @@ ggplot2::theme_set(ggplot2::theme_bw())
 <!-- badges: start -->
 <!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/deepredeff)](https://cran.r-project.org/package=deepredeff) -->
 `r badgecreatr::badge_lifecycle("maturing")`
-[![CRAN_Status_Badge](https://github.com/ruthkr/deepredeff/workflows/pkgdown/badge.svg)](https://ruthkr.github.io/deepredeff/)
-[![Codecov test coverage](https://codecov.io/gh/ruthkr/deepredeff/branch/master/graph/badge.svg)](https://codecov.io/gh/ruthkr/deepredeff?branch=master)
 [![R build status](https://github.com/ruthkr/deepredeff/workflows/R-CMD-check/badge.svg)](https://github.com/ruthkr/deepredeff/actions)
+[![Codecov test coverage](https://codecov.io/gh/ruthkr/deepredeff/branch/master/graph/badge.svg)](https://codecov.io/gh/ruthkr/deepredeff?branch=master)
+[![pkgdown status](https://github.com/ruthkr/deepredeff/workflows/pkgdown/badge.svg)](https://ruthkr.github.io/deepredeff/)
 <!-- badges: end -->
 
 **deepredeff** is a package to predict effector protein given amino acid sequences. This tool can be used to predict effectors from three different pathogens, which are oomycete, fungi, and bacteria.  
