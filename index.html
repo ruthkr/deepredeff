@@ -97,6 +97,7 @@
 <a href="#deepredeff-" class="anchor"></a>deepredeff <img src="reference/figures/logo.png" align="right" width="120">
 </h1></div>
 <!-- badges: start -->
+<!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/deepredeff)](https://cran.r-project.org/package=deepredeff) -->
 
 <p><strong>deepredeff</strong> is a package to predict effector protein given amino acid sequences. This tool can be used to predict effectors from three different pathogens, which are oomycete, fungi, and bacteria.</p>
 <div id="installation" class="section level2">
@@ -105,26 +106,27 @@
 <div id="requirements" class="section level3">
 <h3 class="hasAnchor">
 <a href="#requirements" class="anchor"></a>Requirements</h3>
-<p>This package requires TensorFlow 2.0, for this reason we recommend first running:</p>
+<p>First, install the deepredeff package from GitHub as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw">reticulate</span>::<span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/install_miniconda.html">install_miniconda</a></span>()
-<span class="kw">reticulate</span>::<span class="fu"><a href="https://rdrr.io/pkg/reticulate/man/conda-tools.html">conda_install</a></span>(envname = <span class="st">"r-reticulate"</span>, packages = <span class="st">"tensorflow==2.0.0"</span>)
-</pre></div>
-<p>In some operating systems, you may also require to specify the <code>conda</code> path of your <code>r-miniconda</code> installation when calling <code><a href="https://rdrr.io/pkg/reticulate/man/conda-tools.html">reticulate::conda_install()</a></code>.</p>
-</div>
-<div id="deepredeff-package" class="section level3">
-<h3 class="hasAnchor">
-<a href="#deepredeff-package" class="anchor"></a>deepredeff package</h3>
-<p>The development version can be installed from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="co"># install.packages("devtools")</span>
 <span class="kw">devtools</span>::<span class="fu">install_github</span>(<span class="st">"ruthkr/deepredeff"</span>)
 </pre></div>
+<p>The deepredeff package uses the Keras and tensorflow. To install both the core Keras library as well as the TensorFlow backend use the install_keras() function:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/ruthkr/deepredeff">deepredeff</a></span>)
+<span class="fu"><a href="reference/install_keras.html">install_keras</a></span>()
+</pre></div>
+<p>This will provide you with default CPU-based installations of Keras and TensorFlow. If you want a more customized installation, you can see the documentation for install_keras().</p>
 </div>
 </div>
-<div id="running-prediction-function" class="section level2">
+<div id="documentation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#running-prediction-function" class="anchor"></a>Running prediction function</h2>
+<a href="#documentation" class="anchor"></a>Documentation</h2>
+<p>To use deepredeff, you can read the documentations on the following topics:</p>
+</div>
+<div id="quick-start" class="section level2">
+<h2 class="hasAnchor">
+<a href="#quick-start" class="anchor"></a>Quick start</h2>
 <p>This is a basic example which shows you how to predict effector sequences if you have fasta file:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="co"># Load the package</span>
@@ -182,7 +184,7 @@
 <tr class="even">
 <td align="left">tr⎮C0SPN9⎮C0SPN9_RALSL Uncharacterized protein RSc2139 OS=Ralstonia solanacearum OX=305 GN=RSc2139 PE=4 SV=1</td>
 <td align="left">MSIGRSKSVAGASASHALASGENGS</td>
-<td align="right">0.8418444</td>
+<td align="right">0.8418443</td>
 </tr>
 <tr class="odd">
 <td align="left">tr⎮D2Z000⎮D2Z000_RALSL Type III effector protein OS=Ralstonia solanacearum OX=305 GN=rip61 PE=4 SV=1</td>
