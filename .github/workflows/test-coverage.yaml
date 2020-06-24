@@ -50,7 +50,7 @@ jobs:
 
       - name: Install TensorFlow
         run: |
-          keras::install_keras()
+          keras::install_keras(tensorflow = "2.0.0")
         shell: Rscript {0}
 
       - name: Conda environment info
