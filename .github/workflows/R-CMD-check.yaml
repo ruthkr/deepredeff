@@ -73,23 +73,14 @@ jobs:
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
-      - name: Install TensorFlow (Linux)
-        if: runner.os == 'Linux'
-        run: |
-          deepredeff::install_keras()
-        shell: Rscript {0}
-
-      - name: Install TensorFlow (macOS)
-        if: runner.os == 'macOS'
-        run: |
-          deepredeff::install_keras()
-        shell: Rscript {0}
-
-      - name: Install TensorFlow (Windows)
-        if: runner.os == 'Windows'
+      - name: Install Miniconda
         run: |
           reticulate::install_miniconda()
-          deepredeff::install_keras()
+        shell: Rscript {0}
+
+      - name: Install TensorFlow
+        run: |
+          keras::install_keras()
         shell: Rscript {0}
 
       - name: Conda environment info

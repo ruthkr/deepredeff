@@ -43,14 +43,14 @@ jobs:
           remotes::install_cran("covr")
         shell: Rscript {0}
 
-      # - name: Install Miniconda
-      #   run: |
-      #     reticulate::install_miniconda()
-      #   shell: Rscript {0}
+      - name: Install Miniconda
+        run: |
+          reticulate::install_miniconda()
+        shell: Rscript {0}
 
       - name: Install TensorFlow
         run: |
-          deepredeff::install_keras()
+          keras::install_keras()
         shell: Rscript {0}
 
       - name: Conda environment info
