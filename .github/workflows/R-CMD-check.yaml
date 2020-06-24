@@ -1,10 +1,13 @@
 on:
   push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+    branches-ignore:
+      - '**'
+#   push:
+#     branches:
+#       - master
+#   pull_request:
+#     branches:
+#       - master
 
 name: R-CMD-check
 
