@@ -50,8 +50,8 @@ install_keras()
 
 To use deepredeff, you can read the documentations on the following topics:
 
-1. Getting started 
-2. Effector prediction with various different input formats and models
+1. [Getting started](https://ruthkr.github.io/deepredeff/articles/overview.html)
+2. [Effector prediction with various different input formats and models](https://ruthkr.github.io/deepredeff/articles/predict.html)
 
 ## Quick start
 
