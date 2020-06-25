@@ -144,7 +144,13 @@ install_keras <- function(method = c("conda", "virtualenv"),
   }
 
   if (!is_windows()) {
-    reticulate::install_miniconda()
+    tryCatch(
+      reticulate::install_miniconda(),
+      error = function(cond) {
+        message(cond)
+      },
+      finally = message("\n\nWill proceed to install TensorFlow")
+    )
   }
 
   extra_packages <- unique(c(
