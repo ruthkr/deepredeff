@@ -26,6 +26,26 @@ Deepredeff has the following key features:
 
 This vignette provides a brief overview of the capabilities of deepredeff package.
 
+## Installation
+
+I will show you how to install 'deepredeff' package and prepare some requirements to get it ready to be used. First, we need to install the package itself by doing the following step:
+
+``` r
+install.packages("devtools")
+devtools::install_github("ruthkr/deepredeff")
+```
+
+The deepredeff package uses the Keras and Tensorflow which are distributed as a Python package and so needs to be installed within a Python environment on your system. Therefore, you need to have Python in your system and both the core Keras library as well as the TensorFlow backend which can be done as follows:
+
+## Installing Keras
+
+```r
+library(deepredeff)
+install_keras()
+```
+
+This command will install `r-miniconda` and create `r-reticulate` environment in `"/Users/<user>/Library/r-miniconda/envs/r-reticulate"`. And next step will be installing Tensorflow 2.0.0 and default Keras as the main requirements for this package. 
+
 ## Sample data
 
 Sample data that will be used here is bacterial proteins provided within this package. These sample data contain ten different protein sequences in FASTA format. These data can be loaded as follows: 
