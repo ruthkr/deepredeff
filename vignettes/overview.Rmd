@@ -1,0 +1,107 @@
+---
+title: "General overview of deepredeff"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{overview}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Deepredeff - from ‘deep learning prediction of effector’ is a package contains trained deep learning models for predicting effector proteins. Deepredeff has been trained to classify effector protein using set of known experimentally validated effectors from phytopathogenic bacteria, fungi and oomycetes. 
+
+Deepredeff has the following key features:
+
+1. Allows user to choose different model provided depending on the input data they have. The provided models are bacteria, fungi, oomyecete. In case user does not know the pathogenity type of the data, then they can use option `all` which will use the model trained in all training datasets. 
+
+2. Supports effector proteins prediction with different input formats, which are FASTA, data frame, AAString, AAStringset, or even string format data. 
+
+3. Allows user to get quick summary and plot of the prediction results they have. 
+
+This vignette provides a brief overview of the capabilities of deepredeff package.
+
+## Sample data
+
+Sample data that will be used here is bacterial proteins provided within this package. These sample data contain ten different protein sequences in FASTA format. These data can be loaded as follows: 
+
+```r
+library(deepredeff)
+
+# Define the fasta path from the sample data
+bacteria_fasta_path <- system.file(
+  "extdata/example", "bacteria_sample.fasta", 
+  package = "deepredeff"
+)
+
+bacteria_fasta_path
+#> [1] "/usr/local/Cellar/r/4.0.0/lib/R/library/deepredeff/extdata/example/bacteria_sample.fasta"
+```
+
+## Effector prediction
+
+Once the data are loaded, you can predict them using the function `predict_effector()`. Since it is known that the sample data are bacterial protein, then we can use particular model trained previously using bacterial protein data by choosing `model = bacteria`. There are also different This prediction can be done as follows. 
+
+```r
+# Predict the effector candidate using bacteria model
+pred_result <- deepredeff::predict_effector(
+  input = bacteria_fasta_path,
+  model = "bacteria"
+)
+#> Loaded models: cnn_gru, cnn_lstm, gru_emb, lstm_emb for bacteria.
+#> Loaded models successfully!
+```
+
+```r
+pred_result %>% 
+  dplyr::mutate(name = substr(name, 1, 25), 
+                sequence = substr(sequence, 1, 25)) %>% 
+  dplyr::select(c(name, sequence, prob))
+#>                         name                  sequence       prob
+#> 1  tr|A0A0N8SZV2|A0A0N8SZV2_ MPINRPAFNLKLNTAIAQPTLKKDA 0.94834236
+#> 2  tr|A5CLR7|A5CLR7_CLAM3 Pa MQFMSRINRILFVAVVSLLSVLGCC 0.07981774
+#> 3  sp|B2SU53|PTHX1_XANOP TAL MDPIRSRTPSPARELLPGPQPDRVQ 0.99433611
+#> 4  tr|C0SPN9|C0SPN9_RALSL Un MSIGRSKSVAGASASHALASGENGS 0.84184432
+#> 5  tr|D2Z000|D2Z000_RALSL Ty MPPPIRNARTTPPSFDPSAAGDDLR 0.99537852
+#> 6  tr|Q8XX20|Q8XX20_RALSO Pu MSHMTFNTWKAGLWRLAAAAVLSLL 0.06455158
+#> 7  tr|Q87UH8|Q87UH8_PSESM Ta MKLHFSLRLLTALSLTGATFLAQAA 0.04928582
+#> 8  tr|Q4ZTI0|Q4ZTI0_PSEU2 Am MHRGPSFVKACAFVLSASFMLANTV 0.30616181
+#> 9  tr|Q4ZR15|Q4ZR15_PSEU2 Se MRRQPSLTLRSTLAFALVAMLTVSG 0.07221440
+#> 10 tr|D4I1R4|D4I1R4_ERWAC Ou MLSSNRRLLRLLPLASLLLTACGLH 0.04899144
+```
+
+Prediction results from deepredeff will give you a dataframe object contains three different columns: 
+
+1. **name**: contains your sequence name or IDs 
+2. **sequence**: contains your original  
+3. **prob**: a probability prediction of each sequence. This probability value (a score between 0 and 1) indicates how likely a sequence is to be an effector. The default probability cutoff value of deepredeff is 0.5. It means a sequence with probability prediction ≥ 0.5 is an effector, otherwise it is a non-effector.
+
+## Summary and plot
+
+After getting the prediction results, you can get the overall information of the prediction results by running `summary()`. With this, you can get information on how many of your data are predicted as effectors and non-effectors. This function is very useful if you have big number of sequence data. By default, the summary takes the default cutoff which is 0.5. However, you can also change the cutoff. 
+The summary below shows that there are four sequences predicted as effectors and six sequences predicted as non-effectors.  
+
+```r
+summary(pred_result)
+#> # A tibble: 2 x 3
+#>   pred_class   count proportion
+#>   <chr>        <int>      <dbl>
+#> 1 effector         4        0.4
+#> 2 non-effector     6        0.6
+```
+
+Next, you can also plot the density distribution of the prediction results by running `autoplot()`  command. From the plot below, you can see the probability distribution of each class. 
+
+```r
+ggplot2::autoplot(pred_result)
+```
+
+![](https://i.imgur.com/MuOH7ky.png)
+
+
+
