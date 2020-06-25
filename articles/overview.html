@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">deepredeff</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
       </span>
     </div>
 
@@ -114,20 +114,30 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>I will show you how to install ‘deepredeff’ package and prepare some requirements to get it ready to be used. First, we need to install the package itself by doing the following step:</p>
+<div id="install-deepredeff" class="section level3">
+<h3 class="hasAnchor">
+<a href="#install-deepredeff" class="anchor"></a>Install deepredeff</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
 <span class="kw">devtools</span>::<span class="fu">install_github</span>(<span class="st">"ruthkr/deepredeff"</span>)
 </pre></div>
 <p>The deepredeff package uses the Keras and Tensorflow which are distributed as a Python package and so needs to be installed within a Python environment on your system. Therefore, you need to have Python in your system and both the core Keras library as well as the TensorFlow backend which can be done as follows:</p>
 </div>
-<div id="installing-keras" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installing-keras" class="anchor"></a>Installing Keras</h2>
+<div id="installing-keras" class="section level3">
+<h3 class="hasAnchor">
+<a href="#installing-keras" class="anchor"></a>Installing Keras</h3>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/ruthkr/deepredeff">deepredeff</a></span>)
 <span class="fu"><a href="../reference/install_keras.html">install_keras</a></span>()
 </pre></div>
-<p>This command will install <code>r-miniconda</code> and create <code>r-reticulate</code> environment in <code>"/Users/&lt;user&gt;/Library/r-miniconda/envs/r-reticulate"</code>. And next step will be installing Tensorflow 2.0.0 and default Keras as the main requirements for this package.</p>
+<p>This command will install <code>r-miniconda</code> and create <code>r-reticulate</code> environment in the following locations:</p>
+<ul>
+<li><p><strong>GNU/Linux</strong>: <code>/home/&lt;user&gt;/.local/share/r-miniconda/envs/r-reticulate</code></p></li>
+<li><p><strong>macOS</strong>: <code>/Users/&lt;user&gt;/Library/r-miniconda/envs/r-reticulate</code></p></li>
+<li><p><strong>Windows</strong>: <code>C:/Users/runneradmin/AppData/Local/r-miniconda/envs/r-reticulate</code></p></li>
+</ul>
+<p>Next step will be installing Tensorflow 2.0.0 and default Keras as the main requirements for this package.</p>
+</div>
 </div>
 <div id="sample-data" class="section level2">
 <h2 class="hasAnchor">
