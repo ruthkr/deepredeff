@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Predict sequences • deepredeff</title>
+<title>More in predicting sequences • deepredeff</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Predict sequences">
+<script src="../pkgdown.js"></script><meta property="og:title" content="More in predicting sequences">
 <meta property="og:description" content="deepredeff">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -61,10 +61,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/install_python.html">Installing Python</a>
+      <a href="../articles/overview.html">General overview of deepredeff</a>
     </li>
     <li>
-      <a href="../articles/predict.html">Predict sequences</a>
+      <a href="../articles/predict.html">More in predicting sequences</a>
     </li>
   </ul>
 </li>
@@ -92,7 +92,7 @@
       </header><script src="predict_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Predict sequences</h1>
+      <h1 data-toc-skip>More in predicting sequences</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/ruthkr/deepredeff/blob/master/vignettes/predict.Rmd"><code>vignettes/predict.Rmd</code></a></small>
@@ -102,24 +102,26 @@
 
     
     
+<p>This vigenette will guide you to the process on how to predict sequences with different input formats.</p>
 <p>Deepredeff package allows you to predict effector protein given amino acid sequences in different format. Format that can be used for this version are fasta, dataframe, AAString, and AAStringSet.</p>
-<p>How do you predict your sequences using deepredeff? In this article, we will walk you through the steps. The function to predict is <code><a href="../reference/predict_effector.html">predict_effector()</a></code>. There are four model available in this version, which are bacteria, fungi, oomycete, and all. Each model is specifically trained using different class of training data.</p>
-<p>To use code in this article, you will need to install the following packages: <code>reticulate</code>, <code>dplyr</code>, and <code>deepredeff</code>. Before running the function, it is necessary to set up the conda environment that you will use.</p>
+<p>How do you predict your sequences using deepredeff when you don’t have FASTA file and you have different input file? How do you choose specify the model before predicting? In this article, we will walk you through the steps. The function to predict is <code><a href="../reference/predict_effector.html">predict_effector()</a></code>. There are four model available in this version, which are bacteria, fungi, oomycete, and all. Each model is specifically trained using different class of training data.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># Load libraries</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org">dplyr</a></span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/ruthkr/deepredeff">deepredeff</a></span>)
 </pre></div>
 <div id="predict" class="section level2">
 <h2 class="hasAnchor">
 <a href="#predict" class="anchor"></a>Predict</h2>
-<p>In this article, some examples using different input format will be shown.</p>
-<div id="fasta-format" class="section level3">
+<p>Some examples using different input format (FASTA, data frame, AAString, and AAStringSet) will be shown.</p>
+<div id="prediction-of-fungal-effectors-with-fasta-input-data" class="section level3">
 <h3 class="hasAnchor">
-<a href="#fasta-format" class="anchor"></a>FASTA format</h3>
+<a href="#prediction-of-fungal-effectors-with-fasta-input-data" class="anchor"></a>Prediction of fungal effectors with FASTA input data</h3>
 <p>The fasta example that will be used is the example fungi sequences in this package. We can define the input as follows.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="kw">input_fasta_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/example/fungi_sample.fasta"</span>, package = <span class="st">"deepredeff"</span>)
 </pre></div>
+<p>Since you know that we have fungal sequences, then you can specify the model to <code>model= fungi</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="kw">pred_fungi_input_fasta</span> <span class="op">&lt;-</span> <span class="kw">deepredeff</span>::<span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span>(
   input = <span class="kw">input_fasta_path</span>,
@@ -145,14 +147,15 @@
 <span class="co">#&gt; 10 tr|A0A0D1C4R8|A0A0D1C4R8_ 0.106814429</span>
 </pre></div>
 </div>
-<div id="data-frame-format" class="section level3">
+<div id="prediction-of-oomycete-effectors-with-data-frame-input" class="section level3">
 <h3 class="hasAnchor">
-<a href="#data-frame-format" class="anchor"></a>Data frame format</h3>
+<a href="#prediction-of-oomycete-effectors-with-data-frame-input" class="anchor"></a>Prediction of oomycete effectors with data frame input</h3>
 <p>Using the fasta of oomycete data in this <code>deepredeff</code> pakcage, we can then transform the path to dataframe. We can use the function <code>fasta_to_df</code> from this package. We can define the input as follows</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="kw">input_dataframe</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/example/oomycete_sample.fasta"</span>, package = <span class="st">"deepredeff"</span>) <span class="op">%&gt;%</span>
       <span class="kw">deepredeff</span>::<span class="fu"><a href="../reference/fasta_to_df.html">fasta_to_df</a></span>() 
 </pre></div>
+<p>Since you know that we have oomycete sequences, then you can specify the model to <code>model= oomycete</code>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="kw">pred_oomycete_input_df</span> <span class="op">&lt;-</span> <span class="kw">deepredeff</span>::<span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span>(
   input = <span class="kw">input_dataframe</span>,
@@ -178,14 +181,15 @@
 <span class="co">#&gt; 10 tr|G4ZGN2|G4ZGN2_PHYSP Pc 0.2656690</span>
 </pre></div>
 </div>
-<div id="aastringset-format" class="section level3">
+<div id="prediction-of-bacterial-effectors-with-aastringset-format-input" class="section level3">
 <h3 class="hasAnchor">
-<a href="#aastringset-format" class="anchor"></a>AAStringSet format</h3>
+<a href="#prediction-of-bacterial-effectors-with-aastringset-format-input" class="anchor"></a>Prediction of bacterial effectors with AAStringSet format input</h3>
 <p>Using one of function from Biostrings, we can transform the example bacteria fasta we provide in this package to AAstringSet class data. We can define the input as follows</p>
 <div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="kw">input_aastringset</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/example/bacteria_sample.fasta"</span>, package = <span class="st">"deepredeff"</span>) <span class="op">%&gt;%</span>
       <span class="kw">Biostrings</span>::<span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/XStringSet-io.html">readAAStringSet</a></span>()
 </pre></div>
+<p>Since you know that we have bacterial sequences, then you can specify the model to <code>model= bacteria</code>.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="kw">pred_bacteria_input_aastringset</span> <span class="op">&lt;-</span> <span class="kw">deepredeff</span>::<span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span>(
   input = <span class="kw">input_aastringset</span>,
@@ -211,9 +215,9 @@
 <span class="co">#&gt; 10 tr|D4I1R4|D4I1R4_ERWAC Ou 0.04899144</span>
 </pre></div>
 </div>
-<div id="aastring-format" class="section level3">
+<div id="prediction-of-bacterial-effectors-with-aastring-format-input" class="section level3">
 <h3 class="hasAnchor">
-<a href="#aastring-format" class="anchor"></a>AAString format</h3>
+<a href="#prediction-of-bacterial-effectors-with-aastring-format-input" class="anchor"></a>Prediction of bacterial effectors with AAString format input</h3>
 <p>Similar to how we define AAStringSet, we can also use one of function from Biostrings to transform a string to AAstring class data.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="kw">input_aastring</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata/example/bacteria_sample.fasta"</span>, package = <span class="st">"deepredeff"</span>) <span class="op">%&gt;%</span>
@@ -222,6 +226,7 @@
       <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(<span class="kw">sequence</span>) <span class="op">%&gt;%</span>
       <span class="kw">Biostrings</span>::<span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/AAString-class.html">AAString</a></span>()
 </pre></div>
+<p>Same as previous example, you need to specify the model to <code>model= bacteria</code>.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit">
 <span class="kw">pred_bacteria_input_aastring</span> <span class="op">&lt;-</span> <span class="kw">deepredeff</span>::<span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span>(
   input = <span class="kw">input_aastring</span>,
