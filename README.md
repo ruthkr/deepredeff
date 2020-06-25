@@ -4,11 +4,16 @@
 # deepredeff <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
+
 <!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/deepredeff)](https://cran.r-project.org/package=deepredeff) -->
+
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![R build status](https://github.com/ruthkr/deepredeff/workflows/R-CMD-check/badge.svg)](https://github.com/ruthkr/deepredeff/actions)
-[![Codecov test coverage](https://codecov.io/gh/ruthkr/deepredeff/branch/master/graph/badge.svg)](https://codecov.io/gh/ruthkr/deepredeff?branch=master)
-[![pkgdown status](https://github.com/ruthkr/deepredeff/workflows/pkgdown/badge.svg)](https://ruthkr.github.io/deepredeff/)
+[![R build
+status](https://github.com/ruthkr/deepredeff/workflows/R-CMD-check/badge.svg)](https://github.com/ruthkr/deepredeff/actions)
+[![Codecov test
+coverage](https://codecov.io/gh/ruthkr/deepredeff/branch/master/graph/badge.svg)](https://codecov.io/gh/ruthkr/deepredeff?branch=master)
+[![pkgdown
+status](https://github.com/ruthkr/deepredeff/workflows/pkgdown/badge.svg)](https://ruthkr.github.io/deepredeff/)
 <!-- badges: end -->
 
 **deepredeff** is a package to predict effector protein given amino acid
@@ -16,8 +21,6 @@ sequences. This tool can be used to predict effectors from three
 different pathogens, which are oomycete, fungi, and bacteria.
 
 ## Installation
-
-### Requirements
 
 First, install the deepredeff package from GitHub as follows:
 
@@ -35,14 +38,13 @@ library(deepredeff)
 install_keras()
 ```
 
-This will provide you with default CPU-based installations of Keras and
-TensorFlow. If you want a more customized installation, you can see the
-documentation for install\_keras().
-
 ## Documentation
 
 To use deepredeff, you can read the documentations on the following
 topics:
+
+1.  Getting started
+2.  Effector prediction with various different input formats and models
 
 ## Quick start
 
