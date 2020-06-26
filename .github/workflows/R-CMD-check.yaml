@@ -78,9 +78,31 @@ jobs:
           reticulate::install_miniconda()
         shell: Rscript {0}
 
-      - name: Install TensorFlow
+      - name: Install TensorFlow (Linux and macOS)
+        if: runner.os != 'Windows'
         run: |
           keras::install_keras(tensorflow = "2.0.0")
+        shell: Rscript {0}
+
+      - name: Install TensorFlow (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          reticulate::py_install(
+            packages = c(
+              "tensorflow==2.0.0",
+              "keras",
+              "h5py",
+              "pyyaml==3.12",
+              "requests",
+              "Pillow",
+              "scipy"
+            ),
+            envname = NULL,
+            method = "conda",
+            conda = "auto",
+            python_version = "3.6",
+            pip = TRUE
+          )
         shell: Rscript {0}
 
       - name: Conda environment info
