@@ -96,7 +96,7 @@
 #' install_keras(tensorflow = "1.2.1-gpu")
 #' }
 #'
-#' @importFrom reticulate py_available conda_binary
+#' @importFrom reticulate py_available py_install install_miniconda
 #' @importFrom tensorflow install_tensorflow
 #'
 #' @export
@@ -107,51 +107,24 @@ install_keras <- function(method = c("conda", "virtualenv"),
                           extra_packages = c("tensorflow-hub"),
                           ...) {
 
-  # verify method
+  # Verify method
   method <- match.arg(method)
 
-  # resolve version
+  # Resolve Keras version
   if (identical(version, "default")) {
     version <- ""
   } else {
     version <- paste0("==", version)
   }
 
-  # some special handling for windows
-  if (is_windows()) {
-
-    # conda is the only supported method on windows
-    method <- "conda"
-
-    # confirm we actually have conda
-    have_conda <- !is.null(tryCatch(conda_binary(conda), error = function(e) NULL))
-    if (!have_conda) {
-      stop("Keras installation failed (no conda binary found)\n\n",
-           "Install Anaconda for Python 3.x (https://www.anaconda.com/download/#windows)\n",
-           "before installing Keras.",
-           call. = FALSE
-      )
-    }
-
-    # avoid DLL in use errors
-    if (py_available()) {
-      stop(
-        "You should call install_keras() only in a fresh ",
-        "R session that has not yet initialized Keras and TensorFlow (this is ",
-        "to avoid DLL in use errors during installation)"
-      )
-    }
-  }
-
-  if (!is_windows()) {
-    tryCatch(
-      reticulate::install_miniconda(),
-      error = function(cond) {
-        message(cond)
-      },
-      finally = message("\n\nWill proceed to install TensorFlow")
-    )
-  }
+  # Install Miniconda
+  tryCatch(
+    install_miniconda(),
+    error = function(cond) {
+      message(cond)
+    },
+    finally = message("\n\nWill proceed to install TensorFlow")
+  )
 
   extra_packages <- unique(c(
     paste0("keras", version),
@@ -163,24 +136,52 @@ install_keras <- function(method = c("conda", "virtualenv"),
     "scipy"
   ))
 
-  # Install TensorFlow
-  tryCatch(
-    install_tensorflow(
-      method = method,
-      conda = conda,
-      version = tensorflow,
-      extra_packages = extra_packages,
-      pip_ignore_installed = FALSE,
-      ...
-    ),
-    error = function(cond) {
-      message(cond)
-      message(
-        "\nTry running reticulate::install_miniconda()\n",
-        "When that's done, run deepredeff::install_keras() again"
-      )
-    }
-  )
+  # Install TensorFlow on Linux and macOS
+  if (!is_windows()) {
+    tryCatch(
+      install_tensorflow(
+        method = method,
+        conda = conda,
+        version = tensorflow,
+        extra_packages = extra_packages,
+        pip_ignore_installed = FALSE,
+        ...
+      ),
+      error = function(cond) {
+        message(cond)
+      }
+    )
+  }
+
+  # Install TensorFlow on Windows
+  if (is_windows()) {
+      # Avoid DLL in use errors
+      if (py_available()) {
+        stop(
+          "You should call install_keras() only in a fresh ",
+          "R session that has not yet initialized Keras and TensorFlow (this is ",
+          "to avoid DLL in use errors during installation)"
+        )
+      }
+
+    package <- paste0("tensorflow==", tensorflow)
+
+    tryCatch(
+      py_install(
+        packages = c(package, extra_packages),
+        envname = NULL,
+        method = method,
+        conda = conda,
+        python_version = "3.6",
+        pip = TRUE,
+        ...
+      ),
+      error = function(cond) {
+        message(cond)
+      }
+    )
+  }
+
 }
 
 is_windows <- function() {
