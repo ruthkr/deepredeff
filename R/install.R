@@ -1,148 +1,66 @@
-#' Install Keras and the TensorFlow backend
+#' Install the TensorFlow backend
 #'
-#' Keras and TensorFlow will be installed into an "r-tensorflow" virtual or conda
+#' TensorFlow will be installed into an "r-tensorflow" virtual or conda
 #' environment. Note that "virtualenv" is not available on Windows (as this isn't
 #' supported by TensorFlow).
 #'
 #' @inheritParams tensorflow::install_tensorflow
 #'
-#' @param method Installation method ("virtualenv" or "conda")
+#' @param method Installation method ("conda" or "virtualenv").
 #'
-#' @param version Version of Keras to install. Specify "default" to install
-#'   the latest release. Otherwise specify an alternate version (e.g. "2.2.2").
+#' @param version TensorFlow version to install ( by default, "2.0.0").
 #'
-#' @param tensorflow TensorFlow version to install. Specify "default" to install
-#'   the CPU version of the latest release. Specify "gpu" to install the GPU
-#'   version of the latest release.
+#' @param extra_packages Additional PyPI packages to install along with TensorFlow.
 #'
-#'   You can also provide a full major.minor.patch specification (e.g. "1.1.0"),
-#'   appending "-gpu" if you want the GPU version (e.g. "1.1.0-gpu").
-#'
-#'   Alternatively, you can provide the full URL to an installer binary (e.g.
-#'   for a nightly binary).
-#'
-#' @param extra_packages Additional PyPI packages to install along with
-#'   Keras and TensorFlow.
-#'
-#' @param ... Other arguments passed to [tensorflow::install_tensorflow()].
-#'
-#' @section GPU Installation:
-#'
-#' Keras and TensorFlow can be configured to run on either CPUs or GPUs. The CPU
-#' version is much easier to install and configure so is the best starting place
-#' especially when you are first learning how to use Keras. Here's the guidance
-#' on CPU vs. GPU versions from the TensorFlow website:
-#'
-#' - *TensorFlow with CPU support only*. If your system does not have a NVIDIA® GPU,
-#' you must install this version. Note that this version of TensorFlow is typically
-#' much easier to install, so even if you have an NVIDIA GPU, we recommend installing
-#' this version first.
-#'
-#' - *TensorFlow with GPU support*. TensorFlow programs typically run significantly
-#' faster on a GPU than on a CPU. Therefore, if your system has a NVIDIA® GPU meeting
-#' all prerequisites and you need to run performance-critical applications, you should
-#' ultimately install this version.
-#'
-#' To install the GPU version:
-#'
-#' 1) Ensure that you have met all installation prerequisites including installation
-#'    of the CUDA and cuDNN libraries as described in [TensorFlow GPU Prerequistes](https://tensorflow.rstudio.com/installation_gpu.html#prerequisites).
-#'
-#' 2) Pass `tensorflow = "gpu"` to `install_keras()`. For example:
-#'
-#'     ```
-#'       install_keras(tensorflow = "gpu")
-#'     ````
-#'
-#' @section Windows Installation:
-#'
-#' The only supported installation method on Windows is "conda". This means that you
-#' should install Anaconda 3.x for Windows prior to installing Keras.
+#' @param ... Other arguments passed to [reticulate::py_install()].
 #'
 #' @section Custom Installation:
 #'
-#' Installing Keras and TensorFlow using `install_keras()` isn't required
-#' to use the Keras R package. You can do a custom installation of Keras (and
-#' desired backend) as described on the [Keras website](https://keras.io/#installation)
-#' and the Keras R package will find and use that version.
-#'
-#' See the documentation on [custom installations](https://tensorflow.rstudio.com/installation/custom/)
-#' for additional information on how version of Keras and TensorFlow are located
-#' by the Keras package.
+#' Custom installations of TensorFlow are not supported yet by deepredeff.
 #'
 #' @section Additional Packages:
 #'
-#' If you wish to add additional PyPI packages to your Keras / TensorFlow environment you
-#' can either specify the packages in the `extra_packages` argument of `install_keras()`,
+#' If you wish to add additional PyPI packages to your TensorFlow environment you
+#' can either specify the packages in the `extra_packages` argument of `install_tensorflow()`,
 #' or alternatively install them into an existing environment using the
 #' [reticulate::py_install()] function.
+#'
+#' Notice that this may have undesired side-effects on Windows installations.
 #'
 #' @examples
 #' \dontrun{
 #'
 #' # default installation
-#' library(keras)
-#' install_keras()
-#'
-#' # install using a conda environment (default is virtualenv)
-#' install_keras(method = "conda")
-#'
-#' # install with GPU version of TensorFlow
-#' # (NOTE: only do this if you have an NVIDIA GPU + CUDA!)
-#' install_keras(tensorflow = "gpu")
-#'
-#' # install a specific version of TensorFlow
-#' install_keras(tensorflow = "1.2.1")
-#' install_keras(tensorflow = "1.2.1-gpu")
+#' library(deepredeff)
+#' install_tensorflow()
 #' }
 #'
-#' @importFrom reticulate py_available py_install install_miniconda
-#' @importFrom tensorflow install_tensorflow
-#'
 #' @export
-install_keras <- function(method = c("conda", "virtualenv"),
+install_tensorflow <- function(method = c("conda", "virtualenv"),
                           conda = "auto",
-                          version = "default",
-                          tensorflow = "2.0.0",
-                          extra_packages = c("tensorflow-hub"),
+                          version = "2.0.0",
+                          extra_packages = NULL,
                           ...) {
 
   # Verify method
   method <- match.arg(method)
 
-  # Resolve Keras version
-  if (identical(version, "default")) {
-    version <- ""
-  } else {
-    version <- paste0("==", version)
-  }
-
   # Install Miniconda
   tryCatch(
-    install_miniconda(),
+    reticulate::install_miniconda(),
     error = function(cond) {
       message(cond)
     },
     finally = message("\n\nWill proceed to install TensorFlow")
   )
 
-  extra_packages <- unique(c(
-    paste0("keras", version),
-    extra_packages,
-    "h5py",
-    "pyyaml==3.12",
-    "requests",
-    "Pillow",
-    "scipy"
-  ))
-
   # Install TensorFlow on Linux and macOS
   if (!is_windows()) {
     tryCatch(
-      install_tensorflow(
+      tensorflow::install_tensorflow(
         method = method,
         conda = conda,
-        version = tensorflow,
+        version = version,
         extra_packages = extra_packages,
         pip_ignore_installed = FALSE,
         ...
@@ -156,18 +74,18 @@ install_keras <- function(method = c("conda", "virtualenv"),
   # Install TensorFlow on Windows
   if (is_windows()) {
       # Avoid DLL in use errors
-      if (py_available()) {
+      if (reticulate::py_available()) {
         stop(
-          "You should call install_keras() only in a fresh ",
-          "R session that has not yet initialized Keras and TensorFlow (this is ",
+          "You should call install_tensorflow() only in a fresh ",
+          "R session that has not yet initialized TensorFlow (this is ",
           "to avoid DLL in use errors during installation)"
         )
       }
 
-    package <- paste0("tensorflow==", tensorflow)
+    package <- paste0("tensorflow==", version)
 
     tryCatch(
-      py_install(
+      reticulate::py_install(
         packages = c(package, extra_packages),
         envname = NULL,
         method = method,
