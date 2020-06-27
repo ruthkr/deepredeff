@@ -81,7 +81,7 @@ jobs:
       - name: Install TensorFlow (Linux and macOS)
         if: runner.os != 'Windows'
         run: |
-          keras::install_keras(tensorflow = "2.0.0")
+          tensorflow::install_tensorflow(version = "2.0.0")
         shell: Rscript {0}
 
       - name: Install TensorFlow (Windows)
@@ -90,7 +90,6 @@ jobs:
           reticulate::py_install(
             packages = c(
               "tensorflow==2.0.0",
-              "keras",
               "h5py",
               "pyyaml==3.12",
               "requests",
