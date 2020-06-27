@@ -37,13 +37,13 @@ install.packages("devtools")
 devtools::install_github("ruthkr/deepredeff")
 ```
 
-The deepredeff package uses the Keras and Tensorflow which are distributed as a Python package and so needs to be installed within a Python environment on your system. Therefore, you need to have Python in your system and both the core Keras library as well as the TensorFlow backend which can be done as follows:
+The deepredeff package uses TensorFlow which is distributed as a Python package and so needs to be installed within a Python environment on your system. Therefore, you need to have Python in your system and the TensorFlow backend, which can be done as follows:
 
-### Installing Keras
+### Installing TensorFlow
 
 ```r
 library(deepredeff)
-install_keras()
+install_tensorflow()
 ```
 
 This command will install `r-miniconda` and create `r-reticulate` environment in the following locations:
@@ -54,7 +54,7 @@ This command will install `r-miniconda` and create `r-reticulate` environment in
 
 - **Windows**: `C:/Users/runneradmin/AppData/Local/r-miniconda/envs/r-reticulate`
 
-Next step will be installing Tensorflow 2.0.0 and default Keras as the main requirements for this package. 
+Next step will be installing Tensorflow 2.0.0 as the main requirements for this package. 
 
 ## Sample data
 
