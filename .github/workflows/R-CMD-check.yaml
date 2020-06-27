@@ -88,14 +88,7 @@ jobs:
         if: runner.os == 'Windows'
         run: |
           reticulate::py_install(
-            packages = c(
-              "tensorflow==2.0.0",
-              "h5py",
-              "pyyaml==3.12",
-              "requests",
-              "Pillow",
-              "scipy"
-            ),
+            packages = "tensorflow==2.0.0",
             envname = NULL,
             method = "conda",
             conda = "auto",
