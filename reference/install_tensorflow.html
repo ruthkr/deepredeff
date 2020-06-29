@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • deepredeff</title>
+<title>Install the TensorFlow backend — install_tensorflow • deepredeff</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,7 +46,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Install the TensorFlow backend — install_tensorflow" />
+<meta property="og:description" content="TensorFlow will be installed into an &quot;r-tensorflow&quot; virtual or conda
+environment. Note that &quot;virtualenv&quot; is not available on Windows (as this isn't
+supported by TensorFlow)." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -66,7 +69,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -131,132 +134,79 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Install the TensorFlow backend</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ruthkr/deepredeff/blob/master/R/install.R'><code>R/install.R</code></a></small>
+    <div class="hidden name"><code>install_tensorflow.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>TensorFlow will be installed into an "r-tensorflow" virtual or conda
+environment. Note that "virtualenv" is not available on Windows (as this isn't
+supported by TensorFlow).</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/install_tensorflow.html'>install_tensorflow</a></span>(
+  method = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"conda"</span>, <span class='st'>"virtualenv"</span>),
+  conda = <span class='st'>"auto"</span>,
+  version = <span class='st'>"2.0.0"</span>,
+  extra_packages = <span class='kw'>NULL</span>,
+  <span class='kw'>...</span>
+)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="aas_to_df.html">aas_to_df()</a></code> </p>
-        </td>
-        <td><p>AAString class to dataframe</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="aasset_to_df.html">aasset_to_df()</a></code> </p>
-        </td>
-        <td><p>AAStringset class to dataframe</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="autoplot.tbl_deepredeff.html">autoplot(<i>&lt;tbl_deepredeff&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot the results of prediction</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="deepredeff.html">deepredeff</a></code> </p>
-        </td>
-        <td><p><code>deepredeff</code> package</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="encode_integer.html">encode_integer()</a></code> </p>
-        </td>
-        <td><p>Integer encoder</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="encode_one_hot.html">encode_one_hot()</a></code> </p>
-        </td>
-        <td><p>One-hot encoder</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ensemble_voting.html">ensemble_voting()</a></code> </p>
-        </td>
-        <td><p>Ensemble voting</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="ensemble_weighted.html">ensemble_weighted()</a></code> </p>
-        </td>
-        <td><p>Ensemble weighted</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="fasta_to_df.html">fasta_to_df()</a></code> </p>
-        </td>
-        <td><p>FASTA to dataframe</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_ensemble_method.html">get_ensemble_method()</a></code> </p>
-        </td>
-        <td><p>Get ensemble methods</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="install_tensorflow.html">install_tensorflow()</a></code> </p>
-        </td>
-        <td><p>Install the TensorFlow backend</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="load_model.html">load_model()</a></code> </p>
-        </td>
-        <td><p>Load model in HDF5 format</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="package_glob.html">package_glob()</a></code> </p>
-        </td>
-        <td><p>Wildcard Expansion on File Paths</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="predict_effector.html">predict_effector()</a></code> </p>
-        </td>
-        <td><p>Predict effector</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="prediction_mapper.html">prediction_mapper()</a></code> </p>
-        </td>
-        <td><p>Prediction mapper helper</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.tbl_deepredeff.html">summary(<i>&lt;tbl_deepredeff&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Get the summary of the prediction results</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>method</th>
+      <td><p>Installation method ("conda" or "virtualenv").</p></td>
+    </tr>
+    <tr>
+      <th>conda</th>
+      <td><p>Path to conda executable (or "auto" to find conda using the
+PATH and other conventional install locations).</p></td>
+    </tr>
+    <tr>
+      <th>version</th>
+      <td><p>TensorFlow version to install ( by default, "2.0.0").</p></td>
+    </tr>
+    <tr>
+      <th>extra_packages</th>
+      <td><p>Additional PyPI packages to install along with TensorFlow.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other arguments passed to <code><a href='https://rdrr.io/pkg/reticulate/man/py_install.html'>reticulate::py_install()</a></code>.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="custom-installation"><a class="anchor" href="#custom-installation"></a>Custom Installation</h2>
+
+    
+
+
+<p>Custom installations of TensorFlow are not supported yet by deepredeff.</p>
+    <h2 class="hasAnchor" id="additional-packages"><a class="anchor" href="#additional-packages"></a>Additional Packages</h2>
+
+    
+
+
+<p>If you wish to add additional PyPI packages to your TensorFlow environment you
+can either specify the packages in the <code>extra_packages</code> argument of <code><a href='https://rdrr.io/pkg/deepredeff/man/install_tensorflow.html'>install_tensorflow()</a></code>,
+or alternatively install them into an existing environment using the
+<code><a href='https://rdrr.io/pkg/reticulate/man/py_install.html'>reticulate::py_install()</a></code> function.</p>
+<p>Notice that this may have undesired side-effects on Windows installations.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+
+<span class='co'># default installation</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://github.com/ruthkr/deepredeff'>deepredeff</a></span>)
+<span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/install_tensorflow.html'>install_tensorflow</a></span>()
+}
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

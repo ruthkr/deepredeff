@@ -102,18 +102,18 @@
 
     
     
-<p>Deepredeff - from ‘deep learning prediction of effector’ is a package contains trained deep learning models for predicting effector proteins. Deepredeff has been trained to classify effector protein using set of known experimentally validated effectors from phytopathogenic bacteria, fungi and oomycetes.</p>
-<p>Deepredeff has the following key features:</p>
+<p><code>deepredeff</code> - from ‘deep learning prediction of effector’ is a package contains trained deep learning models for predicting effector proteins. <code>deepredeff</code> has been trained to classify effector protein using set of known experimentally validated effectors from phytopathogenic bacteria, fungi and oomycetes.</p>
+<p><code>deepredeff</code> has the following key features:</p>
 <ol style="list-style-type: decimal">
 <li><p>Allows user to choose different model provided depending on the input data they have. The provided models are bacteria, fungi, oomyecete. In case user does not know the pathogenity type of the data, then they can use option <code>all</code> which will use the model trained in all training datasets.</p></li>
 <li><p>Supports effector proteins prediction with different input formats, which are FASTA, data frame, AAString, AAStringset, or even string format data.</p></li>
 <li><p>Allows user to get quick summary and plot of the prediction results they have.</p></li>
 </ol>
-<p>This vignette provides a brief overview of the capabilities of deepredeff package.</p>
+<p>This vignette provides a brief overview of the capabilities of <code>deepredeff</code> package.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>I will show you how to install ‘deepredeff’ package and prepare some requirements to get it ready to be used. First, we need to install the package itself by doing the following step:</p>
+<p>I will show you how to install the <code>deepredeff</code> package and prepare some requirements to get it ready to be used. First, we need to install the package itself by doing the following step:</p>
 <div id="install-deepredeff" class="section level3">
 <h3 class="hasAnchor">
 <a href="#install-deepredeff" class="anchor"></a>Install deepredeff</h3>
@@ -121,22 +121,22 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
 <span class="kw">devtools</span>::<span class="fu">install_github</span>(<span class="st">"ruthkr/deepredeff"</span>)
 </pre></div>
-<p>The deepredeff package uses the Keras and Tensorflow which are distributed as a Python package and so needs to be installed within a Python environment on your system. Therefore, you need to have Python in your system and both the core Keras library as well as the TensorFlow backend which can be done as follows:</p>
+<p>The deepredeff package uses TensorFlow which is distributed as a Python package and so needs to be installed within a Python environment on your system. Therefore, you need to have Python in your system and the TensorFlow backend, which can be done in the following section.</p>
 </div>
-<div id="installing-keras" class="section level3">
+<div id="installing-tensorflow" class="section level3">
 <h3 class="hasAnchor">
-<a href="#installing-keras" class="anchor"></a>Installing Keras</h3>
+<a href="#installing-tensorflow" class="anchor"></a>Installing TensorFlow</h3>
+<p>To install TensorFlow on your system, you need to run the following commands. <strong>Note that this only needs to be run once</strong> (the first time you use <code>deepredeff</code>).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/ruthkr/deepredeff">deepredeff</a></span>)
-<span class="fu"><a href="../reference/install_keras.html">install_keras</a></span>()
+<span class="fu"><a href="../reference/install_tensorflow.html">install_tensorflow</a></span>()
 </pre></div>
-<p>This command will install <code>r-miniconda</code> and create <code>r-reticulate</code> environment in the following locations:</p>
+<p>This will provide you with an installation of Python and TensorFlow suitable for use with the <code>deepredeff</code> R package. In particular, this command will download and install Miniconda, and create the <code>r-reticulate</code> environment in the following locations:</p>
 <ul>
 <li><p><strong>GNU/Linux</strong>: <code>/home/&lt;user&gt;/.local/share/r-miniconda/envs/r-reticulate</code></p></li>
 <li><p><strong>macOS</strong>: <code>/Users/&lt;user&gt;/Library/r-miniconda/envs/r-reticulate</code></p></li>
 <li><p><strong>Windows</strong>: <code>C:/Users/runneradmin/AppData/Local/r-miniconda/envs/r-reticulate</code></p></li>
 </ul>
-<p>Next step will be installing Tensorflow 2.0.0 and default Keras as the main requirements for this package.</p>
 </div>
 </div>
 <div id="sample-data" class="section level2">
@@ -189,12 +189,11 @@
 <p>Prediction results from deepredeff will give you a dataframe object contains three different columns:</p>
 <ol style="list-style-type: decimal">
 <li>
-<strong>name</strong>: contains your sequence name or IDs</li>
+<strong><code>name</code></strong>: contains your sequence name or IDs,</li>
 <li>
-<strong>sequence</strong>: contains your original<br>
-</li>
+<strong><code>sequence</code></strong>: contains your original,</li>
 <li>
-<strong>prob</strong>: a probability prediction of each sequence. This probability value (a score between 0 and 1) indicates how likely a sequence is to be an effector. The default probability cutoff value of deepredeff is 0.5. It means a sequence with probability prediction ≥ 0.5 is an effector, otherwise it is a non-effector.</li>
+<strong><code>prob</code></strong>: a probability prediction of each sequence. This probability value (a score between 0 and 1) indicates how likely a sequence is to be an effector. The default probability cutoff value of deepredeff is 0.5. It means a sequence with probability prediction ≥ 0.5 is an effector, otherwise it is a non-effector.</li>
 </ol>
 </div>
 <div id="summary-and-plot" class="section level2">
@@ -213,7 +212,7 @@
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="kw">ggplot2</span>::<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html">autoplot</a></span>(<span class="kw">pred_result</span>)
 </pre></div>
-<p><img src="https://i.imgur.com/MuOH7ky.png"></p>
+<p><img src="https://raw.githubusercontent.com/ruthkr/deepredeff/master/man/figures/README-pred_result_plot-1.png"></p>
 </div>
   </div>
 
