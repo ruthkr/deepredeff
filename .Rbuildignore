@@ -12,3 +12,5 @@
 ^\.travis\.yml$
 ^codecov\.yml$
 ^\.covrignore$
+^cran-comments\.md$
+^overview$
