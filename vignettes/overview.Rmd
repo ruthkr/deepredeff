@@ -14,9 +14,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-Deepredeff - from ‘deep learning prediction of effector’ is a package contains trained deep learning models for predicting effector proteins. Deepredeff has been trained to classify effector protein using set of known experimentally validated effectors from phytopathogenic bacteria, fungi and oomycetes. 
+`deepredeff` - from ‘deep learning prediction of effector’ is a package contains trained deep learning models for predicting effector proteins. `deepredeff` has been trained to classify effector protein using set of known experimentally validated effectors from phytopathogenic bacteria, fungi and oomycetes. 
 
-Deepredeff has the following key features:
+`deepredeff` has the following key features:
 
 1. Allows user to choose different model provided depending on the input data they have. The provided models are bacteria, fungi, oomyecete. In case user does not know the pathogenity type of the data, then they can use option `all` which will use the model trained in all training datasets. 
 
@@ -24,11 +24,11 @@ Deepredeff has the following key features:
 
 3. Allows user to get quick summary and plot of the prediction results they have. 
 
-This vignette provides a brief overview of the capabilities of deepredeff package.
+This vignette provides a brief overview of the capabilities of `deepredeff` package.
 
 ## Installation
 
-I will show you how to install 'deepredeff' package and prepare some requirements to get it ready to be used. First, we need to install the package itself by doing the following step:
+I will show you how to install the `deepredeff` package and prepare some requirements to get it ready to be used. First, we need to install the package itself by doing the following step:
 
 ### Install deepredeff
 
@@ -37,24 +37,23 @@ install.packages("devtools")
 devtools::install_github("ruthkr/deepredeff")
 ```
 
-The deepredeff package uses TensorFlow which is distributed as a Python package and so needs to be installed within a Python environment on your system. Therefore, you need to have Python in your system and the TensorFlow backend, which can be done as follows:
+The deepredeff package uses TensorFlow which is distributed as a Python package and so needs to be installed within a Python environment on your system. Therefore, you need to have Python in your system and the TensorFlow backend, which can be done in the following section.
 
 ### Installing TensorFlow
+
+To install TensorFlow on your system, you need to run the following commands. **Note that this only needs to be run once** (the first time you use `deepredeff`).
 
 ```r
 library(deepredeff)
 install_tensorflow()
 ```
-
-This command will install `r-miniconda` and create `r-reticulate` environment in the following locations:
+This will provide you with an installation of Python and TensorFlow suitable for use with the `deepredeff` R package. In particular, this command will download and install Miniconda, and create the `r-reticulate` environment in the following locations:
 
 - **GNU/Linux**: `/home/<user>/.local/share/r-miniconda/envs/r-reticulate`
 
 - **macOS**: `/Users/<user>/Library/r-miniconda/envs/r-reticulate`
 
 - **Windows**: `C:/Users/runneradmin/AppData/Local/r-miniconda/envs/r-reticulate`
-
-Next step will be installing Tensorflow 2.0.0 as the main requirements for this package. 
 
 ## Sample data
 
@@ -107,9 +106,9 @@ pred_result %>%
 
 Prediction results from deepredeff will give you a dataframe object contains three different columns: 
 
-1. **name**: contains your sequence name or IDs 
-2. **sequence**: contains your original  
-3. **prob**: a probability prediction of each sequence. This probability value (a score between 0 and 1) indicates how likely a sequence is to be an effector. The default probability cutoff value of deepredeff is 0.5. It means a sequence with probability prediction ≥ 0.5 is an effector, otherwise it is a non-effector.
+1. **`name`**: contains your sequence name or IDs,
+2. **`sequence`**: contains your original,
+3. **`prob`**: a probability prediction of each sequence. This probability value (a score between 0 and 1) indicates how likely a sequence is to be an effector. The default probability cutoff value of deepredeff is 0.5. It means a sequence with probability prediction ≥ 0.5 is an effector, otherwise it is a non-effector.
 
 ## Summary and plot
 
@@ -131,7 +130,4 @@ Next, you can also plot the density distribution of the prediction results by ru
 ggplot2::autoplot(pred_result)
 ```
 
-![](https://i.imgur.com/MuOH7ky.png)
-
-
-
+![](https://raw.githubusercontent.com/ruthkr/deepredeff/master/man/figures/README-pred_result_plot-1.png)
