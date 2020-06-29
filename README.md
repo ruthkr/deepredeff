@@ -29,14 +29,16 @@ First, install the deepredeff package from GitHub as follows:
 devtools::install_github("ruthkr/deepredeff")
 ```
 
-The deepredeff package uses the Keras and tensorflow. To install both
-the core Keras library as well as the TensorFlow backend use the
-install\_keras() function:
+The `deepredeff` package uses Tensorflow. To install TensorFlow, you
+need use the install\_tensorflow() function as follows:
 
 ``` r
 library(deepredeff)
-install_keras()
+install_tensorflow()
 ```
+
+Note that this command only needs to be run once, after you install
+`deepredeff`.
 
 ## Documentation
 
