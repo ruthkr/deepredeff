@@ -9,26 +9,32 @@
 \alias{predict_effector.default}
 \title{Predict effector}
 \usage{
-predict_effector(input, model)
+predict_effector(input, taxon)
 
-\method{predict_effector}{character}(input, model)
+\method{predict_effector}{character}(input, taxon)
 
-\method{predict_effector}{data.frame}(input, model)
+\method{predict_effector}{data.frame}(input, taxon)
 
-\method{predict_effector}{AAStringSet}(input, model)
+\method{predict_effector}{AAStringSet}(input, taxon)
 
-\method{predict_effector}{AAString}(input, model)
+\method{predict_effector}{AAString}(input, taxon)
 
-\method{predict_effector}{default}(input, model)
+\method{predict_effector}{default}(input, taxon)
 }
 \arguments{
 \item{input}{Input data that contains amino acid sequence(s). It can be in fasta format, strings, AAString, AAStringset, and dataframe.}
 
-\item{model}{Model to use in predicting the input sequence. Available models are bacteria, fungi, oomycete, and all.}
+\item{taxon}{Taxon group of input data. The default is is "all". Available taxons are bacteria, fungi, oomycete, and all.}
 }
 \value{
-Deepredeff objects that contains sequences and effector predictions.
+\code{predict_effector} returns an object of class "tbl_deepredeff" or for multiple responses of class c("tbl_deepredeff", "data.frame").
+
+An object of class "tbl_deepredeff" is a data frame containing at least the following components:
+
+\item{\code{sequence}}{the sequence(s) from the input data.}
+\item{\code{s_score}}{score obtained from sigmoid function showing how likely the sequences to be an effector.}
+\item{\code{prediction}}{class prediction for each sequence, obtained from s_score. If the value of \code{s_score} ≥ 0.5, it will be clasified as an effector. Otherwise, it will be claasified as a non-effector.}
 }
 \description{
-Predict effector
+\code{predict_effector} is used to predict effector protein given amino acid protein sequences.
 }
