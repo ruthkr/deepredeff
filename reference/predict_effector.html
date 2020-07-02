@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Predict effector — predict_effector" />
-<meta property="og:description" content="Predict effector" />
+<meta property="og:description" content="predict_effector is used to predict effector protein given amino acid protein sequences." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -140,25 +140,25 @@
     </div>
 
     <div class="ref-description">
-    <p>Predict effector</p>
+    <p><code>predict_effector</code> is used to predict effector protein given amino acid protein sequences.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>model</span>)
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)
 
 <span class='co'># S3 method for character</span>
-<span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>model</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>model</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)
 
 <span class='co'># S3 method for AAStringSet</span>
-<span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>model</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)
 
 <span class='co'># S3 method for AAString</span>
-<span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>model</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)
 
 <span class='co'># S3 method for default</span>
-<span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>model</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -168,14 +168,19 @@
       <td><p>Input data that contains amino acid sequence(s). It can be in fasta format, strings, AAString, AAStringset, and dataframe.</p></td>
     </tr>
     <tr>
-      <th>model</th>
-      <td><p>Model to use in predicting the input sequence. Available models are bacteria, fungi, oomycete, and all.</p></td>
+      <th>taxon</th>
+      <td><p>Taxon group of input data. The default is is "all". Available taxons are bacteria, fungi, oomycete, and all.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Deepredeff objects that contains sequences and effector predictions.</p>
+    <p><code>predict_effector</code> returns an object of class "tbl_deepredeff" or for multiple responses of class c("tbl_deepredeff", "data.frame").</p>
+<p>An object of class "tbl_deepredeff" is a data frame containing at least the following components:</p>
+<dt><code>sequence</code></dt><dd><p>the sequence(s) from the input data.</p></dd>
+<dt><code>s_score</code></dt><dd><p>score obtained from sigmoid function showing how likely the sequences to be an effector.</p></dd>
+<dt><code>prediction</code></dt><dd><p>class prediction for each sequence, obtained from s_score. If the value of <code>s_score</code> ≥ 0.5, it will be clasified as an effector. Otherwise, it will be claasified as a non-effector.</p></dd>
+
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
