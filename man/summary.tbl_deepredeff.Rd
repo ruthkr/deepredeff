@@ -4,12 +4,10 @@
 \alias{summary.tbl_deepredeff}
 \title{Get the summary of the prediction results}
 \usage{
-\method{summary}{tbl_deepredeff}(object, cutoff = 0.5, ...)
+\method{summary}{tbl_deepredeff}(object, ...)
 }
 \arguments{
 \item{object}{Results of prediction from deepredeff::predict_effector().}
-
-\item{cutoff}{Cutoff value to determine the prediction class (1 for effector and 0 for non-effector). The default value is 0.5.}
 
 \item{...}{Additional arguments ignored.}
 }
