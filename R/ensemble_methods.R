@@ -44,17 +44,17 @@ ensemble_voting <- function(pred_list, weights = NULL) {
 
 #' Get ensemble methods
 #'
-#' This function is used to get the ensemble methods used for each model group. If weights are needed for a particular ensemble, then the weights will automatically follow.
+#' This function is used to get the ensemble methods used for each taxon group. If weights are needed for a particular ensemble, then the weights will automatically follow.
 #'
-#' @param model type model to use.
+#' @param taxon taxon group
 #'
 #' @return Ensemble method and weights.
 #' @export
-get_ensemble_method <- function(model) {
-  if (model == "bacteria") {
+get_ensemble_method <- function(taxon) {
+  if (taxon == "bacteria") {
     ensemble_method <- ensemble_weighted
     weights <- bacteria_weights
-  } else if (model == "all") {
+  } else if (taxon == "all") {
     ensemble_method <- ensemble_voting
     weights <- NULL
   } else {

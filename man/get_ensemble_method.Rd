@@ -4,14 +4,14 @@
 \alias{get_ensemble_method}
 \title{Get ensemble methods}
 \usage{
-get_ensemble_method(model)
+get_ensemble_method(taxon)
 }
 \arguments{
-\item{model}{type model to use.}
+\item{taxon}{taxon group}
 }
 \value{
 Ensemble method and weights.
 }
 \description{
-This function is used to get the ensemble methods used for each model group. If weights are needed for a particular ensemble, then the weights will automatically follow.
+This function is used to get the ensemble methods used for each taxon group. If weights are needed for a particular ensemble, then the weights will automatically follow.
 }
