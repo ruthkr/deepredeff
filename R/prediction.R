@@ -68,7 +68,13 @@ predict_effector.character <- function(input, taxon) {
   )
 
   preds <- preds %>%
-    dplyr::mutate(prediction = ifelse(s_score >= 0.5, "effector", "non-effector"))
+    dplyr::mutate(
+      prediction = factor(
+        .data$s_score >= 0.5,
+        levels = c(TRUE, FALSE),
+        labels = c("effector", "non-effector")
+      )
+    )
 
   attr(preds, "model_names") <- model_names
   attr(preds, "taxon") <- taxon
@@ -113,7 +119,13 @@ predict_effector.data.frame <- function(input, taxon) {
   )
 
   preds <- preds %>%
-  dplyr::mutate(prediction = ifelse(s_score >= 0.5, "effector", "non-effector"))
+    dplyr::mutate(
+      prediction = factor(
+        .data$s_score >= 0.5,
+        levels = c(TRUE, FALSE),
+        labels = c("effector", "non-effector")
+      )
+    )
 
   attr(preds, "model_names") <- model_names
   attr(preds, "taxon") <- taxon
@@ -161,7 +173,13 @@ predict_effector.AAStringSet <- function(input, taxon) {
   )
 
   preds <- preds %>%
-    dplyr::mutate(prediction = ifelse(s_score >= 0.5, "effector", "non-effector"))
+    dplyr::mutate(
+      prediction = factor(
+        .data$s_score >= 0.5,
+        levels = c(TRUE, FALSE),
+        labels = c("effector", "non-effector")
+      )
+    )
 
   attr(preds, "model_names") <- model_names
   attr(preds, "taxon") <- taxon
@@ -209,7 +227,13 @@ predict_effector.AAString <- function(input, taxon) {
   )
 
   preds <- preds %>%
-    dplyr::mutate(prediction = ifelse(s_score >= 0.5, "effector", "non-effector"))
+    dplyr::mutate(
+      prediction = factor(
+        .data$s_score >= 0.5,
+        levels = c(TRUE, FALSE),
+        labels = c("effector", "non-effector")
+      )
+    )
 
   attr(preds, "model_names") <- model_names
   attr(preds, "taxon") <- taxon
