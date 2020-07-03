@@ -17,7 +17,7 @@ test_that("Prediction function works", {
   expect_equal(
     deepredeff::predict_effector(
       input = system.file("extdata/example/fungi_sample.fasta", package = "deepredeff"),
-      model = "fungi"
+      taxon = "fungi"
     ) %>%
       class() %>%
       .[[1]],
@@ -30,7 +30,7 @@ test_that("Detection of non-aminoacid sequence works", {
   expect_error(
     deepredeff::predict_effector(
       input = "VERYWRONGSEQUENCE123+",
-      model = "fungi"
+      taxon = "fungi"
     )
   )
 })
@@ -40,7 +40,7 @@ test_that("Detection of valid input class works", {
   expect_warning(
     deepredeff::predict_effector(
       input = NULL,
-      model = "fungi"
+      taxon = "fungi"
     )
   )
 })
@@ -51,7 +51,7 @@ test_that("Prediction with input data frame returns S3 class", {
     deepredeff::predict_effector(
       input = system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
         fasta_to_df(),
-      model = "fungi"
+      taxon = "fungi"
     ),
     "tbl_deepredeff"
   )
@@ -65,7 +65,7 @@ test_that("Prediction with input string returns S3 class", {
         fasta_to_df() %>%
         dplyr::slice(1) %>%
         dplyr::pull(sequence),
-      model = "fungi"
+      taxon = "fungi"
     ),
     "tbl_deepredeff"
   )
@@ -76,7 +76,7 @@ test_that("Prediction with input FASTA returns S3 class", {
   expect_s3_class(
     deepredeff::predict_effector(
       input = system.file("extdata/example/fungi_sample.fasta", package = "deepredeff"),
-      model = "fungi"
+      taxon = "fungi"
     ),
     "tbl_deepredeff"
   )
@@ -88,7 +88,7 @@ test_that("Prediction with input AAStringset returns S3 class", {
     deepredeff::predict_effector(
       input = system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
         Biostrings::readAAStringSet(),
-      model = "fungi"
+      taxon = "fungi"
     ),
     "tbl_deepredeff"
   )
@@ -103,27 +103,27 @@ test_that("Prediction with input AAString returns S3 class", {
         dplyr::slice(1) %>%
         dplyr::pull(sequence) %>%
         Biostrings::AAString(),
-      model = "fungi"
+      taxon = "fungi"
     ),
     "tbl_deepredeff"
   )
 })
 
-test_that("Summary of prediction result return data frame", {
+
+
+test_that("Summary of prediction result works", {
   skip_if_no_tf()
-  class_summary <- deepredeff::predict_effector(
+  pred <- deepredeff::predict_effector(
     input = system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
       fasta_to_df() %>%
       dplyr::slice(1) %>%
       dplyr::pull(sequence),
-    model = "fungi"
-  ) %>%
-    summary() %>%
-    class()
+    taxon = "fungi"
+  )
 
-  expect_equal(class_summary[1], "tbl_df")
-  expect_equal(class_summary[2], "tbl")
-  expect_equal(class_summary[3], "data.frame")
+  summary_print <- capture_output(print(summary(pred)))
+
+  expect_equal(summary_print, "Total sequences in input data: 1\n---\nTaxon chosen: fungi\nModel type used: cnn_lstm\n\nTotal sequences predicted as effector: 1\nTotal sequences predicted as non-effector: 0")
 })
 
 
@@ -134,9 +134,9 @@ test_that("Plot of prediction result return gg/ggplot object", {
       fasta_to_df() %>%
       dplyr::slice(1) %>%
       dplyr::pull(sequence),
-    model = "fungi"
+    taxon = "fungi"
   ) %>%
-    ggplot2::autoplot() %>%
+    plot() %>%
     class()
 
   expect_equal(class_plot[1], "gg")
