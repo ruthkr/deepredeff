@@ -1,9 +1,9 @@
 # tf <- NULL
-#
-# .onLoad <- function(libname, pkgname) {
-#   reticulate::configure_environment(pkgname)
-#   tf <<- reticulate::import("tensorflow", delay_load = TRUE)
-# }
+
+.onLoad <- function(libname, pkgname) {
+  reticulate::configure_environment(pkgname)
+  # tf <<- reticulate::import("tensorflow", delay_load = TRUE)
+}
 
 #' Wildcard Expansion on File Paths
 #'

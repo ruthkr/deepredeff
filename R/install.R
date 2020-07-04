@@ -37,10 +37,10 @@
 #'
 #' @export
 install_tensorflow <- function(method = c("conda", "virtualenv"),
-                          conda = "auto",
-                          version = "2.0.0",
-                          extra_packages = NULL,
-                          ...) {
+                               conda = "auto",
+                               version = "2.0.0",
+                               extra_packages = NULL,
+                               ...) {
 
   # Verify method
   method <- match.arg(method)
@@ -56,32 +56,19 @@ install_tensorflow <- function(method = c("conda", "virtualenv"),
 
   # Install TensorFlow on Linux and macOS
   if (!is_windows()) {
-    tryCatch(
-      tensorflow::install_tensorflow(
-        method = method,
-        conda = conda,
-        version = version,
-        extra_packages = extra_packages,
-        pip_ignore_installed = FALSE,
-        ...
-      ),
-      error = function(cond) {
-        message(cond)
-      }
-    )
-  }
-
-  # Install TensorFlow on Windows
-  if (is_windows()) {
-      # Avoid DLL in use errors
-      if (reticulate::py_available()) {
-        stop(
-          "You should call install_tensorflow() only in a fresh ",
-          "R session that has not yet initialized TensorFlow (this is ",
-          "to avoid DLL in use errors during installation)"
-        )
-      }
-
+    # tryCatch(
+    #   tensorflow::install_tensorflow(
+    #     method = method,
+    #     conda = conda,
+    #     version = version,
+    #     extra_packages = extra_packages,
+    #     pip_ignore_installed = FALSE,
+    #     ...
+    #   ),
+    #   error = function(cond) {
+    #     message(cond)
+    #   }
+    # )
     package <- paste0("tensorflow==", version)
 
     tryCatch(
@@ -100,6 +87,34 @@ install_tensorflow <- function(method = c("conda", "virtualenv"),
     )
   }
 
+  # Install TensorFlow on Windows
+  if (is_windows()) {
+    # Avoid DLL in use errors
+    if (reticulate::py_available()) {
+      stop(
+        "You should call install_tensorflow() only in a fresh ",
+        "R session that has not yet initialized TensorFlow (this is ",
+        "to avoid DLL in use errors during installation)"
+      )
+    }
+
+    package <- paste0("tensorflow==", version)
+
+    tryCatch(
+      reticulate::py_install(
+        packages = c(package, extra_packages),
+        envname = NULL,
+        method = method,
+        conda = conda,
+        python_version = "3.6",
+        pip = TRUE,
+        ...
+      ),
+      error = function(cond) {
+        message(cond)
+      }
+    )
+  }
 }
 
 is_windows <- function() {
