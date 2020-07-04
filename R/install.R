@@ -56,29 +56,13 @@ install_tensorflow <- function(method = c("conda", "virtualenv"),
 
   # Install TensorFlow on Linux and macOS
   if (!is_windows()) {
-    # tryCatch(
-    #   tensorflow::install_tensorflow(
-    #     method = method,
-    #     conda = conda,
-    #     version = version,
-    #     extra_packages = extra_packages,
-    #     pip_ignore_installed = FALSE,
-    #     ...
-    #   ),
-    #   error = function(cond) {
-    #     message(cond)
-    #   }
-    # )
-    package <- paste0("tensorflow==", version)
-
     tryCatch(
-      reticulate::py_install(
-        packages = c(package, extra_packages),
-        envname = NULL,
+      tensorflow::install_tensorflow(
         method = method,
         conda = conda,
-        python_version = "3.6",
-        pip = TRUE,
+        version = version,
+        extra_packages = extra_packages,
+        pip_ignore_installed = FALSE,
         ...
       ),
       error = function(cond) {
@@ -115,6 +99,7 @@ install_tensorflow <- function(method = c("conda", "virtualenv"),
       }
     )
   }
+
 }
 
 is_windows <- function() {
