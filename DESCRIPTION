@@ -30,7 +30,9 @@ Imports:
 Suggests: 
     covr,
     knitr,
+    kableExtra,
     rmarkdown,
+    stringr,
     testthat
 Config/reticulate:
   list(
