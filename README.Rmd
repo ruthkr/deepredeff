@@ -25,27 +25,26 @@ ggplot2::theme_set(ggplot2::theme_bw())
 [![pkgdown status](https://github.com/ruthkr/deepredeff/workflows/pkgdown/badge.svg)](https://ruthkr.github.io/deepredeff/)
 <!-- badges: end -->
 
-**deepredeff** is a package to predict effector protein given amino acid sequences. This tool can be used to predict effectors from three different pathogens, which are oomycete, fungi, and bacteria.  
+**deepredeff** is a package to predict effector protein given amino acid sequences. This tool can be used to predict effectors from three different taxa, which are oomycete, fungi, and bacteria.  
 
 
 ## Installation
 
-First, install the deepredeff package from GitHub as follows:
+First, install the `deepredeff` package from GitHub as follows:
 
 ```r
 # install.packages("devtools")
 devtools::install_github("ruthkr/deepredeff")
 ```
 
-The `deepredeff` package uses Tensorflow. To install TensorFlow, you need use the
-install_tensorflow() function as follows:
+The `deepredeff` package uses Tensorflow. If you already have TensorFlow in your system, then you can specify your environment using `reticulate::use_condaenv()`. Otherwise, you can install TensorFlow, by using install_tensorflow() function as follows:
 
 ```r
 library(deepredeff)
 install_tensorflow()
 ```
 
-Note that this command only needs to be run once, after you install `deepredeff`. 
+Note that this command only needs to be run **once**, after you install `deepredeff`. 
 
 ## Documentation
 
@@ -71,14 +70,20 @@ bacteria_fasta_path <- system.file(
 # Predict the effector candidate using bacteria model
 pred_result <- deepredeff::predict_effector(
   input = bacteria_fasta_path,
-  model = "bacteria"
+  taxon = "bacteria"
 )
+```
 
+```r
 # View results
+pred_result
+```
+
+```{r echo= FALSE}
 pred_result %>%
   dplyr::mutate(
     name = stringr::str_replace_all(name, "\\|", "⎮"),
-    sequence = stringr::str_sub(sequence, 1, 25)
+    sequence = stringr::str_sub(sequence, 1, 30)
   ) %>%
   knitr::kable()
 ```
@@ -86,7 +91,7 @@ pred_result %>%
 After getting the result, you can plot the probability distribution of the result as follows:
 
 ```{r pred_result_plot, fig.height=4, fig.width=8, out.width=NULL, fig.align='center'}
-ggplot2::autoplot(pred_result)
+plot(pred_result)
 ```
 
 More examples with different input formats are available on functions documentations and vignettes, please refer to the documentation.
