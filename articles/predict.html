@@ -102,7 +102,7 @@
 
     
     
-<p>How do you choose specify the taxon before predicting and what if your input data is not a FASTA file and you have different input file?</p>
+<p>How do you choose specify the taxon before predicting and what if your input data is not a FASTA file (you have another input format)?</p>
 <p><code>deepredeff</code> allows to you to choose the taxon type depending on your input data. <code>deepredeff</code> also allows you to predict effector protein given amino acid sequences in different format. Format that can be used for this version are string, fasta, dataframe, AAString, and AAStringSet.</p>
 <p>In this vigenette, we will walk you through the steps. The function to predict an effector is <code><a href="../reference/predict_effector.html">predict_effector()</a></code>. There are three different taxa available in this version, which are <code>bacteria</code>, <code>fungi</code>, <code>oomycete</code>. If you are not sure about the taxon of your input data, then you choose <code>all</code> option (set as a default value for taxon).</p>
 <p>For each taxon, <code>deepredeff</code> uses different model. These models are:</p>
