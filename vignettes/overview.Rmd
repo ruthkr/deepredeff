@@ -14,11 +14,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-`deepredeff` - from ‘deep learning prediction of effector’ is a package contains trained deep learning models for predicting effector proteins. `deepredeff` has been trained to classify effector protein using set of known experimentally validated effectors from phytopathogenic bacteria, fungi and oomycetes. 
+`deepredeff` - from ‘deep learning prediction of effector’ is a package contains trained deep learning models for predicting effector proteins. `deepredeff` has been trained to classify effector protein using set of known experimentally validated effectors from taxon bacteria, fungi and oomycetes. 
 
 `deepredeff` has the following key features:
 
-1. Allows user to choose different model provided depending on the input data they have. The provided models are **bacteria**, **fungi**, **oomyecete**. In case user does not know the taxon of their data, then they can use option **all** which will use the model trained in all training datasets. 
+1. Allows user to choose a particular taxon depending on the input data they have. The available taxa are **bacteria**, **fungi**, **oomyecete**. In case user does not know the taxon of their data, then they can use option **all** which will use the model trained in all training datasets. 
 
 2. Supports effector proteins prediction with different input formats, which are FASTA, data frame, AAString, AAStringset, or even string format data. 
 

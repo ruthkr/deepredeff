@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-How do you choose specify the taxon before predicting and what if your input data is not a FASTA file and you have different input file?
+How do you choose specify the taxon before predicting and what if your input data is not a FASTA file (you have another input format)?
 
 `deepredeff` allows to you to choose the taxon type depending on your input data. `deepredeff` also allows you to predict effector protein given amino acid sequences in different format. Format that can be used for this version are string, fasta, dataframe, AAString, and AAStringSet. 
 
