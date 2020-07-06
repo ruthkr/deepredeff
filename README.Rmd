@@ -37,7 +37,7 @@ First, install the `deepredeff` package from GitHub as follows:
 devtools::install_github("ruthkr/deepredeff")
 ```
 
-The `deepredeff` package uses Tensorflow. If you already have TensorFlow in your system, then you can specify your environment using `reticulate::use_condaenv()`. Otherwise, you can install TensorFlow, by using install_tensorflow() function as follows:
+The `deepredeff` package uses Tensorflow. If you already have TensorFlow in your system, then you can specify your environment where TensorFlow is installed using `reticulate::use_condaenv()`. Otherwise, you can install TensorFlow, by using install_tensorflow() function as follows:
 
 ```r
 library(deepredeff)
@@ -83,7 +83,7 @@ pred_result
 pred_result %>%
   dplyr::mutate(
     name = stringr::str_replace_all(name, "\\|", "⎮"),
-    sequence = stringr::str_sub(sequence, 1, 30)
+    sequence = stringr::str_sub(sequence, 1, 25)
   ) %>%
   knitr::kable()
 ```
