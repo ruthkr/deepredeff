@@ -4,7 +4,7 @@
 \alias{load_model}
 \title{Load model in HDF5 format}
 \usage{
-load_model(taxon = c("all", "bacteria", "fungi", "oomycete"))
+load_model(taxon = c("bacteria", "fungi", "oomycete"))
 }
 \arguments{
 \item{taxon}{Name of taxon.}

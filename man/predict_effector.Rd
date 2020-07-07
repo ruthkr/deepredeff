@@ -24,7 +24,7 @@ predict_effector(input, taxon)
 \arguments{
 \item{input}{Input data that contains amino acid sequence(s). It can be in fasta format, strings, AAString, AAStringset, and dataframe.}
 
-\item{taxon}{Taxon group of input data. The default is is "all". Available taxons are bacteria, fungi, oomycete, and all.}
+\item{taxon}{Taxon group of input data. Available taxons are bacteria, fungi, and oomycete.}
 }
 \value{
 \code{predict_effector} returns an object of class "tbl_deepredeff" or for multiple responses of class c("tbl_deepredeff", "data.frame").

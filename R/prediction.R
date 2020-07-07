@@ -3,7 +3,7 @@
 #' `predict_effector` is used to predict effector protein given amino acid protein sequences.
 #'
 #' @param input Input data that contains amino acid sequence(s). It can be in fasta format, strings, AAString, AAStringset, and dataframe.
-#' @param taxon Taxon group of input data. The default is is "all". Available taxons are bacteria, fungi, oomycete, and all.
+#' @param taxon Taxon group of input data. Available taxons are bacteria, fungi, and oomycete.
 #'
 #' @return `predict_effector` returns an object of class "tbl_deepredeff" or for multiple responses of class c("tbl_deepredeff", "data.frame").
 #'
@@ -52,8 +52,6 @@ predict_effector.character <- function(input, taxon) {
   # Model names for list
   if (taxon == "bacteria"){
     model_names <- "ensemble_weighted"
-  } else if (taxon == "all"){
-    model_names <- "ensemble_voting"
   }
 
   message(paste0("Model used ", "for taxon ", taxon, ": ", paste(model_names, collapse = ", "), "."))
@@ -104,8 +102,6 @@ predict_effector.data.frame <- function(input, taxon) {
   # Model names for list
   if (taxon == "bacteria"){
     model_names <- "ensemble_weighted"
-  } else if (taxon == "all"){
-    model_names <- "ensemble_voting"
   }
 
   message(paste0("Model used ", "for taxon ", taxon, ": ", paste(model_names, collapse = ", "), "."))
@@ -158,8 +154,6 @@ predict_effector.AAStringSet <- function(input, taxon) {
   # Model names for list
   if (taxon == "bacteria"){
     model_names <- "ensemble_weighted"
-  } else if (taxon == "all"){
-    model_names <- "ensemble_voting"
   }
 
   message(paste0("Model used ", "for taxon ", taxon, ": ", paste(model_names, collapse = ", "), "."))
@@ -212,8 +206,6 @@ predict_effector.AAString <- function(input, taxon) {
   # Model names for list
   if (taxon == "bacteria"){
     model_names <- "ensemble_weighted"
-  } else if (taxon == "all"){
-    model_names <- "ensemble_voting"
   }
 
   message(paste0("Model used ", "for taxon ", taxon, ": ", paste(model_names, collapse = ", "), "."))

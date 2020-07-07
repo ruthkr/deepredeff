@@ -82,7 +82,7 @@ Once the data are loaded, you can predict them using the function `predict_effec
 # Predict the effector candidate using bacteria model
 pred_result <- deepredeff::predict_effector(
   input = bacteria_fasta_path,
-  model = "bacteria"
+  taxon = "bacteria"
 )
 #> Loaded models successfully!
 #> Model used for taxon bacteria: ensemble_weighted.
@@ -108,11 +108,11 @@ pred_result %>%
 #> 10 tr|D4I1R4|D4I1R4_ERWAC Ou MLSSNRRLLRLLPLASLLLTACGLH 0.04899144 non-effector
 ```
 
-Prediction results from deepredeff will give you a dataframe object contains three different columns: 
+Prediction results from deepredeff will give you a dataframe object contains four different columns: 
 
 1. **`name`**: contains your sequence identifiers.
 2. **`sequence`**: contains your original.
-3. **`s_score`**: an output value from sigmoid function, between 0 and 1. a probability prediction of each sequence. This value indicates how likely a sequence is to be an effector. The default probability cutoff value of deepredeff is 0.5. It means a sequence with probability prediction ≥ 0.5 is an effector, otherwise it is a non-effector.
+3. **`s_score`**: an output value from sigmoid function, between 0 and 1. This value indicates how likely a sequence is to be an effector. The default probability cutoff value of deepredeff is 0.5. It means a sequence with probability prediction ≥ 0.5 is an effector, otherwise it is a non-effector.
 4. **`prediction`**: prediction class obtained from `s_score`. 
 
 ## Summary and plot

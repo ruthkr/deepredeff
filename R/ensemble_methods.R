@@ -54,9 +54,6 @@ get_ensemble_method <- function(taxon) {
   if (taxon == "bacteria") {
     ensemble_method <- ensemble_weighted
     weights <- bacteria_weights
-  } else if (taxon == "all") {
-    ensemble_method <- ensemble_voting
-    weights <- NULL
   } else {
     ensemble_method <- function(x, y) {
       return(x[[1]])
