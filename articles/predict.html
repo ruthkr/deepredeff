@@ -102,27 +102,38 @@
 
     
     
-<p>How do you choose specify the taxon before predicting and what if your input data is not a FASTA file (you have another input format)?</p>
-<p><code>deepredeff</code> allows to you to choose the taxon type depending on your input data. <code>deepredeff</code> also allows you to predict effector protein given amino acid sequences in different format. Format that can be used for this version are string, fasta, dataframe, AAString, and AAStringSet.</p>
-<p>In this vigenette, we will walk you through the steps. The function to predict an effector is <code><a href="../reference/predict_effector.html">predict_effector()</a></code>. There are three different taxa available in this version, which are <code>bacteria</code>, <code>fungi</code>, <code>oomycete</code>. If you are not sure about the taxon of your input data, then you choose <code>all</code> option (set as a default value for taxon).</p>
-<p>For each taxon, <code>deepredeff</code> uses different model. These models are:</p>
+<div id="selecting-the-model" class="section level2">
+<h2 class="hasAnchor">
+<a href="#selecting-the-model" class="anchor"></a>Selecting the model</h2>
+<p><code>deepredeff</code> provides a selection of models trained on sequences from different phytopathogen taxa. It is important to select the correct model. Each taxon is represented by just one model at the moment. You can select the model by setting the taxon in the main function, <code><a href="../reference/predict_effector.html">predict_effector()</a></code>. Available values are <code>bacteria</code>, <code>fungi</code> and <code>oomycete</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+
+<span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span>(
+    input = <span class="st">"my_fungal_seqs.fa"</span>,
+    taxon = <span class="st">"fungi"</span>
+)
+</pre></div>
+<p>For each taxon, <code>deepredeff</code> uses a different model. These models are:</p>
 <ul>
 <li>
-<code>bacteria</code>: <code>ensemble_weighted</code>, which is an weighted ensemble model of CNN-LSTM, CNN-GRU, GRU Embedding, and LSTM-Embedding.</li>
+<code>bacteria</code>: <code>ensemble_weighted</code>, which is a weighted ensemble model of CNN-LSTM, CNN-GRU, GRU Embedding, and LSTM-Embedding.</li>
 <li>
 <code>fungi</code>: CNN-LSTM.</li>
 <li>
 <code>oomycete</code>: CNN-LSTM.</li>
 <li>
-<code>all</code>: <code>ensemble_weighted</code>, which is an voting ensemble model of CNN-LSTM, CNN-GRU, GRU Embedding, and LSTM-Embedding.</li>
+<code>all</code>: <code>ensemble_weighted</code>, which is a voting ensemble model of CNN-LSTM, CNN-GRU, GRU Embedding, and LSTM-Embedding.</li>
 </ul>
 <p>The model used for your prediction will also be shown when you run the function <code><a href="../reference/predict_effector.html">predict_effector()</a></code> or when you run <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>.</p>
-<p>Note that for each section below, you can use any of input format supported by <code>deepredeff</code>.</p>
-<div id="predict-fungal-effectors" class="section level2">
+</div>
+<div id="importing-from-different-data-sources" class="section level2">
 <h2 class="hasAnchor">
-<a href="#predict-fungal-effectors" class="anchor"></a>Predict fungal effectors</h2>
-<p>Let us take example of fungal sequences in data frame format called <code>input_fungi_df</code> as shown below:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
+<a href="#importing-from-different-data-sources" class="anchor"></a>Importing from different data sources</h2>
+<div id="sequences-in-a-dataframe" class="section level3">
+<h3 class="hasAnchor">
+<a href="#sequences-in-a-dataframe" class="anchor"></a>Sequences in a dataframe</h3>
+<p>Here we will load Let us take example of fungal sequences in data frame format called <code>input_fungi_df</code> as shown below:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="kw">input_fungi_df</span> 
 </pre></div>
 <table class="table">
@@ -217,167 +228,56 @@ MKFTASLIALGALLVGAASTEAAAVDRPGPWSEIHHKNSIKHFKVFGVPA GTNLRSVRPLYYNCSIKFPSAKESTYKYF
 </tr>
 </tbody>
 </table>
-<p>Since we know that we have fungal sequences, then you can specify the model to <code>taxon= fungi</code>.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw">pred_fungi</span> <span class="op">&lt;-</span> <span class="kw">deepredeff</span>::<span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span>(
+<p><code>deepredeff</code> accepts these directly.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">pred_fungi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span>(
   input = <span class="kw">input_fungi_df</span>,
   taxon = <span class="st">"fungi"</span>
 )
 <span class="co">#&gt; Loaded models successfully!</span>
 <span class="co">#&gt; Model used for taxon fungi: cnn_lstm.</span>
 </pre></div>
-<p>As we can see, when the prediction process is finished, you will get an information about what model is used for taxon fungi. You can see the prediction result below.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw">pred_fungi</span> <span class="op">%&gt;%</span> 
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(name = <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span>(<span class="kw">name</span>, <span class="fl">1</span>, <span class="fl">25</span>), 
-                sequence = <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span>(<span class="kw">sequence</span>, <span class="fl">1</span>, <span class="fl">25</span>))
-<span class="co">#&gt;                         name                  sequence     s_score   prediction</span>
-<span class="co">#&gt; 1  tr|A0A0A0S3X0|A0A0A0S3X0_ MRLANFLFYLAPMIVSSLAFDFVPL 0.949224353     effector</span>
-<span class="co">#&gt; 2  tr|A0A0A2ILW0|A0A0A2ILW0_ MFFPSLILAAGSLSTLIQAIPHGAK 0.976694226     effector</span>
-<span class="co">#&gt; 3  tr|A0A0A2JB06|A0A0A2JB06_ MDKMLFSFLRLCFVLLTVWTTWVAA 0.980522096     effector</span>
-<span class="co">#&gt; 4  tr|A0A0A2JVC2|A0A0A2JVC2_ MMAPKSLQTGLLILLLAKLKLAWGM 0.954952955     effector</span>
-<span class="co">#&gt; 5  tr|A0A0A2JY92|A0A0A2JY92_ MGLFRIDFLALWLLLLRLATAAAPV 0.981008768     effector</span>
-<span class="co">#&gt; 6  tr|F9XPG6|F9XPG6_ZYMTI Un MKLLTLAIGLLTATALATPLITDAM 0.087577999 non-effector</span>
-<span class="co">#&gt; 7  tr|G2XB99|G2XB99_VERDV Hy MRAAVLVTLATGALAARPYINEPDT 0.038996011 non-effector</span>
-<span class="co">#&gt; 8  tr|G2WR20|G2WR20_VERDV Ci MKTLATALLFAASAAAQAGPWAQCG 0.022782624 non-effector</span>
-<span class="co">#&gt; 9  tr|G2X460|G2X460_VERDV IN MRLTSVASGLALLSIQAAAHPGHDL 0.004808949 non-effector</span>
-<span class="co">#&gt; 10 tr|A0A0D1C4R8|A0A0D1C4R8_ MKFTASLIALGALLVGAASTEAAAV 0.106814429 non-effector</span>
-</pre></div>
-<p>The summary of the prediction result above can be seen by running <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> as follows:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">pred_fungi</span>)
-<span class="co">#&gt; Total sequences in input data: 10</span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Taxon chosen: fungi</span>
-<span class="co">#&gt; Model type used: cnn_lstm</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Total sequences predicted as effector: 5</span>
-<span class="co">#&gt; Total sequences predicted as non-effector: 5</span>
-</pre></div>
-<p>You can plot the result using <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">pred_fungi</span>)
-</pre></div>
-<p><img src="https://i.imgur.com/Larrcgl.png"></p>
 </div>
-<div id="predict-oomycete-effectors" class="section level2">
-<h2 class="hasAnchor">
-<a href="#predict-oomycete-effectors" class="anchor"></a>Predict oomycete effectors</h2>
-<p>In this section, we will show you how to predict effector from oomycete taxon. Let us take AAStringSet object data called <code>input_oomycete_aastringset</code> as shown below:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
+<div id="sequences-in-aastringset" class="section level3">
+<h3 class="hasAnchor">
+<a href="#sequences-in-aastringset" class="anchor"></a>Sequences in AAStringSet</h3>
+<p>In the same way as with the dataframe and fasta files we can use a Bioconductor AAStringSet object:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="kw">input_oomycete_aastringset</span>
 <span class="co">#&gt; AAStringSet object of length 10:</span>
 <span class="co">#&gt;      width seq                                              names               </span>
 <span class="co">#&gt;  [1]   820 MVKLYCAVVGVAGSAFSVRVDES...SKKGKTAMILSRMHYDDDEADL sp|A0A0M5K865|CR1...</span>
 <span class="co">#&gt;  [2]   111 MRLAQVVVVIAASFLVATDALST...FQRYQKKANKIIEKQKAAAKNA tr|A5YTY8|A5YTY8_...</span>
-<span class="co">#&gt;  [3]   123 MGLHKGFFVAVALLALLIVAAPA...HDIPDWLLQLQAFLSVGLHHLT tr|A7L812|A7L812_...</span>
-<span class="co">#&gt;  [4]   415 MRFALITPMVLAFSSILMYVTHS...SLERASFIAKKFDTWHPPSSSS tr|B2C6F8|B2C6F8_...</span>
-<span class="co">#&gt;  [5]   220 MRVCSVLLVAAAALIATSNAVEP...ELPAKEYKRLNKAWVQYRRKHK tr|C0LF23|C0LF23_...</span>
-<span class="co">#&gt;  [6]   598 MVYSRSTSTRAYVKAVALCALSL...VCRFCKVRTTDQSAAFVDCPSA tr|G4Z8J9|G4Z8J9_...</span>
-<span class="co">#&gt;  [7]   246 MTRLLLLALPGILAGDFAELDPE...CFFQVFYIKSLLDSPRKARSWV tr|G4ZVW1|G4ZVW1_...</span>
-<span class="co">#&gt;  [8]   378 MMESPLPWWLFGTAGLIATTLTV...LRFARPGGLLGAAVATAASKVV tr|G4Z8A0|G4Z8A0_...</span>
-<span class="co">#&gt;  [9]   409 MAKWWLVATLSASFASVVLGACP...TGTCECFAGHMGLACQKQEALV tr|G5A7C4|G5A7C4_...</span>
-<span class="co">#&gt; [10]    71 MNLKLCVVALFSTAIAASLPSTN...ESRGGNFEACCFSSCRTGSPCN tr|G4ZGN2|G4ZGN2_...</span>
 </pre></div>
 <p>To predict oomycete effector, you can specify the model to <code>taxon= oomycete</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-  <span class="kw">pred_oomycete</span> <span class="op">&lt;-</span> <span class="kw">deepredeff</span>::<span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span>(
+<div class="sourceCode" id="cb5"><pre class="downlit">
+  <span class="kw">pred_oomycete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span>(
   input = <span class="kw">input_oomycete_aastringset</span>,
   taxon = <span class="st">"oomycete"</span>
 )
 <span class="co">#&gt; Loaded models successfully!</span>
 <span class="co">#&gt; Model used for taxon oomycete: cnn_lstm.</span>
 </pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="co"># View results</span>
-<span class="kw">pred_oomycete</span> <span class="op">%&gt;%</span> 
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(name = <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span>(<span class="kw">name</span>, <span class="fl">1</span>, <span class="fl">25</span>), 
-                sequence = <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span>(<span class="kw">sequence</span>, <span class="fl">1</span>, <span class="fl">25</span>))
-<span class="co">#&gt;                         name                  sequence   s_score   prediction</span>
-<span class="co">#&gt; 1  sp|A0A0M5K865|CR108_PHYSO MVKLYCAVVGVAGSAFSVRVDESDT 0.3380925 non-effector</span>
-<span class="co">#&gt; 2  tr|A5YTY8|A5YTY8_PHYSO Av MRLAQVVVVIAASFLVATDALSTTN 0.7775228     effector</span>
-<span class="co">#&gt; 3  tr|A7L812|A7L812_PHYSO Pu MGLHKGFFVAVALLALLIVAAPADA 0.4298682 non-effector</span>
-<span class="co">#&gt; 4  tr|B2C6F8|B2C6F8_9STRA RX MRFALITPMVLAFSSILMYVTHSNV 0.6125270     effector</span>
-<span class="co">#&gt; 5  tr|C0LF23|C0LF23_PHYSO Av MRVCSVLLVAAAALIATSNAVEPSA 0.5669487     effector</span>
-<span class="co">#&gt; 6  tr|G4Z8J9|G4Z8J9_PHYSP Un MVYSRSTSTRAYVKAVALCALSLAS 0.3983551 non-effector</span>
-<span class="co">#&gt; 7  tr|G4ZVW1|G4ZVW1_PHYSP GO MTRLLLLALPGILAGDFAELDPEAA 0.4206038 non-effector</span>
-<span class="co">#&gt; 8  tr|G4Z8A0|G4Z8A0_PHYSP Un MMESPLPWWLFGTAGLIATTLTVGA 0.4387988 non-effector</span>
-<span class="co">#&gt; 9  tr|G5A7C4|G5A7C4_PHYSP Un MAKWWLVATLSASFASVVLGACPNK 0.2261022 non-effector</span>
-<span class="co">#&gt; 10 tr|G4ZGN2|G4ZGN2_PHYSP Pc MNLKLCVVALFSTAIAASLPSTNAA 0.2656690 non-effector</span>
-</pre></div>
-<p>The summary of the prediction result and plot of the class distribution result can be seen by running the following commands:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">pred_oomycete</span>)
-<span class="co">#&gt; Total sequences in input data: 10</span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Taxon chosen: oomycete</span>
-<span class="co">#&gt; Model type used: cnn_lstm</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Total sequences predicted as effector: 3</span>
-<span class="co">#&gt; Total sequences predicted as non-effector: 7</span>
-</pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">pred_oomycete</span>)
-</pre></div>
-<p><img src="https://i.imgur.com/LKUgGLD.png"></p>
 </div>
-<div id="predict-bacterial-effectors" class="section level2">
-<h2 class="hasAnchor">
-<a href="#predict-bacterial-effectors" class="anchor"></a>Predict bacterial effectors</h2>
-<p>To predict bacterial sequences, let us take an example of data in string format.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit">
+<div id="predict-from-character-vectors" class="section level3">
+<h3 class="hasAnchor">
+<a href="#predict-from-character-vectors" class="anchor"></a>Predict from character vectors</h3>
+<p>The same applies if we provide a character vector. let us take an example of data in string format.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="kw">input_bacteria_strings</span>
-<span class="co">#&gt;  [1] "MPINRPAFNLKLNTAIAQPTLKKDAGAELRRLNQSEVRANTQTRFAVNHRAPTYDVAQSALGENHGGWTAANHFKMTGSEVFIHMDRLEPNCKGEFAGDKIHLSVAPEDVPDAFNAIGKILQASDSPVDSWKVTDMKCLQAEMPAAKQRVALGAQFTIYAKPDREDNTYSPEYMGKMRGMISSIEQELSAAGVRQSSHRPDSDVSPGHWSYASYRNEHKSNRSGTSNQHRNLEAEPFFQLVSFSDGASGSSRSSADHQALLPPPWAR"</span>
-<span class="co">#&gt;  [2] "MQFMSRINRILFVAVVSLLSVLGCCVAAAPAQAVDRIARVSLPVRAGTHLIFSDSQGPARSADYDCTAGAVLTGSGILSRISPYQRAVRYVVTAKHCGGRGAHVRVGDVQVGSVIWESSDADLSIVRIEPLQTTRRSCYPTSAGIRCTLVNDYEPRASGEVFGARNRSGQESSVQVAGTKVPADREIFCTSGAITGILCNWVSAPPPRGLEIGSHQVVAETFSAATRQGDSGGPVVSRDMKIIGVICDGGLPGSGDDTYMSYLPISVLFREQPYYILATS"</span>
-<span class="co">#&gt;  [3] "MDPIRSRTPSPARELLPGPQPDRVQPTADRGGAPPAGGPLDGLPARRTMSRTRLPSPPAPSPAFSAGSFSDLLRQFDPSLLDTSLLDSMPAVGTPHTAAAPAECDEVQSGLRAADDPPPTVRVAVTAARPPRAKPAPRRRAAQPSDASPAAQVDLRTLGYSQQQQEKIKPKVGSTVAQHHEALVGHGFTHAHIVALSRHPAALGTVAVKYQDMIAALPEATHEDIVGVGKQWSGARALEALLTVAGELRGPPLQLDTGQLVKIAKRGGVTAVEAVHASRNALTGAPLNLTPAQVVAIASNNGGKQALETVQRLLPVLCQAHGLTPAQVVAIASHDGGKQALETMQRLLPVLCQAHGLPPDQVVAIASNIGGKQALETVQRLLPVLCQAHGLTPDQVVAIASHGGGKQALETVQRLLPVLCQAHGLTPDQVVAIASHDGGKQALETVQRLLPVLCQAHGLTPDQVVAIASNGGGKQALETVQRLLPVLCQAHGLTPDQVVAIASNGGKQALETVQRLLPVLCQAHGLTPDQVVAIASHDGGKQALETVQRLLPVLCQTHGLTPAQVVAIASHDGGKQALETVQQLLPVLCQAHGLTPDQVVAIASNIGGKQALATVQRLLPVLCQAHGLTPDQVVAIASNGGGKQALETVQRLLPVLCQAHGLTPDQVVAIASNGGGKQALETVQRLLPVLCQAHGLTQVQVVAIASNIGGKQALETVQRLLPVLCQAHGLTPAQVVAIASHDGGKQALETVQRLLPVLCQAHGLTPDQVVAIASNGGGKQALETVQRLLPVLCQAHGLTQEQVVAIASNNGGKQALETVQRLLPVLCQAHGLTPDQVVAIASNGGGKQALETVQRLLPVLCQAHGLTPAQVVAIASNIGGKQALETVQRLLPVLCQDHGLTLAQVVAIASNIGGKQALETVQRLLPVLCQAHGLTQDQVVAIASNIGGKQALETVQRLLPVLCQDHGLTPDQVVAIASNIGGKQALETVQRLLPVLCQDHGLTLDQVVAIASNGGKQALETVQRLLPVLCQDHGLTPDQVVAIASNSGGKQALETVQRLLPVLCQDHGLTPNQVVAIASNGGKQALESIVAQLSRPDPALAALTNDHLVALACLGGRPAMDAVKKGLPHAPELIRRVNRRIGERTSHRVADYAQVVRVLEFFQCHSHPAYAFDEAMTQFGMSRNGLVQLFRRVGVTELEARGGTLPPASQRWDRILQASGMKRAKPSPTSAQTPDQASLHAFADSLERDLDAPSPMHEGDQTGASSRKRSRSDRAVTGPSAQHSFEVRVPEQRDALHLPLSWRVKRPRTRIGGGLPDPGTPIAADLAASSTVMWEQDAAPFAGAADDFPAFNEEELAWLMELLPQSGSVGGTI"</span>
-<span class="co">#&gt;  [4] "MSIGRSKSVAGASASHALASGENGSPQPQTVTLLAGATRRRRNSGLLCELQSMCKRTLRAASQTIIFPFYSKTGTTPTRAQPKPDVVPALKPAPRRMRPPAAPGRKHQRNVDAVVPPAMATSPRAEIRFPLTTADAQRYLRAQWRQAETGGRFDQAAVDRLTTTLTARLLATSAATGNGVHEDSGEKACARAIMVSDALAQATGGDPARAHDALLALLDTTSHADARVQADVLALQTALGMTAIGLDTLLAIAPHVLPQRGLAEGSAAPEIQREALRHALRAADHLLRRKPADAPGPTSLEALAALADPVLPAVERGRPGSSAGASVAPPGKAPAWLADPGNALAIKALHAANALRADPAAQCPPHLAQAYLAWRNGFDREGPGTDLAKAQQRLFKLFTYAERAARTGMAARAAAGFFGTQKSPLSALQNFGTAGVMLGHPDDEFARFTAALAPVKTQLADRLKAASTSRALKTRCAVRLAAIEQWERRMASKGLRSTFRFSSRDLEAVAARARPLLSNRVALHADGSPADLALDPHRNRDAIRAEVKPLRGMTPAQLRTWADEAWRLSGQAVPEPVRANIDLVESRLAGDIRPKPGDTNAQLDAIGALVKQMPDIYDIRVSSGGTVGLGGVPSQSLAALSSHLGVPHVSVLPDGGYLQGRHAVIDIGSNQHFGHLFIGTESRKSLYGGLGGYAGWSFGQDGMANVGVSDGLRRSRDWGGPRGVTIRTRRSDDEQPGRPDAWRTTMLEVLHAARSAGPNSDAPRNAREMWGSLARRFWNDPACSINWTDSRSTTSATSGSASATARVGTADTKWGPALGATLRHVARAAHRQWDKTGNHAIDVSTHNSGRATAVAATLVEALPGIPVPNGSGHLAALSFPTQPYVGIGTTLFATQTNAALRIGRDSGRIIPKHTFRDTEFGTFKAFKQFVDTHRSEWLTALGGTDDARRRLDEMVATVKARATAGNLIMGERMHMTDEAARRLDFLFHRKQRFDRIPAPTPMQARERASIDADIRQMLASENSWRRQALYVLEALGVQRTVGLSFLLNAQSTQAVSGVRELAGLSPE"</span>
-<span class="co">#&gt;  [5] "MPPPIRNARTTPPSFDPSAAGDDLRATPPRVAAATPTHRTAPSQLAGLPSRPRAQPPQQDPTPTPLALHGNTHTGSATGRLIALALANPAANRTPGRLAGGLHLPSIDNGNPVLASLNVASGELAEIGAAALLATRLRLPSIALDGPRARGPAATLLAGLEHRTRALSLAQEPGGLGPGHPPLAVLPDIVAAALANSNSLRDLLDRHPASVLANRLRGVGPAQPAAAPSLGHAQRAAQILEGWAQQCQLPPKTVDAWRPVLNQEESRPFVSLLARLNGCASFRPAHRAESLKELGGILQLAAHNDAYRARCFDICGGADANCHDNVDVIFGNLRLAARDPSYHGNAQLHEVLSYHNRCMPWTLIDDFVSHRFGRGDQLERALALRVRLSDILPITTPAMLHHDIARIDNAHEREARAYISAHLGTQEHLLRNLSRSPAWRQFLEQQRPVEFAANTLLWESALQDVMAKPAGDSAMADAPRTASTAAPGSRTEALAQARAMPGIGTGQAFQHRQENATAMLAETMTRKLVMESAPPPDETGAHAALLTDPDWLAYLQKEHPEDRAFSPADMHAAERHDLLMRLTRQEIAEARGMVQPHAGAPTDHG"</span>
-<span class="co">#&gt;  [6] "MSHMTFNTWKAGLWRLAAAAVLSLLPVVARAAVPGITGPTFDLTAQPGRANQPDGASVYSWGYGCNPRTVPGFLPSVNPLAGQNCPGMQLPGPTLIVHQGDVVTVTLTNNLPPAAGNTSILFPGFQVCAGTLDPNTGACSGTPTGVQGLLTREAQTGKTVTYTFIATTPGTHAYYSGTQGDLQVEMGLYGALIVLPTASGSVAVPAGCRAVSSLLPDGQPDYRNAAAAYNHSMACYDREYLFQFSEIDPAIHVQAEQQAGLPCAQPAGCMIVRTEPYHPAYFMVNGRSMPDDMDTNYAPQYPSQPYNGNPHMHPGELVLLRIIGTGRWQHPFHEHGNHVRVLARDGNLLLSQGDPSKVAGPLLFTTTTTPGLAMDGIFYWTGRGLNWDVYGHKPGDGSVCIPDANGYYTQDPTAPNYYEWCADHDKPLEAHPFGDVNSGGPVTLPDPNIFSNGAWYGGSPYLGPDATIRAVGATGTTPPTGTIANPPTTEAGFAFMWHSHNEREITTNNIFPGGMMMMMLVDPQAFVINEAN"</span>
-<span class="co">#&gt;  [7] "MKLHFSLRLLTALSLTGATFLAQAADFTVAYQTTVDPAKVAQADNAYEKATDSKIAWRKFDNGADVITAIASSDVQIGYLGSSPFTAAATRKLPVETFLIATQIGAAEALVARNGSGINSPQDLIGKKIAVPFVSTGHYSLLAALKHWNIDPAKVTILNLAPPAIAAAWKRGDIDATYVWDPALGVAKETGKVLITSGELAKVGAPTFDAWIVRKDFASKHPEVVKAFAKVTLDAYAQYRQDPAAWIANPANVDKLTRLSGAKASDVPELLQGNVYPLATEQSSLLGTPTIEAVAKTAAFLKEQGKVDAVLPDYSPYVSNAFIPQ"</span>
-<span class="co">#&gt;  [8] "MHRGPSFVKACAFVLSASFMLANTVQAAEGSKLDAVLKRGNLVVGTGSTNAPWHFQGADGKLQGFDIDIGRIIAKGLFNDPSKVEFVVQSSDARIPNLLTDKVDISCQFITVTASRAQQVAFTLPYYREGVALLLPANSKYKEIDDLKAAGDDVTVAVLQNVYAEELVHQALPKAKVDQYDSVDLMYQAINSGRADTAATDQSSVKYLMVQNPGRYRSPAFAWSPQTYACAVKRGDQDWLNFVNTALHEAMTGVEFPAYAASFKQWFGVDLPVPAIGFPMEYK"</span>
-<span class="co">#&gt;  [9] "MRRQPSLTLRSTLAFALVAMLTVSGAGLYLYQSIEETVMQRSDHAVLARLDHFRKLLRYDLTMGNLKGSPQLFENMLDSEEDIFIIGEPGKSPVISVNPQHAPLPELPTVAQDQPLRVDDLRSGMSLQGVPLRAAAVQVMSNGVEVRLQAAHLMVKEMAMLASFRQRIYIAVALAFLITAALGYVLLRRGLRPLRRMAAHAAAITPASLHKRLDSRDTPVELQQLSDAFNAMLDRLDDGYRRLMQFSADLAHEIRTPVGSLMGHCQVALRQNRSADEYQALLASNLEELERISRLVESILFLARADEAQAALERQALDMHDELQRVAGYFEGLAEERNLTLSTHGQGTLLADPILLRRALSNLVANAIRYADEDSEILMRVTAVDRHWKIDVENQGPVLPEATLARLFDRFYRGDASRHERSDSNGLGLAIVTAIMQLHGGRVEVAQPAVGRICFSLIFPAA"</span>
-<span class="co">#&gt; [10] "MLSSNRRLLRLLPLASLLLTACGLHTQPQKPGQSPTAVQWRQHQQAVQNIHQYQTRGAFAWLSDRQKVYARFNWQQTAPDRYRLLLTNPLGSTELQLDQQGQVAQIVDNKGKRYVSNDAAQMISQLTGMTIPLNNLRQWMVGLPGDAADFTLDDQYRLREVNYSEEGLQWHVTYQAYHNEQNPQLPASIELQQGDERIKLKMDSWTLK"</span>
+<span class="co">#&gt;  [1] "MPINRPAFNLKLNTAIAQ..."</span>
+<span class="co">#&gt;  [2] "MQFMSRINRILFVAV..."</span>
 </pre></div>
-<p>To predict oomycete effector, you can specify the model to <code>taxon= bacteria</code>.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="kw">pred_bacteria</span> <span class="op">&lt;-</span> <span class="kw">deepredeff</span>::<span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span>(
+<p>To predict bacteria effectors, you can specify the model to <code>taxon= bacteria</code>.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="kw">pred_bacteria</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span>(
   input = <span class="kw">input_bacteria_strings</span>,
   taxon = <span class="st">"bacteria"</span>
 )
 <span class="co">#&gt; Loaded models successfully!</span>
 <span class="co">#&gt; Model used for taxon bacteria: ensemble_weighted.</span>
 </pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="co"># View results</span>
-<span class="kw">pred_bacteria</span> <span class="op">%&gt;%</span>
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(sequence = <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span>(<span class="kw">sequence</span>, <span class="fl">1</span>, <span class="fl">25</span>))
-<span class="co">#&gt;                     sequence    s_score   prediction</span>
-<span class="co">#&gt; 1  MPINRPAFNLKLNTAIAQPTLKKDA 0.94834236     effector</span>
-<span class="co">#&gt; 2  MQFMSRINRILFVAVVSLLSVLGCC 0.07981774 non-effector</span>
-<span class="co">#&gt; 3  MDPIRSRTPSPARELLPGPQPDRVQ 0.99433611     effector</span>
-<span class="co">#&gt; 4  MSIGRSKSVAGASASHALASGENGS 0.84184432     effector</span>
-<span class="co">#&gt; 5  MPPPIRNARTTPPSFDPSAAGDDLR 0.99537852     effector</span>
-<span class="co">#&gt; 6  MSHMTFNTWKAGLWRLAAAAVLSLL 0.06455158 non-effector</span>
-<span class="co">#&gt; 7  MKLHFSLRLLTALSLTGATFLAQAA 0.04928582 non-effector</span>
-<span class="co">#&gt; 8  MHRGPSFVKACAFVLSASFMLANTV 0.30616181 non-effector</span>
-<span class="co">#&gt; 9  MRRQPSLTLRSTLAFALVAMLTVSG 0.07221440 non-effector</span>
-<span class="co">#&gt; 10 MLSSNRRLLRLLPLASLLLTACGLH 0.04899144 non-effector</span>
-</pre></div>
-<p>The summary of the prediction result and plot of the class distribution result can be seen by running the following commands:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">pred_bacteria</span>)
-<span class="co">#&gt; Total sequences in input data: 10</span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Taxon chosen: bacteria</span>
-<span class="co">#&gt; Model type used: ensemble_weighted</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Total sequences predicted as effector: 4</span>
-<span class="co">#&gt; Total sequences predicted as non-effector: 6</span>
-</pre></div>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">pred_bacteria</span>)
-</pre></div>
-<p><img src="https://i.imgur.com/62iaXbg.png"></p>
+</div>
 </div>
   </div>
 
