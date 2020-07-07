@@ -1,8 +1,10 @@
-#' Load model in HDF5 format
+#' Load model
+#'
+#' `load_model()` loads model saved in hdf5 format
 #'
 #' @param taxon Name of taxon.
 #'
-#' @return all of the hyperparamaters and parameters of particular model from specific chosen taxon.
+#' @return Returns all of the hyperparamaters and parameters of particular model from specific taxon chosen.
 #' @export
 load_model <- function(taxon = c("bacteria", "fungi", "oomycete")) {
   taxon <- match.arg(taxon)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/input_to_df.R
 \name{aasset_to_df}
 \alias{aasset_to_df}
-\title{AAStringset class to dataframe}
+\title{Convert AAStringset class to dataframe}
 \usage{
 aasset_to_df(aas)
 }
@@ -10,8 +10,8 @@ aasset_to_df(aas)
 \item{aas}{AAStringset class object.}
 }
 \value{
-Data frame.
+Returns data in data frame.
 }
 \description{
-AAStringset class to dataframe
+Convert AAStringset class to dataframe
 }

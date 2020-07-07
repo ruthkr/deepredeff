@@ -1,9 +1,9 @@
-#' Ensemble weighted
+#' Weighted ensemble
 #'
 #' @param pred_list List of deep learning models.
-#' @param weights Accuracy values from evaluating the validation dataset.
+#' @param weights Accuracy values from evaluation on the validation dataset.
 #'
-#' @return Prediction.
+#' @return Returns the prediction results from weighted ensemble.
 #' @export
 ensemble_weighted <- function(pred_list, weights) {
   ensemble_pred <- purrr::pmap(
@@ -19,28 +19,6 @@ ensemble_weighted <- function(pred_list, weights) {
   return(ensemble_pred)
 }
 
-#' Ensemble voting
-#'
-#' @param pred_list List of deep learning models.
-#' @param weights Dummy weights variable.
-#'
-#' @return Binary prediction.
-#' @export
-ensemble_voting <- function(pred_list, weights = NULL) {
-  round_bin <- function(x) {
-    return(floor(x + 0.5))
-  }
-
-  ensemble_pred <- purrr::pmap(
-    pred_list,
-    .f = function(...) {
-      res <- round_bin(mean(round_bin(c(...))))
-    }
-  )
-
-  return(ensemble_pred)
-}
-
 
 #' Get ensemble methods
 #'
@@ -48,7 +26,7 @@ ensemble_voting <- function(pred_list, weights = NULL) {
 #'
 #' @param taxon taxon group
 #'
-#' @return Ensemble method and weights.
+#' @return Returns ensemble method and weights.
 #' @export
 get_ensemble_method <- function(taxon) {
   if (taxon == "bacteria") {

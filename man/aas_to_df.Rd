@@ -2,7 +2,7 @@
 % Please edit documentation in R/input_to_df.R
 \name{aas_to_df}
 \alias{aas_to_df}
-\title{AAString class to dataframe}
+\title{Convert AAString class to dataframe}
 \usage{
 aas_to_df(aas)
 }
@@ -10,8 +10,8 @@ aas_to_df(aas)
 \item{aas}{AAString class object.}
 }
 \value{
-Data frame.
+Returns data in data frame.
 }
 \description{
-AAString class to dataframe
+Convert AAString class to dataframe
 }

@@ -1,9 +1,9 @@
 #' Prediction mapper helper
 #'
-#' @param sequence_list List of sequences.
+#' @param sequence_list List of sequences input.
 #' @param model_list List of models.
 #'
-#' @return List of predictions.
+#' @return Returns list of prediction result of each sequece.
 prediction_mapper <- function(sequence_list, model_list) {
   pred_list <- purrr::map(
     .x = model_list,

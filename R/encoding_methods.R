@@ -1,7 +1,9 @@
 #' One-hot encoder
 #'
-#' @param sequence Sequence.
-#' @param max_length Maximum sequence length used on the training data.
+#' `encode_one_hot` one-hot-encodes sequence in a string format.
+#'
+#' @param sequence Sequence in a string format.
+#' @param max_length Maximum length of sequence to encode.
 #'
 #' @return One-hot encoded sequence.
 #' @export
@@ -40,8 +42,10 @@ encode_one_hot <- function(sequence, max_length = 4034) {
 
 #' Integer encoder
 #'
-#' @param sequence Sequence.
-#' @param max_length Maximum sequence length used on the training data.
+#' `encode_integer` integer-encodes sequence in a string format.
+#'
+#' @param sequence Sequence in a string format.
+#' @param max_length Maximum length of sequence to encode.
 #'
 #' @return Integer encoded sequence.
 #' @export

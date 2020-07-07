@@ -1,8 +1,8 @@
-#' FASTA to dataframe
+#' Convert fasta format to dataframe
 #'
-#' @param fasta_path Path to FASTA file.
+#' @param fasta_path Path of FASTA file.
 #'
-#' @return Data frame.
+#' @return Returns data in data frame.
 #' @export
 #'
 #' @importFrom rlang .data
@@ -36,11 +36,11 @@ fasta_to_df <- function(fasta_path) {
   return(data)
 }
 
-#' AAStringset class to dataframe
+#' Convert AAStringset class to dataframe
 #'
 #' @param aas AAStringset class object.
 #'
-#' @return Data frame.
+#' @return Returns data in data frame.
 #' @export
 aasset_to_df <- function(aas) {
   data <- data.frame(
@@ -53,11 +53,11 @@ aasset_to_df <- function(aas) {
   return(data)
 }
 
-#' AAString class to dataframe
+#' Convert AAString class to dataframe
 #'
 #' @param aas AAString class object.
 #'
-#' @return Data frame.
+#' @return Returns data in data frame.
 #' @export
 aas_to_df <- function(aas) {
   aas <- Biostrings::AAStringSet(aas)

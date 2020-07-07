@@ -2,16 +2,16 @@
 % Please edit documentation in R/input_to_df.R
 \name{fasta_to_df}
 \alias{fasta_to_df}
-\title{FASTA to dataframe}
+\title{Convert fasta format to dataframe}
 \usage{
 fasta_to_df(fasta_path)
 }
 \arguments{
-\item{fasta_path}{Path to FASTA file.}
+\item{fasta_path}{Path of FASTA file.}
 }
 \value{
-Data frame.
+Returns data in data frame.
 }
 \description{
-FASTA to dataframe
+Convert fasta format to dataframe
 }
