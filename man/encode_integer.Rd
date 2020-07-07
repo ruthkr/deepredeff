@@ -7,13 +7,13 @@
 encode_integer(sequence, max_length = 4034)
 }
 \arguments{
-\item{sequence}{Sequence.}
+\item{sequence}{Sequence in a string format.}
 
-\item{max_length}{Maximum sequence length used on the training data.}
+\item{max_length}{Maximum length of sequence to encode.}
 }
 \value{
 Integer encoded sequence.
 }
 \description{
-Integer encoder
+\code{encode_integer} integer-encodes sequence in a string format.
 }

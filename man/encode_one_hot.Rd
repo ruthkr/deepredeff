@@ -7,13 +7,13 @@
 encode_one_hot(sequence, max_length = 4034)
 }
 \arguments{
-\item{sequence}{Sequence.}
+\item{sequence}{Sequence in a string format.}
 
-\item{max_length}{Maximum sequence length used on the training data.}
+\item{max_length}{Maximum length of sequence to encode.}
 }
 \value{
 One-hot encoded sequence.
 }
 \description{
-One-hot encoder
+\code{encode_one_hot} one-hot-encodes sequence in a string format.
 }

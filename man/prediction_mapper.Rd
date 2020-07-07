@@ -7,12 +7,12 @@
 prediction_mapper(sequence_list, model_list)
 }
 \arguments{
-\item{sequence_list}{List of sequences.}
+\item{sequence_list}{List of sequences input.}
 
 \item{model_list}{List of models.}
 }
 \value{
-List of predictions.
+Returns list of prediction result of each sequece.
 }
 \description{
 Prediction mapper helper

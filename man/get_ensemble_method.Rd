@@ -10,7 +10,7 @@ get_ensemble_method(taxon)
 \item{taxon}{taxon group}
 }
 \value{
-Ensemble method and weights.
+Returns ensemble method and weights.
 }
 \description{
 This function is used to get the ensemble methods used for each taxon group. If weights are needed for a particular ensemble, then the weights will automatically follow.

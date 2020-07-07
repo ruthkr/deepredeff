@@ -2,7 +2,7 @@
 % Please edit documentation in R/load_model.R
 \name{load_model}
 \alias{load_model}
-\title{Load model in HDF5 format}
+\title{Load model}
 \usage{
 load_model(taxon = c("bacteria", "fungi", "oomycete"))
 }
@@ -10,8 +10,8 @@ load_model(taxon = c("bacteria", "fungi", "oomycete"))
 \item{taxon}{Name of taxon.}
 }
 \value{
-all of the hyperparamaters and parameters of particular model from specific chosen taxon.
+Returns all of the hyperparamaters and parameters of particular model from specific taxon chosen.
 }
 \description{
-Load model in HDF5 format
+\code{load_model()} loads model saved in hdf5 format
 }

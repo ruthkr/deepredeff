@@ -2,18 +2,18 @@
 % Please edit documentation in R/ensemble_methods.R
 \name{ensemble_weighted}
 \alias{ensemble_weighted}
-\title{Ensemble weighted}
+\title{Weighted ensemble}
 \usage{
 ensemble_weighted(pred_list, weights)
 }
 \arguments{
 \item{pred_list}{List of deep learning models.}
 
-\item{weights}{Accuracy values from evaluating the validation dataset.}
+\item{weights}{Accuracy values from evaluation on the validation dataset.}
 }
 \value{
-Prediction.
+Returns the prediction results from weighted ensemble.
 }
 \description{
-Ensemble weighted
+Weighted ensemble
 }
