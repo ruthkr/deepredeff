@@ -14,21 +14,23 @@ knitr::opts_chunk$set(
 )
 ```
 
-`deepredeff` - from ‘deep learning prediction of effector’ is a package contains trained deep learning models for predicting effector proteins. `deepredeff` has been trained to classify effector protein using set of known experimentally validated effectors from taxon bacteria, fungi and oomycetes. 
+`deepredeff` - from ‘deep learning prediction of effectors’ is a package that contains trained deep learning models for predicting effector proteins. `deepredeff` has been trained to identify effector proteins using a set of known experimentally validated effectors from either bacteria, fungi or oomycetes. 
 
 `deepredeff` has the following key features:
 
-1. Allows user to choose a particular taxon depending on the input data they have. The available taxa are **bacteria**, **fungi**, **oomyecete**. In case user does not know the taxon of their data, then they can use option **all** which will use the model trained in all training datasets. 
+1. Highly accurate and general predictions.
 
-2. Supports effector proteins prediction with different input formats, which are FASTA, data frame, AAString, AAStringset, or even string format data. 
+1. Works on **bacteria**, **fungi**, **oomycete** sequences. 
 
-3. Allows user to get quick summary and plot of the prediction results they have. 
+2. Supports different input formats - FASTA, data frame, AAString, AAStringset, and character string format. 
 
-This vignette provides a brief overview of the capabilities of `deepredeff` package.
+3. Allows user to get quick summaries and plots of the prediction results they have. 
+
+
 
 ## Installation
 
-I will show you how to install the `deepredeff` package and prepare some requirements to get it ready to be used. First, we need to install the package itself by doing the following step:
+First, we need to install the package itself by doing the following step:
 
 ### Install deepredeff
 
@@ -37,13 +39,13 @@ install.packages("devtools")
 devtools::install_github("ruthkr/deepredeff")
 ```
 
-The deepredeff package uses TensorFlow which is distributed as a Python package and so needs to be installed within a Python environment on your system. Therefore, you need to have Python in your system and the TensorFlow backend. If you already have TensorFlow installed in your system, then you can specify the environment where your TensorFlow is installed using `reticulate::use_condaenv()`.
+The deepredeff package uses TensorFlow which is distributed as a Python package and so needs to be installed within a Python environment on your system. Therefore, you need to have Python on your system and the TensorFlow backend. If you already have TensorFlow installed in your system, then you can specify the environment where your TensorFlow is installed using `reticulate::use_condaenv()`.
 
 If you do not have TensorFlow, then you can install it by simply following this step below:
 
 ### Installing TensorFlow
 
-To install TensorFlow on your system, you need to run the following commands. **Note that this only needs to be run once** (the first time you use `deepredeff`).
+To install TensorFlow on your system, you need to run the following commands. **Note that this only needs to be run once**, the first time you use `deepredeff`.
 
 ```r
 library(deepredeff)
@@ -59,7 +61,7 @@ This will provide you with an installation of Python and TensorFlow suitable for
 
 ## Sample data
 
-Sample data that will be used here is bacterial proteins provided within this package. These sample data contain ten different protein sequences in FASTA format. These data can be loaded as follows: 
+Sample data that will be used here is a set of acterial proteins provided within this package. These sample data contain ten different protein sequences in FASTA format. These data can be loaded as follows: 
 
 ```r
 library(deepredeff)
@@ -76,21 +78,17 @@ bacteria_fasta_path
 
 ## Effector prediction
 
-Once the data are loaded, you can predict them using the function `predict_effector()`. Since it is known that the sample data are bacterial protein, then we can use particular model trained previously using bacterial protein data by choosing `model = bacteria`. This prediction can be done as follows. 
+Once the data are loaded, you can predict them using the main function `predict_effector()`. Since it is known that the sample data are bacterial protein, then we can use the model trained on bacterial effectors by choosing `taxon = bacteria`.  Effector prediction with the sequences can be done as follows: 
 
 ```r
 # Predict the effector candidate using bacteria model
-pred_result <- deepredeff::predict_effector(
+pred_result <- predict_effector(
   input = bacteria_fasta_path,
   taxon = "bacteria"
 )
 #> Loaded models successfully!
 #> Model used for taxon bacteria: ensemble_weighted.
-```
 
-Note here that for taxon bacteria, model used is `ensemble_weighted` which is the weighted ensemble model of four different models (CNN-LSTM, CNN-GRU, GRU Embedding, and LSTM Embedding). 
-
-```r
 # View prediction results
 pred_result %>% 
   dplyr::mutate(name = substr(name, 1, 25), 
@@ -108,16 +106,16 @@ pred_result %>%
 #> 10 tr|D4I1R4|D4I1R4_ERWAC Ou MLSSNRRLLRLLPLASLLLTACGLH 0.04899144 non-effector
 ```
 
-Prediction results from deepredeff will give you a dataframe object contains four different columns: 
+deepredeff will give you a dataframe object contains four different columns: 
 
-1. **`name`**: contains your sequence identifiers.
-2. **`sequence`**: contains your original.
-3. **`s_score`**: an output value from sigmoid function, between 0 and 1. This value indicates how likely a sequence is to be an effector. The default probability cutoff value of deepredeff is 0.5. It means a sequence with probability prediction ≥ 0.5 is an effector, otherwise it is a non-effector.
-4. **`prediction`**: prediction class obtained from `s_score`. 
+1. **`name`**:  the sequence identifiers.
+2. **`sequence`**: the sequence.
+3. **`s_score`**: The prediction score. A value between 0 and 1 that indicates the models level of belief that this sequence is an effector.
+4. **`prediction`**: prediction obtained from `s_score` using the standard 0.5 threshold, if `s_score >= 0.5` prediction is `effector`, else prediction is `non-effector`
 
 ## Summary and plot
 
-After getting the prediction results, you can get the overall information of the prediction results by running `summary()`. With this, you can get information on how many of your data are predicted as effectors and non-effectors. This function is very useful if you have big number of sequence data. The summary below shows the overall summaries of the prediction results using `deepredeff`. From ten sequences as input, there are four sequences predicted as effectors and six sequences predicted as non-effectors. This summary also shows what taxon you choose and the model used. 
+After getting the prediction results, you can information on all the prediction results as a whole by running `summary()`. 
 
 ```r
 summary(pred_result)
@@ -130,11 +128,14 @@ summary(pred_result)
 #> Total sequences predicted as non-effector: 6
 ```
 
-Next, you can also plot the density distribution of the prediction results by running `plot()`  command. From the plot below, you can see the probability distribution of each class. 
+We can see information on the number of sequences predicted as effectors and non-effectors and the model parameters used.
+
+You can also plot the density distribution of the `s_scores` results with the `plot()`.
 
 ```r
 plot(pred_result)
 ```
 ![](https://i.imgur.com/NkzaQFk.png)
 
+Here we can see that there is a good separation between the scores of predicted effectors and non-effectors.
 
