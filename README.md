@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# deepredeff <img src="man/figures/logo.png" align="right" width="120" />
+# deepredeff <img src="man/figures/logo.png" align="right" width="120"/>
 
 <!-- badges: start -->
 
@@ -14,6 +14,8 @@ status](https://github.com/ruthkr/deepredeff/workflows/R-CMD-check/badge.svg)](h
 coverage](https://codecov.io/gh/ruthkr/deepredeff/branch/master/graph/badge.svg)](https://codecov.io/gh/ruthkr/deepredeff?branch=master)
 [![pkgdown
 status](https://github.com/ruthkr/deepredeff/workflows/pkgdown/badge.svg)](https://ruthkr.github.io/deepredeff/)
+[![tensorflow
+version](https://img.shields.io/badge/tensorflow-%3E%3D2.0.0-orange)](https://www.tensorflow.org/)
 <!-- badges: end -->
 
 **deepredeff** is a package to predict effector protein given amino acid
@@ -29,22 +31,23 @@ First, install the `deepredeff` package from GitHub as follows:
 devtools::install_github("ruthkr/deepredeff")
 ```
 
-The `deepredeff` package uses Tensorflow. If you already have TensorFlow
-in your system, then you can specify your environment where TensorFlow
-is installed using `reticulate::use_condaenv()`. Otherwise, you can
-install TensorFlow, by using install\_tensorflow() function as follows:
+The `deepredeff` package uses TensorFlow. If you already have TensorFlow
+2.0.0 or later in your system, then you can specify the environment
+where TensorFlow is installed using `reticulate::use_condaenv()`.
+Otherwise, you can install TensorFlow, by using the
+`install_tensorflow()` function as follows:
 
 ``` r
 library(deepredeff)
 install_tensorflow()
 ```
 
-Note that this command only needs to be run **once**, after you install
+**Note that this only needs to be run once**, the first time you use
 `deepredeff`.
 
 ## Documentation
 
-To use deepredeff, you can read the documentations on the following
+To use `deepredeff`, you can read the documentation on the following
 topics:
 
 1.  [Getting
@@ -55,7 +58,7 @@ topics:
 ## Quick start
 
 This is a basic example which shows you how to predict effector
-sequences if you have fasta file:
+sequences if you have a FASTA file:
 
 ``` r
 # Load the package
@@ -68,7 +71,7 @@ bacteria_fasta_path <- system.file(
 )
 
 # Predict the effector candidate using bacteria model
-pred_result <- deepredeff::predict_effector(
+pred_result <- predict_effector(
   input = bacteria_fasta_path,
   taxon = "bacteria"
 )
@@ -94,8 +97,8 @@ pred_result
 | tr⎮Q4ZR15⎮Q4ZR15\_PSEU2 Sensor protein OS=Pseudomonas syringae pv. syringae (strain B728a) OX=205918 GN=Psyr\_3375 PE=4 SV=1                                                       | MRRQPSLTLRSTLAFALVAMLTVSG | 0.0722144 | non-effector |
 | tr⎮D4I1R4⎮D4I1R4\_ERWAC Outer-membrane lipoprotein LolB OS=Erwinia amylovora (strain CFBP1430) OX=665029 GN=lolB PE=3 SV=1                                                         | MLSSNRRLLRLLPLASLLLTACGLH | 0.0489914 | non-effector |
 
-After getting the result, you can plot the probability distribution of
-the result as follows:
+After getting the prediction results, you can plot the probability
+distribution of the results as follows:
 
 ``` r
 plot(pred_result)
@@ -104,4 +107,5 @@ plot(pred_result)
 <img src="man/figures/README-pred_result_plot-1.png" style="display: block; margin: auto;" />
 
 More examples with different input formats are available on functions
-documentations and vignettes, please refer to the documentation.
+documentations and vignettes, please refer to the
+[documentation](ruthkr.github.io/deepredeff).
