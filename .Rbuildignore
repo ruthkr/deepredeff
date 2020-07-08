@@ -14,3 +14,5 @@
 ^\.covrignore$
 ^cran-comments\.md$
 ^overview$
+^vignettes/overview_old\.Rmd$
+^vignettes/predict_old\.Rmd$
