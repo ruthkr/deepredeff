@@ -108,17 +108,17 @@
 <span class="co"># install.packages("devtools")</span>
 <span class="kw">devtools</span>::<span class="fu">install_github</span>(<span class="st">"ruthkr/deepredeff"</span>)
 </pre></div>
-<p>The <code>deepredeff</code> package uses Tensorflow. If you already have TensorFlow in your system, then you can specify your environment where TensorFlow is installed using <code><a href="https://rdrr.io/pkg/reticulate/man/use_python.html">reticulate::use_condaenv()</a></code>. Otherwise, you can install TensorFlow, by using install_tensorflow() function as follows:</p>
+<p>The <code>deepredeff</code> package uses TensorFlow. If you already have TensorFlow 2.0.0 or later in your system, then you can specify the environment where TensorFlow is installed using <code><a href="https://rdrr.io/pkg/reticulate/man/use_python.html">reticulate::use_condaenv()</a></code>. Otherwise, you can install TensorFlow, by using the <code><a href="reference/install_tensorflow.html">install_tensorflow()</a></code> function as follows:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/ruthkr/deepredeff">deepredeff</a></span>)
 <span class="fu"><a href="reference/install_tensorflow.html">install_tensorflow</a></span>()
 </pre></div>
-<p>Note that this command only needs to be run <strong>once</strong>, after you install <code>deepredeff</code>.</p>
+<p><strong>Note that this only needs to be run once</strong>, the first time you use <code>deepredeff</code>.</p>
 </div>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#documentation" class="anchor"></a>Documentation</h2>
-<p>To use deepredeff, you can read the documentations on the following topics:</p>
+<p>To use <code>deepredeff</code>, you can read the documentation on the following topics:</p>
 <ol>
 <li><a href="https://ruthkr.github.io/deepredeff/articles/overview.html">Getting started</a></li>
 <li><a href="https://ruthkr.github.io/deepredeff/articles/predict.html">Effector prediction with various different input formats and models</a></li>
@@ -127,7 +127,7 @@
 <div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick start</h2>
-<p>This is a basic example which shows you how to predict effector sequences if you have fasta file:</p>
+<p>This is a basic example which shows you how to predict effector sequences if you have a FASTA file:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="co"># Load the package</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/ruthkr/deepredeff">deepredeff</a></span>)
@@ -139,7 +139,7 @@
 )
 
 <span class="co"># Predict the effector candidate using bacteria model</span>
-<span class="kw">pred_result</span> <span class="op">&lt;-</span> <span class="kw">deepredeff</span>::<span class="fu"><a href="reference/predict_effector.html">predict_effector</a></span>(
+<span class="kw">pred_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/predict_effector.html">predict_effector</a></span>(
   input = <span class="kw">bacteria_fasta_path</span>,
   taxon = <span class="st">"bacteria"</span>
 )
@@ -226,12 +226,12 @@
 </tr>
 </tbody>
 </table>
-<p>After getting the result, you can plot the probability distribution of the result as follows:</p>
+<p>After getting the prediction results, you can plot the probability distribution of the results as follows:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">pred_result</span>)
 </pre></div>
 <p><img src="reference/figures/README-pred_result_plot-1.png" style="display: block; margin: auto;"></p>
-<p>More examples with different input formats are available on functions documentations and vignettes, please refer to the documentation.</p>
+<p>More examples with different input formats are available on functions documentations and vignettes, please refer to the <a href="ruthkr.github.io/deepredeff">documentation</a>.</p>
 </div>
 </div>
   </div>
@@ -267,6 +267,7 @@
 <li><a href="https://github.com/ruthkr/deepredeff/actions"><img src="https://github.com/ruthkr/deepredeff/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 <li><a href="https://codecov.io/gh/ruthkr/deepredeff?branch=master"><img src="https://codecov.io/gh/ruthkr/deepredeff/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://ruthkr.github.io/deepredeff/"><img src="https://github.com/ruthkr/deepredeff/workflows/pkgdown/badge.svg" alt="pkgdown status"></a></li>
+<li><a href="https://www.tensorflow.org/"><img src="https://img.shields.io/badge/tensorflow-%3E%3D2.0.0-orange" alt="tensorflow version"></a></li>
 </ul>
 </div>
 </div>
