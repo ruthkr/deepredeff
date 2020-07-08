@@ -20,7 +20,6 @@ new_tbl_deepredeff <- function(x, description = names(x)) {
 #' @export
 #' @importFrom rlang .data
 summary.tbl_deepredeff <- function(object, ...) {
-
   table_summary <- table(factor(object$prediction, levels = c("effector", "non-effector")))
 
   res <- list(

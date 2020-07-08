@@ -99,7 +99,6 @@ install_tensorflow <- function(method = c("conda", "virtualenv"),
       }
     )
   }
-
 }
 
 is_windows <- function() {

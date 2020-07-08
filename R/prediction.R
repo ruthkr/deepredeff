@@ -50,7 +50,7 @@ predict_effector.character <- function(input, taxon) {
   model_names <- names(model_list)
 
   # Model names for list
-  if (taxon == "bacteria"){
+  if (taxon == "bacteria") {
     model_names <- "ensemble_weighted"
   }
 
@@ -100,7 +100,7 @@ predict_effector.data.frame <- function(input, taxon) {
   model_names <- names(model_list)
 
   # Model names for list
-  if (taxon == "bacteria"){
+  if (taxon == "bacteria") {
     model_names <- "ensemble_weighted"
   }
 
@@ -152,7 +152,7 @@ predict_effector.AAStringSet <- function(input, taxon) {
   model_names <- names(model_list)
 
   # Model names for list
-  if (taxon == "bacteria"){
+  if (taxon == "bacteria") {
     model_names <- "ensemble_weighted"
   }
 
@@ -204,7 +204,7 @@ predict_effector.AAString <- function(input, taxon) {
   model_names <- names(model_list)
 
   # Model names for list
-  if (taxon == "bacteria"){
+  if (taxon == "bacteria") {
     model_names <- "ensemble_weighted"
   }
 
