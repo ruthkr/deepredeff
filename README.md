@@ -108,4 +108,4 @@ plot(pred_result)
 
 More examples with different input formats are available on functions
 documentations and vignettes, please refer to the
-[documentation](ruthkr.github.io/deepredeff).
+[documentation](https://ruthkr.github.io/deepredeff).

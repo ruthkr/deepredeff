@@ -94,4 +94,4 @@ After getting the prediction results, you can plot the probability distribution 
 plot(pred_result)
 ```
 
-More examples with different input formats are available on functions documentations and vignettes, please refer to the [documentation](ruthkr.github.io/deepredeff).
+More examples with different input formats are available on functions documentations and vignettes, please refer to the [documentation](https://ruthkr.github.io/deepredeff).
