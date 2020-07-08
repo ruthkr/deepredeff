@@ -1,4 +1,4 @@
-# deepredeff 1.0.0 (2020-06-22)
+# deepredeff 0.1.0 (2020-07-08)
 
-* Initial release to CRAN.
+* Initial release.
 * Added a `NEWS.md` file to track changes to the package.
