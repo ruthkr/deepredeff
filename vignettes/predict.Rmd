@@ -32,7 +32,6 @@ For each taxon, `deepredeff` uses a different model. These models are:
 - `bacteria`: `ensemble_weighted`, which is a weighted ensemble model of CNN-LSTM, CNN-GRU, GRU Embedding, and LSTM-Embedding. 
 - `fungi`: CNN-LSTM.
 - `oomycete`: CNN-LSTM. 
-- `all`: `ensemble_weighted`, which is a voting ensemble model of CNN-LSTM, CNN-GRU, GRU Embedding, and LSTM-Embedding. 
 
 The model used for your prediction will also be shown when you run the function `predict_effector()` or when you run `summary()`.
 
@@ -60,7 +59,7 @@ input_fungi_df <- system.file("extdata/example/fungi_sample.fasta", package = "d
       deepredeff::fasta_to_df() %>% 
       mutate(sequence = stringr::str_replace_all(sequence, "(.{50,}?)", "\\1 "))
 
-knitr::kable(input_fungi_df, "html") %>% 
+knitr::kable(input_fungi_df %>% head(2), "html") %>% 
   kableExtra::column_spec(column = 2, width = "50em", monospace = TRUE) %>% 
   kableExtra::column_spec(column = 1, monospace = TRUE)
 ```

@@ -115,7 +115,7 @@ deepredeff will give you a dataframe object contains four different columns:
 
 ## Summary and plot
 
-After getting the prediction results, you can information on all the prediction results as a whole by running `summary()`. 
+After getting the prediction results, you can see information on all the prediction results as a whole by running `summary()`. 
 
 ```r
 summary(pred_result)
