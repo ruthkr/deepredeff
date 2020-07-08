@@ -19,12 +19,10 @@ knitr::opts_chunk$set(
 `deepredeff` provides a selection of models trained on sequences from different phytopathogen taxa. It is important to select the correct model. Each taxon is represented by just one model at the moment. You can select the model by setting the taxon in the main function, `predict_effector()`. Available values are `bacteria`, `fungi` and `oomycete`.
 
 ```{r, eval=FALSE}
-
 predict_effector(
-	input = "my_fungal_seqs.fa",
-	taxon = "fungi"
+  input = "my_fungal_seqs.fa",
+  taxon = "fungi"
 )
-
 ```
 
 For each taxon, `deepredeff` uses a different model. These models are: 
@@ -34,7 +32,6 @@ For each taxon, `deepredeff` uses a different model. These models are:
 - `oomycete`: CNN-LSTM. 
 
 The model used for your prediction will also be shown when you run the function `predict_effector()` or when you run `summary()`.
-
 
 ```{r include=FALSE}
 # Load libraries
@@ -47,24 +44,23 @@ library(deepredeff)
 
 ### Sequences in a dataframe
 
-Here we will load Let us take example of fungal sequences in data frame format called `input_fungi_df` as shown below:
+Here we will take example of fungal sequences in data frame format called `input_fungi_df` as shown below:
 
 ```r
 input_fungi_df 
 ```
 
-
 ```{r echo=FALSE}
-input_fungi_df <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff")  %>%
-      deepredeff::fasta_to_df() %>% 
-      mutate(sequence = stringr::str_replace_all(sequence, "(.{50,}?)", "\\1 "))
+input_fungi_df <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
+  deepredeff::fasta_to_df() %>%
+  mutate(sequence = stringr::str_replace_all(sequence, "(.{50,}?)", "\\1 "))
 
-knitr::kable(input_fungi_df %>% head(2), "html") %>% 
-  kableExtra::column_spec(column = 2, width = "50em", monospace = TRUE) %>% 
+knitr::kable(input_fungi_df %>% head(2), "html") %>%
+  kableExtra::column_spec(column = 2, width = "50em", monospace = TRUE) %>%
   kableExtra::column_spec(column = 1, monospace = TRUE)
 ```
 
-`deepredeff` accepts these directly.
+`deepredeff` accepts these directly. To predict fungal effectors, you can specify the model to `taxon= "fungi"`. 
 
 ```r
 pred_fungi <- predict_effector(
@@ -75,7 +71,6 @@ pred_fungi <- predict_effector(
 #> Model used for taxon fungi: cnn_lstm.
 ```
 
-
 ### Sequences in AAStringSet
 
 In the same way as with the dataframe and fasta files we can use a Bioconductor AAStringSet object:
@@ -83,16 +78,15 @@ In the same way as with the dataframe and fasta files we can use a Bioconductor 
 ```r
 input_oomycete_aastringset
 #> AAStringSet object of length 10:
-#>      width seq                                              names               
-#>  [1]   820 MVKLYCAVVGVAGSAFSVRVDES...SKKGKTAMILSRMHYDDDEADL sp|A0A0M5K865|CR1...
-#>  [2]   111 MRLAQVVVVIAASFLVATDALST...FQRYQKKANKIIEKQKAAAKNA tr|A5YTY8|A5YTY8_...
-
+#>     width seq                                              names               
+#> [1]   820 MVKLYCAVVGVAGSAFSVRVDES...SKKGKTAMILSRMHYDDDEADL sp|A0A0M5K865|CR1...
+#> [2]   111 MRLAQVVVVIAASFLVATDALST...FQRYQKKANKIIEKQKAAAKNA tr|A5YTY8|A5YTY8_...
 ```
 
-To predict oomycete effector, you can specify the model to `taxon= oomycete`. 
+To predict oomycete effectors, you can specify the model to `taxon= "oomycete"`. 
 
 ```r
-  pred_oomycete <- predict_effector(
+pred_oomycete <- predict_effector(
   input = input_oomycete_aastringset,
   taxon = "oomycete"
 )
@@ -100,18 +94,17 @@ To predict oomycete effector, you can specify the model to `taxon= oomycete`.
 #> Model used for taxon oomycete: cnn_lstm.
 ```
 
-
 ### Predict from character vectors
 
-The same applies if we provide a character vector. let us take an example of data in string format. 
+The same applies if we provide a character vector. Let us take an example of data in string format.
 
 ```r
 input_bacteria_strings
-#>  [1] "MPINRPAFNLKLNTAIAQ..."
-#>  [2] "MQFMSRINRILFVAV..."
+#> [1] "MPINRPAFNLKLNTAIAQ..."
+#> [2] "MQFMSRINRILFVAV..."
 ```
 
-To predict bacteria effectors, you can specify the model to `taxon= bacteria`. 
+To predict bacteria effectors, you can specify the model to `taxon = "bacteria"`. 
 
 ```r
 pred_bacteria <- predict_effector(
@@ -121,4 +114,3 @@ pred_bacteria <- predict_effector(
 #> Loaded models successfully!
 #> Model used for taxon bacteria: ensemble_weighted.
 ```
-

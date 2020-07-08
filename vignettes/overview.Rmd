@@ -20,17 +20,16 @@ knitr::opts_chunk$set(
 
 1. Highly accurate and general predictions.
 
-1. Works on **bacteria**, **fungi**, **oomycete** sequences. 
+2. Works on **bacteria**, **fungi**, **oomycete** sequences. 
 
-2. Supports different input formats - FASTA, data frame, AAString, AAStringset, and character string format. 
+3. Supports different input formats - FASTA, data frame, AAString, AAStringset, and character string format. 
 
-3. Allows user to get quick summaries and plots of the prediction results they have. 
-
+4. Allows user to get quick summaries and plots of the prediction results they have. 
 
 
 ## Installation
 
-First, we need to install the package itself by doing the following step:
+First, we need to install the package itself by following the step below.
 
 ### Install deepredeff
 
@@ -39,11 +38,11 @@ install.packages("devtools")
 devtools::install_github("ruthkr/deepredeff")
 ```
 
-The deepredeff package uses TensorFlow which is distributed as a Python package and so needs to be installed within a Python environment on your system. Therefore, you need to have Python on your system and the TensorFlow backend. If you already have TensorFlow installed in your system, then you can specify the environment where your TensorFlow is installed using `reticulate::use_condaenv()`.
+The `deepredeff` package uses TensorFlow which is distributed as a Python package and so needs to be installed within a Python environment on your system. Therefore, you need to have Python on your system and the TensorFlow backend. If you already have TensorFlow 2.0.0 or later installed in your system, then you can specify the environment where your TensorFlow is installed using `reticulate::use_condaenv()`.
 
-If you do not have TensorFlow, then you can install it by simply following this step below:
+If you do not have TensorFlow, then you can install it by simply following the step below.
 
-### Installing TensorFlow
+### Install TensorFlow
 
 To install TensorFlow on your system, you need to run the following commands. **Note that this only needs to be run once**, the first time you use `deepredeff`.
 
@@ -57,7 +56,7 @@ This will provide you with an installation of Python and TensorFlow suitable for
 
 - **macOS**: `/Users/<user>/Library/r-miniconda/envs/r-reticulate`
 
-- **Windows**: `C:/Users/runneradmin/AppData/Local/r-miniconda/envs/r-reticulate`
+- **Windows**: `C:/Users/<user>/AppData/Local/r-miniconda/envs/r-reticulate`
 
 ## Sample data
 
@@ -78,7 +77,7 @@ bacteria_fasta_path
 
 ## Effector prediction
 
-Once the data are loaded, you can predict them using the main function `predict_effector()`. Since it is known that the sample data are bacterial protein, then we can use the model trained on bacterial effectors by choosing `taxon = bacteria`.  Effector prediction with the sequences can be done as follows: 
+Once the data are loaded, you can predict them using the main function `predict_effector()`. Since it is known that the sample data are bacterial protein, then we can use the model trained on bacterial effectors by choosing `taxon = "bacteria"`.  Effector prediction with the sequences can be done as follows: 
 
 ```r
 # Predict the effector candidate using bacteria model
@@ -106,16 +105,16 @@ pred_result %>%
 #> 10 tr|D4I1R4|D4I1R4_ERWAC Ou MLSSNRRLLRLLPLASLLLTACGLH 0.04899144 non-effector
 ```
 
-deepredeff will give you a dataframe object contains four different columns: 
+`deepredeff` will give you a dataframe object contains four different columns: 
 
-1. **`name`**:  the sequence identifiers.
-2. **`sequence`**: the sequence.
-3. **`s_score`**: The prediction score. A value between 0 and 1 that indicates the models level of belief that this sequence is an effector.
-4. **`prediction`**: prediction obtained from `s_score` using the standard 0.5 threshold, if `s_score >= 0.5` prediction is `effector`, else prediction is `non-effector`
+1. **`name`**: the sequence identifiers.
+2. **`sequence`**: the input sequences.
+3. **`s_score`**: The prediction scores. A value between 0 and 1 that indicates the models level of belief that this sequence is an effector.
+4. **`prediction`**: class predictions obtained from `s_score` using the standard 0.5 threshold, if `s_score >= 0.5` prediction is `effector`, else prediction is `non-effector`
 
 ## Summary and plot
 
-After getting the prediction results, you can see information on all the prediction results as a whole by running `summary()`. 
+After getting the prediction results, you can see information on all the prediction results as a whole by running `summary()`:
 
 ```r
 summary(pred_result)
@@ -130,7 +129,7 @@ summary(pred_result)
 
 We can see information on the number of sequences predicted as effectors and non-effectors and the model parameters used.
 
-You can also plot the density distribution of the `s_scores` results with the `plot()`.
+You can also plot the density distribution of the `s_scores` results by running `plot()`:
 
 ```r
 plot(pred_result)
