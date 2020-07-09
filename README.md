@@ -16,6 +16,7 @@ coverage](https://codecov.io/gh/ruthkr/deepredeff/branch/master/graph/badge.svg)
 status](https://github.com/ruthkr/deepredeff/workflows/pkgdown/badge.svg)](https://ruthkr.github.io/deepredeff/)
 [![tensorflow
 version](https://img.shields.io/badge/tensorflow-%3E%3D2.0.0-orange)](https://www.tensorflow.org/)
+[![doi](https://img.shields.io/badge/DOI-10.1101%2F2020.07.08.193250-blue)](https://www.biorxiv.org/content/10.1101/2020.07.08.193250v1)
 <!-- badges: end -->
 
 **deepredeff** is a package to predict effector protein given amino acid
