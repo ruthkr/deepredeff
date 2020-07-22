@@ -33,7 +33,7 @@ An object of class "tbl_deepredeff" is a data frame containing at least the foll
 
 \item{\code{sequence}}{the sequence(s) from the input data.}
 \item{\code{s_score}}{score obtained from sigmoid function showing how likely the sequences to be an effector.}
-\item{\code{prediction}}{class prediction for each sequence, obtained from s_score. If the value of \code{s_score} ≥ 0.5, it will be classified as an effector. Otherwise, it will be classified as a non-effector.}
+\item{\code{prediction}}{class prediction for each sequence, obtained from s_score. If the value of \code{s_score} >= 0.5, it will be classified as an effector. Otherwise, it will be classified as a non-effector.}
 }
 \description{
 \code{predict_effector} is used to predict effector protein given amino acid protein sequences.

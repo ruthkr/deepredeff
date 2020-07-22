@@ -11,7 +11,7 @@
 #'
 #' \item{`sequence`}{the sequence(s) from the input data.}
 #' \item{`s_score`}{score obtained from sigmoid function showing how likely the sequences to be an effector.}
-#' \item{`prediction`}{class prediction for each sequence, obtained from s_score. If the value of `s_score` ≥ 0.5, it will be classified as an effector. Otherwise, it will be classified as a non-effector.}
+#' \item{`prediction`}{class prediction for each sequence, obtained from s_score. If the value of `s_score` >= 0.5, it will be classified as an effector. Otherwise, it will be classified as a non-effector.}
 #'
 #' @export
 #'
