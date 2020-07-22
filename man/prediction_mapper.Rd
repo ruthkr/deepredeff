@@ -12,7 +12,7 @@ prediction_mapper(sequence_list, model_list)
 \item{model_list}{List of models.}
 }
 \value{
-Returns list of prediction result of each sequece.
+Returns list of prediction result of each sequence.
 }
 \description{
 Prediction mapper helper
