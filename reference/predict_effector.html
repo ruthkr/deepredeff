@@ -143,22 +143,22 @@
     <p><code>predict_effector</code> is used to predict effector protein given amino acid protein sequences.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)
+    <pre class="usage"><span class='fu'>predict_effector</span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)
 
 <span class='co'># S3 method for character</span>
-<span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)
+<span class='fu'>predict_effector</span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)
 
 <span class='co'># S3 method for data.frame</span>
-<span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)
+<span class='fu'>predict_effector</span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)
 
 <span class='co'># S3 method for AAStringSet</span>
-<span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)
+<span class='fu'>predict_effector</span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)
 
 <span class='co'># S3 method for AAString</span>
-<span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)
+<span class='fu'>predict_effector</span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)
 
 <span class='co'># S3 method for default</span>
-<span class='fu'><a href='https://rdrr.io/pkg/deepredeff/man/predict_effector.html'>predict_effector</a></span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)</pre>
+<span class='fu'>predict_effector</span>(<span class='kw'>input</span>, <span class='kw'>taxon</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -179,7 +179,7 @@
 <p>An object of class "tbl_deepredeff" is a data frame containing at least the following components:</p>
 <dt><code>sequence</code></dt><dd><p>the sequence(s) from the input data.</p></dd>
 <dt><code>s_score</code></dt><dd><p>score obtained from sigmoid function showing how likely the sequences to be an effector.</p></dd>
-<dt><code>prediction</code></dt><dd><p>class prediction for each sequence, obtained from s_score. If the value of <code>s_score</code> ≥ 0.5, it will be clasified as an effector. Otherwise, it will be claasified as a non-effector.</p></dd>
+<dt><code>prediction</code></dt><dd><p>class prediction for each sequence, obtained from s_score. If the value of <code>s_score</code> &gt;= 0.5, it will be classified as an effector. Otherwise, it will be classified as a non-effector.</p></dd>
 
 
   </div>
