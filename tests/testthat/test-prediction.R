@@ -13,6 +13,7 @@ skip_if_no_tf <- function() {
 }
 
 test_that("Prediction function works", {
+  testthat::skip_on_cran()
   skip_if_no_tf()
   expect_equal(
     deepredeff::predict_effector(
@@ -26,6 +27,7 @@ test_that("Prediction function works", {
 })
 
 test_that("Detection of non-aminoacid sequence works", {
+  testthat::skip_on_cran()
   skip_if_no_tf()
   expect_error(
     deepredeff::predict_effector(
@@ -36,6 +38,7 @@ test_that("Detection of non-aminoacid sequence works", {
 })
 
 test_that("Detection of valid input class works", {
+  testthat::skip_on_cran()
   skip_if_no_tf()
   expect_warning(
     deepredeff::predict_effector(
@@ -46,6 +49,7 @@ test_that("Detection of valid input class works", {
 })
 
 test_that("Prediction with input data frame returns S3 class", {
+  testthat::skip_on_cran()
   skip_if_no_tf()
   expect_s3_class(
     deepredeff::predict_effector(
@@ -58,6 +62,7 @@ test_that("Prediction with input data frame returns S3 class", {
 })
 
 test_that("Prediction with input string returns S3 class", {
+  testthat::skip_on_cran()
   skip_if_no_tf()
   expect_s3_class(
     deepredeff::predict_effector(
@@ -72,6 +77,7 @@ test_that("Prediction with input string returns S3 class", {
 })
 
 test_that("Prediction with input FASTA returns S3 class", {
+  testthat::skip_on_cran()
   skip_if_no_tf()
   expect_s3_class(
     deepredeff::predict_effector(
@@ -83,6 +89,7 @@ test_that("Prediction with input FASTA returns S3 class", {
 })
 
 test_that("Prediction with input AAStringset returns S3 class", {
+  testthat::skip_on_cran()
   skip_if_no_tf()
   expect_s3_class(
     deepredeff::predict_effector(
@@ -95,6 +102,7 @@ test_that("Prediction with input AAStringset returns S3 class", {
 })
 
 test_that("Prediction with input AAString returns S3 class", {
+  testthat::skip_on_cran()
   skip_if_no_tf()
   expect_s3_class(
     deepredeff::predict_effector(
@@ -112,6 +120,7 @@ test_that("Prediction with input AAString returns S3 class", {
 
 
 test_that("Summary of prediction result works", {
+  testthat::skip_on_cran()
   skip_if_no_tf()
   pred <- deepredeff::predict_effector(
     input = system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
@@ -128,6 +137,7 @@ test_that("Summary of prediction result works", {
 
 
 test_that("Plot of prediction result return gg/ggplot object", {
+  testthat::skip_on_cran()
   skip_if_no_tf()
   class_plot <- deepredeff::predict_effector(
     input = system.file("extdata/example/fungi_sample.fasta", package = "deepredeff") %>%
