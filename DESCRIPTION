@@ -1,5 +1,5 @@
 Package: deepredeff
-Title: Effector Predictor
+Title: Deep Learning Prediction of Effectors
 Version: 0.1.0
 Authors@R: 
     person(given = "Ruth",
