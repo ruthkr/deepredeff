@@ -1,0 +1,51 @@
+---
+title: "Visualising convolutional network"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{visualise_convnet}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+After getting prediction of the sequences you have, then you can visualise the class activation from one of convolutional neural network layers from the model used to predict. 
+
+Before running all of the codes presented in this articles, it is necessary to set up the conda environment that you will use. 
+
+```r
+reticulate::use_condaenv("tensorflow", conda = "/usr/local/Caskroom/miniconda/base/bin/conda")
+library(dplyr)
+library(deepredeff)
+```
+
+## Calculate class activaton heatmap value
+
+You can easily calculate class activation heatmap of your sequences by doing the following steps. In this article, we will be using the example data which is part of the package. 
+
+```r
+data_input <- system.file("extdata", "example", paste0("bacteria_sample", ".fasta"), package = "deepredeff") 
+```
+
+We can calculate all of the heatmap together by using `get_sum_activation()` as shown below. 
+
+``` r
+heatmap_value <- deepredeff::visualise_convnet(data_input, taxon = "bacteria")
+```
+
+## Plot heatmap
+
+You can also visualise the heatmap value calculated above by doing: 
+
+```r
+plot(heatmap_value)
+```
+
+![](https://i.imgur.com/GBVGNZB.png)
