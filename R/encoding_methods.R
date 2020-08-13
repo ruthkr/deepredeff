@@ -6,6 +6,12 @@
 #' @param max_length Maximum length of sequence to encode.
 #'
 #' @return One-hot encoded sequence.
+#'
+#' @examples
+#'
+#'sample_seq <- "MSHMTFNTWKAGLWRLAAAAVLSLLPVVARAAVPGITGPTFDLTAQPGRANQPDGASVYSWGYGCNPRTVPGFLPSVNPLAGQ"
+#'encoded_seq <- encode_one_hot(sample_seq)
+#'
 #' @export
 encode_one_hot <- function(sequence, max_length = 4034) {
   keys <- as.list(1:20)
@@ -48,6 +54,12 @@ encode_one_hot <- function(sequence, max_length = 4034) {
 #' @param max_length Maximum length of sequence to encode.
 #'
 #' @return Integer encoded sequence.
+#'
+#' @examples
+#'
+#'sample_seq <- "MSHMTFNTWKAGLWRLAAAAVLSLLPVVARAAVPGITGPTFDLTAQPGRANQPDGASVYSWGYGCNPRTVPGFLPSVNPLAGQ"
+#'encoded_seq <- encode_integer(sample_seq)
+#'
 #' @export
 encode_integer <- function(sequence, max_length = 4034) {
   # Define the list of the letters
