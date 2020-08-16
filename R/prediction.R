@@ -15,6 +15,17 @@
 #'
 #' @export
 #'
+#' @examples
+#' \dontrun{
+#' # FASTA input
+#' input_fasta <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff")
+#'
+#' pred_result <- deepredeff::predict_effector(
+#'   input = input_fasta,
+#'   taxon = "fungi"
+#' )
+#' }
+#'
 #' @importFrom rlang .data
 predict_effector <- function(input, taxon) {
   UseMethod("predict_effector", input)
