@@ -18,8 +18,6 @@ Integer encoded sequence.
 \code{encode_integer} integer-encodes sequence in a string format.
 }
 \examples{
-
 sample_seq <- "MSHMTFNTWKAGLWRLAAAAVLSLLPVVARAAVPGITGPTFDLTAQPGRANQPDGASVYSWGYGCNPRTVPGFLPSVNPLAGQ"
 encoded_seq <- encode_integer(sample_seq)
-
 }

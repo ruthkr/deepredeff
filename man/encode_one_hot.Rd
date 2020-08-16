@@ -18,8 +18,6 @@ One-hot encoded sequence.
 \code{encode_one_hot} one-hot-encodes sequence in a string format.
 }
 \examples{
-
 sample_seq <- "MSHMTFNTWKAGLWRLAAAAVLSLLPVVARAAVPGITGPTFDLTAQPGRANQPDGASVYSWGYGCNPRTVPGFLPSVNPLAGQ"
 encoded_seq <- encode_one_hot(sample_seq)
-
 }
