@@ -160,6 +160,19 @@
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'># FASTA input</span>
+<span class='kw'>input_fasta</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span>(<span class='st'>"extdata/example/fungi_sample.fasta"</span>, package = <span class='st'>"deepredeff"</span>)
+
+<span class='kw'>pred_result</span> <span class='op'>&lt;-</span> <span class='kw'>deepredeff</span>::<span class='fu'><a href='predict_effector.html'>predict_effector</a></span>(
+  input = <span class='kw'>input_fasta</span>,
+  taxon = <span class='st'>"fungi"</span>
+)
+
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='kw'>pred_result</span>)
+}
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
