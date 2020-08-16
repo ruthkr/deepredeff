@@ -4,7 +4,9 @@
 #'
 #' @return Returns data in data frame.
 #' @export
-#'
+#' @examples
+#' input <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff")
+#' input_df <- fasta_to_df(input)
 #' @importFrom rlang .data
 fasta_to_df <- function(fasta_path) {
   data_list <- seqinr::read.fasta(fasta_path)
@@ -42,6 +44,11 @@ fasta_to_df <- function(fasta_path) {
 #'
 #' @return Returns data in data frame.
 #' @export
+#'
+#' @examples
+#' input <- "MSHMTFNTWKAGLWRLAAAAVLSLLPVVARAAVPGITGPTFDLTAQPGRANQPDGASVYSWGYGCNPRTVPGFLPSVNPLAGQ"
+#' input_aas <- Biostrings::AAString(input)
+#' input_df <- aas_to_df(input_aas)
 aasset_to_df <- function(aas) {
   data <- data.frame(
     name = names(aas),
@@ -59,6 +66,11 @@ aasset_to_df <- function(aas) {
 #'
 #' @return Returns data in data frame.
 #' @export
+#'
+#' @examples
+#' input_fasta <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff")
+#' input_aas <- Biostrings::readAAStringSet(input_fasta)
+#' input_df <- aasset_to_df(input_aas)
 aas_to_df <- function(aas) {
   aas <- Biostrings::AAStringSet(aas)
   data <- data.frame(

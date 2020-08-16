@@ -15,3 +15,8 @@ Returns data in data frame.
 \description{
 Convert AAStringset class to dataframe
 }
+\examples{
+input <- "MSHMTFNTWKAGLWRLAAAAVLSLLPVVARAAVPGITGPTFDLTAQPGRANQPDGASVYSWGYGCNPRTVPGFLPSVNPLAGQ"
+input_aas <- Biostrings::AAString(input)
+input_df <- aas_to_df(input_aas)
+}

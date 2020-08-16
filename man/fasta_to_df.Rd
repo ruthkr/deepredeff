@@ -15,3 +15,7 @@ Returns data in data frame.
 \description{
 Convert fasta format to dataframe
 }
+\examples{
+input <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff")
+input_df <- fasta_to_df(input)
+}

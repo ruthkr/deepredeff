@@ -15,3 +15,8 @@ Returns data in data frame.
 \description{
 Convert AAString class to dataframe
 }
+\examples{
+input_fasta <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff")
+input_aas <- Biostrings::readAAStringSet(input_fasta)
+input_df <- aasset_to_df(input_aas)
+}
