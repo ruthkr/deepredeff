@@ -29,8 +29,7 @@
 #'
 #' @examples
 #' \dontrun{
-#'
-#' # default installation
+#' # Default installation
 #' library(deepredeff)
 #' install_tensorflow()
 #' }

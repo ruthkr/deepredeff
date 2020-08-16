@@ -48,8 +48,7 @@ Notice that this may have undesired side-effects on Windows installations.
 
 \examples{
 \dontrun{
-
-# default installation
+# Default installation
 library(deepredeff)
 install_tensorflow()
 }
