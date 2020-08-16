@@ -12,7 +12,7 @@ Description: deepredeff - from ‘deep learning prediction of effectors’ is a 
     deepredeff has been trained to identify effector proteins using a set of known 
     experimentally validated effectors from either bacteria, fungi or oomycetes.
     Documentation is available via several vignettes in this page, and the  
-    paper by Kristianingsih and MacLean (2020)<doi:10.1101/2020.07.08.193250>.
+    paper by Kristianingsih and MacLean (2020) <doi:10.1101/2020.07.08.193250>.
 License: MIT + file LICENSE
 URL: https://github.com/ruthkr/deepredeff
 BugReports: https://github.com/ruthkr/deepredeff/issues
@@ -49,4 +49,4 @@ VignetteBuilder:
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
