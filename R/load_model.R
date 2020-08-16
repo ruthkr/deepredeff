@@ -5,7 +5,6 @@
 #' @param taxon Name of taxon.
 #'
 #' @return Returns all of the hyperparamaters and parameters of particular model from specific taxon chosen.
-#' @export
 load_model <- function(taxon = c("bacteria", "fungi", "oomycete")) {
   taxon <- match.arg(taxon)
 

@@ -4,7 +4,6 @@
 #' @param weights Accuracy values from evaluation on the validation dataset.
 #'
 #' @return Returns the prediction results from weighted ensemble.
-#' @export
 ensemble_weighted <- function(pred_list, weights) {
   ensemble_pred <- purrr::pmap(
     pred_list,
@@ -19,7 +18,6 @@ ensemble_weighted <- function(pred_list, weights) {
   return(ensemble_pred)
 }
 
-
 #' Get ensemble methods
 #'
 #' This function is used to get the ensemble methods used for each taxon group. If weights are needed for a particular ensemble, then the weights will automatically follow.
@@ -27,7 +25,6 @@ ensemble_weighted <- function(pred_list, weights) {
 #' @param taxon taxon group
 #'
 #' @return Returns ensemble method and weights.
-#' @export
 get_ensemble_method <- function(taxon) {
   if (taxon == "bacteria") {
     ensemble_method <- ensemble_weighted
