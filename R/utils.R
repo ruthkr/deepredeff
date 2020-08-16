@@ -1,8 +1,9 @@
-tf <- NULL
+local <- new.env()
 
 .onLoad <- function(libname, pkgname) {
   reticulate::configure_environment(pkgname)
-  tf <<- reticulate::import("tensorflow", delay_load = TRUE)
+  tf <- reticulate::import("tensorflow", delay_load = TRUE)
+  assign("tf", value = tf, envir = parent.env(local))
 }
 
 #' Wildcard Expansion on File Paths
