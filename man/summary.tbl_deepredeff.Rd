@@ -14,3 +14,17 @@
 \description{
 Get the summary of the prediction results
 }
+\examples{
+\dontrun{
+# FASTA input
+input_fasta <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff")
+
+pred_result <- deepredeff::predict_effector(
+  input = input_fasta,
+  taxon = "fungi"
+)
+
+summary(pred_result)
+}
+
+}

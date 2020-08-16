@@ -18,6 +18,20 @@ new_tbl_deepredeff <- function(x, description = names(x)) {
 #' @param ... Additional arguments ignored.
 #'
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' # FASTA input
+#' input_fasta <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff")
+#'
+#' pred_result <- deepredeff::predict_effector(
+#'   input = input_fasta,
+#'   taxon = "fungi"
+#' )
+#'
+#' summary(pred_result)
+#' }
+#'
 #' @importFrom rlang .data
 summary.tbl_deepredeff <- function(object, ...) {
   table_summary <- table(factor(object$prediction, levels = c("effector", "non-effector")))
@@ -60,6 +74,20 @@ print.summary.tbl_deepredeff <- function(x, ...) {
 #'
 #' @return class distribution plot
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' # FASTA input
+#' input_fasta <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff")
+#'
+#' pred_result <- deepredeff::predict_effector(
+#'   input = input_fasta,
+#'   taxon = "fungi"
+#' )
+#'
+#' plot(pred_result)
+#' }
+#'
 #' @importFrom rlang .data
 plot.tbl_deepredeff <- function(x, ...) {
   `%+%` <- ggplot2::`%+%`
