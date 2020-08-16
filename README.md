@@ -5,8 +5,7 @@
 
 <!-- badges: start -->
 
-<!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/deepredeff)](https://cran.r-project.org/package=deepredeff) -->
-
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/deepredeff)](https://cran.r-project.org/package=deepredeff)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![R build
 status](https://github.com/ruthkr/deepredeff/workflows/R-CMD-check/badge.svg)](https://github.com/ruthkr/deepredeff/actions)
@@ -14,6 +13,7 @@ status](https://github.com/ruthkr/deepredeff/workflows/R-CMD-check/badge.svg)](h
 coverage](https://codecov.io/gh/ruthkr/deepredeff/branch/master/graph/badge.svg)](https://codecov.io/gh/ruthkr/deepredeff?branch=master)
 [![pkgdown
 status](https://github.com/ruthkr/deepredeff/workflows/pkgdown/badge.svg)](https://ruthkr.github.io/deepredeff/)
+
 [![tensorflow
 version](https://img.shields.io/badge/tensorflow-%3E%3D2.0.0-orange)](https://www.tensorflow.org/)
 [![doi](https://img.shields.io/badge/DOI-10.1101%2F2020.07.08.193250-blue)](https://www.biorxiv.org/content/10.1101/2020.07.08.193250v1)
@@ -88,9 +88,9 @@ pred_result
 | name                                                                                                                                                                               | sequence                  |  s\_score | prediction   |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------ | --------: | :----------- |
 | tr⎮A0A0N8SZV2⎮A0A0N8SZV2\_PSESY Type III secretion system effector HopAI1 OS=Pseudomonas syringae pv. syringae OX=321 GN=ALO45\_04155 PE=4 SV=1                                    | MPINRPAFNLKLNTAIAQPTLKKDA | 0.9483424 | effector     |
-| tr⎮A5CLR7⎮A5CLR7\_CLAM3 Pat-1 protein OS=Clavibacter michiganensis subsp. michiganensis (strain NCPPB 382) OX=443906 GN=pat-1 PE=4 SV=1                                            | MQFMSRINRILFVAVVSLLSVLGCC | 0.0798177 | non-effector |
+| tr⎮A5CLR7⎮A5CLR7\_CLAM3 Pat-1 protein OS=Clavibacter michiganensis subsp. michiganensis (strain NCPPB 382) OX=443906 GN=pat-1 PE=4 SV=1                                            | MQFMSRINRILFVAVVSLLSVLGCC | 0.0798178 | non-effector |
 | sp⎮B2SU53⎮PTHX1\_XANOP TAL effector protein PthXo1 OS=Xanthomonas oryzae pv. oryzae (strain PXO99A) OX=360094 GN=pthXo1 PE=1 SV=2                                                  | MDPIRSRTPSPARELLPGPQPDRVQ | 0.9943361 | effector     |
-| tr⎮C0SPN9⎮C0SPN9\_RALSL Uncharacterized protein RSc2139 OS=Ralstonia solanacearum OX=305 GN=RSc2139 PE=4 SV=1                                                                      | MSIGRSKSVAGASASHALASGENGS | 0.8418443 | effector     |
+| tr⎮C0SPN9⎮C0SPN9\_RALSL Uncharacterized protein RSc2139 OS=Ralstonia solanacearum OX=305 GN=RSc2139 PE=4 SV=1                                                                      | MSIGRSKSVAGASASHALASGENGS | 0.8418444 | effector     |
 | tr⎮D2Z000⎮D2Z000\_RALSL Type III effector protein OS=Ralstonia solanacearum OX=305 GN=rip61 PE=4 SV=1                                                                              | MPPPIRNARTTPPSFDPSAAGDDLR | 0.9953785 | effector     |
 | tr⎮Q8XX20⎮Q8XX20\_RALSO Putative multicopper oxidase, type 3 signal peptide protein OS=Ralstonia solanacearum (strain GMI1000) OX=267608 GN=RSc2298 PE=4 SV=1                      | MSHMTFNTWKAGLWRLAAAAVLSLL | 0.0645516 | non-effector |
 | tr⎮Q87UH8⎮Q87UH8\_PSESM Taurine ABC transporter, periplasmic taurine-binding protein OS=Pseudomonas syringae pv. tomato (strain ATCC BAA-871 / DC3000) OX=223283 GN=tauA PE=4 SV=1 | MKLHFSLRLLTALSLTGATFLAQAA | 0.0492858 | non-effector |
