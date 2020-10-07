@@ -134,7 +134,7 @@ You can also plot the density distribution of the `s_scores` results by running 
 ```r
 plot(pred_result)
 ```
-![](https://i.imgur.com/NkzaQFk.png)
+![](https://raw.githubusercontent.com/ruthkr/deepredeff/master/man/figures/README-pred_result_plot-1.png)
 
 Here we can see that there is a good separation between the scores of predicted effectors and non-effectors.
 
