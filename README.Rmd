@@ -92,7 +92,7 @@ pred_result %>%
 
 After getting the prediction results, you can plot the probability distribution of the results as follows:
 
-```{r pred_result_plot, fig.height=4, fig.width=8, out.width=NULL, fig.align='center'}
+```{r pred_result_plot, fig.width=7, fig.height=3.5, out.width='670px', out.height='335px', fig.align='center'}
 plot(pred_result)
 ```
 

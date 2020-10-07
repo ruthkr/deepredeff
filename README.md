@@ -105,7 +105,7 @@ distribution of the results as follows:
 plot(pred_result)
 ```
 
-<img src="man/figures/README-pred_result_plot-1.png" style="display: block; margin: auto;" />
+<img src="man/figures/README-pred_result_plot-1.png" width="670px" height="335px" style="display: block; margin: auto;" />
 
 More examples with different input formats are available on functions
 documentations and vignettes, please refer to the
