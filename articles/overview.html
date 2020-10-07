@@ -122,7 +122,7 @@
 <a href="#install-tensorflow" class="anchor"></a>Install TensorFlow</h3>
 <p>To install TensorFlow on your system, you need to run the following commands. <strong>Note that this only needs to be run once</strong>, the first time you use <code>deepredeff</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ruthkr/deepredeff">deepredeff</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ruthkr/deepredeff/">deepredeff</a></span><span class="op">)</span>
 <span class="fu"><a href="../reference/install_tensorflow.html">install_tensorflow</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p>This will provide you with an installation of Python and TensorFlow suitable for use with the <code>deepredeff</code> R package. In particular, this command will download and install Miniconda, and create the <code>r-reticulate</code> environment in the following locations:</p>
 <ul>
@@ -137,7 +137,7 @@
 <a href="#sample-data" class="anchor"></a>Sample data</h2>
 <p>Sample data that will be used here is a set of acterial proteins provided within this package. These sample data contain ten different protein sequences in FASTA format. These data can be loaded as follows:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ruthkr/deepredeff">deepredeff</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ruthkr/deepredeff/">deepredeff</a></span><span class="op">)</span>
 
 <span class="co"># Define the fasta path from the sample data</span>
 <span class="va">bacteria_fasta_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span>
@@ -206,7 +206,7 @@
 <p>You can also plot the density distribution of the <code>s_scores</code> results by running <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">pred_result</span><span class="op">)</span></pre></div>
-<p><img src="https://i.imgur.com/NkzaQFk.png"></p>
+<p><img src="https://raw.githubusercontent.com/ruthkr/deepredeff/master/man/figures/README-pred_result_plot-1.png"></p>
 <p>Here we can see that there is a good separation between the scores of predicted effectors and non-effectors.</p>
 </div>
   </div>
