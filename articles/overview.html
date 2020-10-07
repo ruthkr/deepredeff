@@ -45,12 +45,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -118,9 +112,8 @@
 <h3 class="hasAnchor">
 <a href="#install-deepredeff" class="anchor"></a>Install deepredeff</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
-<span class="kw">devtools</span>::<span class="fu">install_github</span>(<span class="st">"ruthkr/deepredeff"</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ruthkr/deepredeff"</span><span class="op">)</span></pre></div>
 <p>The <code>deepredeff</code> package uses TensorFlow which is distributed as a Python package and so needs to be installed within a Python environment on your system. Therefore, you need to have Python on your system and the TensorFlow backend. If you already have TensorFlow 2.0.0 or later installed in your system, then you can specify the environment where your TensorFlow is installed using <code><a href="https://rdrr.io/pkg/reticulate/man/use_python.html">reticulate::use_condaenv()</a></code>.</p>
 <p>If you do not have TensorFlow, then you can install it by simply following the step below.</p>
 </div>
@@ -129,9 +122,8 @@
 <a href="#install-tensorflow" class="anchor"></a>Install TensorFlow</h3>
 <p>To install TensorFlow on your system, you need to run the following commands. <strong>Note that this only needs to be run once</strong>, the first time you use <code>deepredeff</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/ruthkr/deepredeff">deepredeff</a></span>)
-<span class="fu"><a href="../reference/install_tensorflow.html">install_tensorflow</a></span>()
-</pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ruthkr/deepredeff">deepredeff</a></span><span class="op">)</span>
+<span class="fu"><a href="../reference/install_tensorflow.html">install_tensorflow</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p>This will provide you with an installation of Python and TensorFlow suitable for use with the <code>deepredeff</code> R package. In particular, this command will download and install Miniconda, and create the <code>r-reticulate</code> environment in the following locations:</p>
 <ul>
 <li><p><strong>GNU/Linux</strong>: <code>/home/&lt;user&gt;/.local/share/r-miniconda/envs/r-reticulate</code></p></li>
@@ -145,17 +137,16 @@
 <a href="#sample-data" class="anchor"></a>Sample data</h2>
 <p>Sample data that will be used here is a set of acterial proteins provided within this package. These sample data contain ten different protein sequences in FASTA format. These data can be loaded as follows:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/ruthkr/deepredeff">deepredeff</a></span>)
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ruthkr/deepredeff">deepredeff</a></span><span class="op">)</span>
 
 <span class="co"># Define the fasta path from the sample data</span>
-<span class="kw">bacteria_fasta_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(
+<span class="va">bacteria_fasta_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span>
   <span class="st">"extdata/example"</span>, <span class="st">"bacteria_sample.fasta"</span>, 
-  package = <span class="st">"deepredeff"</span>
-)
+  package <span class="op">=</span> <span class="st">"deepredeff"</span>
+<span class="op">)</span>
 
-<span class="kw">bacteria_fasta_path</span>
-<span class="co">#&gt; [1] "/usr/local/Cellar/r/4.0.0/lib/R/library/deepredeff/extdata/example/bacteria_sample.fasta"</span>
-</pre></div>
+<span class="va">bacteria_fasta_path</span>
+<span class="co">#&gt; [1] "/usr/local/Cellar/r/4.0.0/lib/R/library/deepredeff/extdata/example/bacteria_sample.fasta"</span></pre></div>
 </div>
 <div id="effector-prediction" class="section level2">
 <h2 class="hasAnchor">
@@ -163,17 +154,17 @@
 <p>Once the data are loaded, you can predict them using the main function <code><a href="../reference/predict_effector.html">predict_effector()</a></code>. Since it is known that the sample data are bacterial protein, then we can use the model trained on bacterial effectors by choosing <code>taxon = "bacteria"</code>. Effector prediction with the sequences can be done as follows:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="co"># Predict the effector candidate using bacteria model</span>
-<span class="kw">pred_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span>(
-  input = <span class="kw">bacteria_fasta_path</span>,
-  taxon = <span class="st">"bacteria"</span>
-)
+<span class="va">pred_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span>
+  input <span class="op">=</span> <span class="va">bacteria_fasta_path</span>,
+  taxon <span class="op">=</span> <span class="st">"bacteria"</span>
+<span class="op">)</span>
 <span class="co">#&gt; Loaded models successfully!</span>
 <span class="co">#&gt; Model used for taxon bacteria: ensemble_weighted.</span>
 
 <span class="co"># View prediction results</span>
-<span class="kw">pred_result</span> <span class="op">%&gt;%</span> 
-  <span class="kw">dplyr</span>::<span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(name = <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span>(<span class="kw">name</span>, <span class="fl">1</span>, <span class="fl">25</span>), 
-                sequence = <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span>(<span class="kw">sequence</span>, <span class="fl">1</span>, <span class="fl">25</span>))
+<span class="va">pred_result</span> <span class="op">%&gt;%</span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">name</span>, <span class="fl">1</span>, <span class="fl">25</span><span class="op">)</span>, 
+                sequence <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">sequence</span>, <span class="fl">1</span>, <span class="fl">25</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt;                         name                  sequence    s_score   prediction</span>
 <span class="co">#&gt; 1  tr|A0A0N8SZV2|A0A0N8SZV2_ MPINRPAFNLKLNTAIAQPTLKKDA 0.94834236     effector</span>
 <span class="co">#&gt; 2  tr|A5CLR7|A5CLR7_CLAM3 Pa MQFMSRINRILFVAVVSLLSVLGCC 0.07981774 non-effector</span>
@@ -184,8 +175,7 @@
 <span class="co">#&gt; 7  tr|Q87UH8|Q87UH8_PSESM Ta MKLHFSLRLLTALSLTGATFLAQAA 0.04928582 non-effector</span>
 <span class="co">#&gt; 8  tr|Q4ZTI0|Q4ZTI0_PSEU2 Am MHRGPSFVKACAFVLSASFMLANTV 0.30616181 non-effector</span>
 <span class="co">#&gt; 9  tr|Q4ZR15|Q4ZR15_PSEU2 Se MRRQPSLTLRSTLAFALVAMLTVSG 0.07221440 non-effector</span>
-<span class="co">#&gt; 10 tr|D4I1R4|D4I1R4_ERWAC Ou MLSSNRRLLRLLPLASLLLTACGLH 0.04899144 non-effector</span>
-</pre></div>
+<span class="co">#&gt; 10 tr|D4I1R4|D4I1R4_ERWAC Ou MLSSNRRLLRLLPLASLLLTACGLH 0.04899144 non-effector</span></pre></div>
 <p><code>deepredeff</code> will give you a dataframe object contains four different columns:</p>
 <ol style="list-style-type: decimal">
 <li>
@@ -204,20 +194,18 @@
 <a href="#summary-and-plot" class="anchor"></a>Summary and plot</h2>
 <p>After getting the prediction results, you can see information on all the prediction results as a whole by running <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="kw">pred_result</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">pred_result</span><span class="op">)</span>
 <span class="co">#&gt; Total sequences in input data: 10</span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Taxon chosen: bacteria</span>
 <span class="co">#&gt; Model type used: ensemble_weighted</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Total sequences predicted as effector: 4</span>
-<span class="co">#&gt; Total sequences predicted as non-effector: 6</span>
-</pre></div>
+<span class="co">#&gt; Total sequences predicted as non-effector: 6</span></pre></div>
 <p>We can see information on the number of sequences predicted as effectors and non-effectors and the model parameters used.</p>
 <p>You can also plot the density distribution of the <code>s_scores</code> results by running <code><a href="https://rdrr.io/r/graphics/plot.default.html">plot()</a></code>:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(<span class="kw">pred_result</span>)
-</pre></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">pred_result</span><span class="op">)</span></pre></div>
 <p><img src="https://i.imgur.com/NkzaQFk.png"></p>
 <p>Here we can see that there is a good separation between the scores of predicted effectors and non-effectors.</p>
 </div>
@@ -238,7 +226,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
