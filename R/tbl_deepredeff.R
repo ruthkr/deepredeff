@@ -20,7 +20,7 @@ new_tbl_deepredeff <- function(x, description = names(x)) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # FASTA input
 #' input_fasta <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff")
 #'
@@ -76,7 +76,7 @@ print.summary.tbl_deepredeff <- function(x, ...) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # FASTA input
 #' input_fasta <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff")
 #'
