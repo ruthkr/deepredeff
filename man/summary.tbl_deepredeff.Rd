@@ -15,7 +15,7 @@
 Get the summary of the prediction results
 }
 \examples{
-\dontrun{
+\donttest{
 # FASTA input
 input_fasta <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff")
 

@@ -39,7 +39,7 @@ An object of class "tbl_deepredeff" is a data frame containing at least the foll
 \code{predict_effector} is used to predict effector protein given amino acid protein sequences.
 }
 \examples{
-\dontrun{
+\donttest{
 # FASTA input
 input_fasta <- system.file("extdata/example/fungi_sample.fasta", package = "deepredeff")
 
