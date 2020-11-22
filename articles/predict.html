@@ -101,11 +101,11 @@
 <h2 class="hasAnchor">
 <a href="#selecting-the-model" class="anchor"></a>Selecting the model</h2>
 <p><code>deepredeff</code> provides a selection of models trained on sequences from different phytopathogen taxa. It is important to select the correct model. Each taxon is represented by just one model at the moment. You can select the model by setting the taxon in the main function, <code><a href="../reference/predict_effector.html">predict_effector()</a></code>. Available values are <code>bacteria</code>, <code>fungi</code> and <code>oomycete</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span>
   input <span class="op">=</span> <span class="st">"my_fungal_seqs.fa"</span>,
   taxon <span class="op">=</span> <span class="st">"fungi"</span>
-<span class="op">)</span></pre></div>
+<span class="op">)</span></code></pre></div>
 <p>For each taxon, <code>deepredeff</code> uses a different model. These models are:</p>
 <ul>
 <li>
@@ -124,8 +124,8 @@
 <h3 class="hasAnchor">
 <a href="#sequences-in-a-dataframe" class="anchor"></a>Sequences in a dataframe</h3>
 <p>Here we will take example of fungal sequences in data frame format called <code>input_fungi_df</code> as shown below:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">input_fungi_df</span> </pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">input_fungi_df</span> </code></pre></div>
 <table class="table">
 <thead><tr>
 <th style="text-align:left;">
@@ -155,49 +155,49 @@ MFFPSLILAAGSLSTLIQAIPHGAKHHHSLHRRAAATYAVMGGDGEASDG WPTISQWSEYETLWGLNQILIAASCDNSD
 </tbody>
 </table>
 <p><code>deepredeff</code> accepts these directly. To predict fungal effectors, you can specify the model to <code>taxon= "fungi"</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">pred_fungi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pred_fungi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span>
   input <span class="op">=</span> <span class="va">input_fungi_df</span>,
   taxon <span class="op">=</span> <span class="st">"fungi"</span>
 <span class="op">)</span>
 <span class="co">#&gt; Loaded models successfully!</span>
-<span class="co">#&gt; Model used for taxon fungi: cnn_lstm.</span></pre></div>
+<span class="co">#&gt; Model used for taxon fungi: cnn_lstm.</span></code></pre></div>
 </div>
 <div id="sequences-in-aastringset" class="section level3">
 <h3 class="hasAnchor">
 <a href="#sequences-in-aastringset" class="anchor"></a>Sequences in AAStringSet</h3>
 <p>In the same way as with the dataframe and fasta files we can use a Bioconductor AAStringSet object:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="va">input_oomycete_aastringset</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">input_oomycete_aastringset</span>
 <span class="co">#&gt; AAStringSet object of length 10:</span>
 <span class="co">#&gt;     width seq                                              names               </span>
 <span class="co">#&gt; [1]   820 MVKLYCAVVGVAGSAFSVRVDES...SKKGKTAMILSRMHYDDDEADL sp|A0A0M5K865|CR1...</span>
-<span class="co">#&gt; [2]   111 MRLAQVVVVIAASFLVATDALST...FQRYQKKANKIIEKQKAAAKNA tr|A5YTY8|A5YTY8_...</span></pre></div>
+<span class="co">#&gt; [2]   111 MRLAQVVVVIAASFLVATDALST...FQRYQKKANKIIEKQKAAAKNA tr|A5YTY8|A5YTY8_...</span></code></pre></div>
 <p>To predict oomycete effectors, you can specify the model to <code>taxon= "oomycete"</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">pred_oomycete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pred_oomycete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span>
   input <span class="op">=</span> <span class="va">input_oomycete_aastringset</span>,
   taxon <span class="op">=</span> <span class="st">"oomycete"</span>
 <span class="op">)</span>
 <span class="co">#&gt; Loaded models successfully!</span>
-<span class="co">#&gt; Model used for taxon oomycete: cnn_lstm.</span></pre></div>
+<span class="co">#&gt; Model used for taxon oomycete: cnn_lstm.</span></code></pre></div>
 </div>
 <div id="predict-from-character-vectors" class="section level3">
 <h3 class="hasAnchor">
 <a href="#predict-from-character-vectors" class="anchor"></a>Predict from character vectors</h3>
 <p>The same applies if we provide a character vector. Let us take an example of data in string format.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="va">input_bacteria_strings</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">input_bacteria_strings</span>
 <span class="co">#&gt; [1] "MPINRPAFNLKLNTAIAQ..."</span>
-<span class="co">#&gt; [2] "MQFMSRINRILFVAV..."</span></pre></div>
+<span class="co">#&gt; [2] "MQFMSRINRILFVAV..."</span></code></pre></div>
 <p>To predict bacteria effectors, you can specify the model to <code>taxon = "bacteria"</code>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="va">pred_bacteria</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">pred_bacteria</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span>
   input <span class="op">=</span> <span class="va">input_bacteria_strings</span>,
   taxon <span class="op">=</span> <span class="st">"bacteria"</span>
 <span class="op">)</span>
 <span class="co">#&gt; Loaded models successfully!</span>
-<span class="co">#&gt; Model used for taxon bacteria: ensemble_weighted.</span></pre></div>
+<span class="co">#&gt; Model used for taxon bacteria: ensemble_weighted.</span></code></pre></div>
 </div>
 </div>
   </div>
