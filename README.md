@@ -25,9 +25,16 @@ different taxa, which are oomycete, fungi, and bacteria.
 
 ## Installation
 
-First, install the `deepredeff` package from GitHub as follows:
+You can install the released version of `deepredeff` from 
+[CRAN](https://CRAN.R-project.org) with:
 
 ``` r
+install.packages("deepredeff")
+```
+
+And the development version from [GitHub](https://github.com/) with:
+
+```r
 # install.packages("devtools")
 devtools::install_github("ruthkr/deepredeff")
 ```
