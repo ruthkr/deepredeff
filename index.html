@@ -31,6 +31,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -74,7 +76,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/ruthkr/deepredeff/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -92,47 +94,47 @@
   <div class="contents col-md-9">
 <div id="deepredeff-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#deepredeff-" class="anchor"></a>deepredeff <img src="reference/figures/logo.png" align="right" width="120">
+<a href="#deepredeff-" class="anchor" aria-hidden="true"></a>deepredeff <img src="reference/figures/logo.png" align="right" width="120">
 </h1></div>
 <!-- badges: start -->
 
-<p><a href="https://www.tensorflow.org/"><img src="https://img.shields.io/badge/tensorflow-%3E%3D2.0.0-orange" alt="tensorflow version"></a> <a href="https://www.biorxiv.org/content/10.1101/2020.07.08.193250v1"><img src="https://img.shields.io/badge/DOI-10.1101%2F2020.07.08.193250-blue" alt="doi"></a> <!-- badges: end --></p>
+<p><a href="https://www.tensorflow.org/" class="external-link"><img src="https://img.shields.io/badge/tensorflow-%3E%3D2.0.0-orange" alt="tensorflow version"></a> <a href="https://www.biorxiv.org/content/10.1101/2020.07.08.193250v1" class="external-link"><img src="https://img.shields.io/badge/DOI-10.1101%2F2020.07.08.193250-blue" alt="doi"></a> <!-- badges: end --></p>
 <p><strong>deepredeff</strong> is a package to predict effector protein given amino acid sequences. This tool can be used to predict effectors from three different taxa, which are oomycete, fungi, and bacteria.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of <code>deepredeff</code> from <a href="https://CRAN.R-project.org">CRAN</a> with:</p>
+<a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h2>
+<p>You can install the released version of <code>deepredeff</code> from <a href="https://CRAN.R-project.org" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"deepredeff"</span><span class="op">)</span></code></pre></div>
-<p>And the development version from <a href="https://github.com/">GitHub</a> with:</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"deepredeff"</span><span class="op">)</span></code></pre></div>
+<p>And the development version from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ruthkr/deepredeff"</span><span class="op">)</span></code></pre></div>
-<p>The <code>deepredeff</code> package uses TensorFlow. If you already have TensorFlow 2.0.0 or later in your system, then you can specify the environment where TensorFlow is installed using <code><a href="https://rdrr.io/pkg/reticulate/man/use_python.html">reticulate::use_condaenv()</a></code>. Otherwise, you can install TensorFlow, by using the <code><a href="reference/install_tensorflow.html">install_tensorflow()</a></code> function as follows:</p>
+<p>The <code>deepredeff</code> package uses TensorFlow. If you already have TensorFlow 2.0.0 or later in your system, then you can specify the environment where TensorFlow is installed using <code><a href="https://rdrr.io/pkg/reticulate/man/use_python.html" class="external-link">reticulate::use_condaenv()</a></code>. Otherwise, you can install TensorFlow, by using the <code><a href="reference/install_tensorflow.html">install_tensorflow()</a></code> function as follows:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ruthkr/deepredeff/">deepredeff</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ruthkr/deepredeff/" class="external-link">deepredeff</a></span><span class="op">)</span>
 <span class="fu"><a href="reference/install_tensorflow.html">install_tensorflow</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><strong>Note that this only needs to be run once</strong>, the first time you use <code>deepredeff</code>.</p>
 </div>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#documentation" class="anchor"></a>Documentation</h2>
+<a href="#documentation" class="anchor" aria-hidden="true"></a>Documentation</h2>
 <p>To use <code>deepredeff</code>, you can read the documentation on the following topics:</p>
-<ol>
-<li><a href="https://ruthkr.github.io/deepredeff/articles/overview.html">Getting started</a></li>
-<li><a href="https://ruthkr.github.io/deepredeff/articles/predict.html">Effector prediction with various different input formats and models</a></li>
+<ol style="list-style-type: decimal">
+<li><a href="https://ruthkr.github.io/deepredeff/articles/overview.html" class="external-link">Getting started</a></li>
+<li><a href="https://ruthkr.github.io/deepredeff/articles/predict.html" class="external-link">Effector prediction with various different input formats and models</a></li>
 </ol>
 </div>
 <div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
-<a href="#quick-start" class="anchor"></a>Quick start</h2>
+<a href="#quick-start" class="anchor" aria-hidden="true"></a>Quick start</h2>
 <p>This is a basic example which shows you how to predict effector sequences if you have a FASTA file:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load the package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ruthkr/deepredeff/">deepredeff</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ruthkr/deepredeff/" class="external-link">deepredeff</a></span><span class="op">)</span>
 
 <span class="co"># Define the fasta path from the sample data</span>
-<span class="va">bacteria_fasta_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span>
+<span class="va">bacteria_fasta_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>
   <span class="st">"extdata/example"</span>, <span class="st">"bacteria_sample.fasta"</span>, 
   package <span class="op">=</span> <span class="st">"deepredeff"</span>
 <span class="op">)</span>
@@ -225,16 +227,16 @@
 </table>
 <p>After getting the prediction results, you can plot the probability distribution of the results as follows:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">pred_result</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">pred_result</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-pred_result_plot-1.png" width="670px" height="335px" style="display: block; margin: auto;"></p>
-<p>More examples with different input formats are available on functions documentations and vignettes, please refer to the <a href="https://ruthkr.github.io/deepredeff">documentation</a>.</p>
+<p>More examples with different input formats are available on functions documentations and vignettes, please refer to the <a href="https://ruthkr.github.io/deepredeff" class="external-link">documentation</a>.</p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
 <li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=deepredeff">https://​cloud.r-project.org/​package=deepredeff</a>
 </li>
@@ -244,40 +246,46 @@
 </li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
 <li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Ruth Kristianingsih <br><small class="roles"> Author, maintainer, copyright holder </small> <a href="https://orcid.org/0000-0003-1873-6203" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://cran.r-project.org/package=deepredeff"><img src="https://www.r-pkg.org/badges/version/deepredeff" alt="CRAN_Status_Badge"></a></li>
-<li><a href="https://www.tidyverse.org/lifecycle/#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></li>
-<li><a href="https://github.com/ruthkr/deepredeff/actions"><img src="https://github.com/ruthkr/deepredeff/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
-<li><a href="https://codecov.io/gh/ruthkr/deepredeff?branch=master"><img src="https://codecov.io/gh/ruthkr/deepredeff/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
-<li><a href="https://ruthkr.github.io/deepredeff/"><img src="https://github.com/ruthkr/deepredeff/workflows/pkgdown/badge.svg" alt="pkgdown status"></a></li>
+<li><a href="https://cran.r-project.org/package=deepredeff" class="external-link"><img src="https://www.r-pkg.org/badges/version/deepredeff" alt="CRAN_Status_Badge"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></li>
+<li><a href="https://github.com/ruthkr/deepredeff/actions" class="external-link"><img src="https://github.com/ruthkr/deepredeff/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
+<li><a href="https://codecov.io/gh/ruthkr/deepredeff?branch=master" class="external-link"><img src="https://codecov.io/gh/ruthkr/deepredeff/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
+<li><a href="https://ruthkr.github.io/deepredeff/" class="external-link"><img src="https://github.com/ruthkr/deepredeff/workflows/pkgdown/badge.svg" alt="pkgdown status"></a></li>
 </ul>
 </div>
-</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Ruth Kristianingsih.</p>
+  <p></p>
+<p>Developed by Ruth Kristianingsih.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p>
 </div>
 
       </footer>
@@ -285,6 +293,8 @@
 
   
 
+
+  
 
   </body>
 </html>
