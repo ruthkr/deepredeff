@@ -53,6 +53,13 @@ install_tensorflow <- function(method = c("conda", "virtualenv"),
     finally = message("\n\nWill proceed to install TensorFlow")
   )
 
+  # Fix for h5py (see https://github.com/rstudio/keras/blob/67425c88109d308e983d631de9e5aa1369dcd913/R/install.R#L164)
+  extra_packages <- c(
+    extra_packages,
+    "h5py==2.10.0",
+    "pyyaml==3.12"
+  )
+
   # Install TensorFlow on Linux and macOS
   if (!is_windows()) {
     tryCatch(
