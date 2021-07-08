@@ -68,6 +68,7 @@ install_tensorflow <- function(method = c("conda", "virtualenv"),
         conda = conda,
         version = version,
         extra_packages = extra_packages,
+        conda_python_version = "3.6",
         pip_ignore_installed = FALSE,
         ...
       ),
