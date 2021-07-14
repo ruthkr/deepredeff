@@ -62,7 +62,11 @@ jobs:
 
       - name: Install TensorFlow
         run: |
-          keras::install_keras(tensorflow = "2.0.0")
+          tensorflow::install_tensorflow(
+            version = "2.0.0",
+            extra_packages = c("h5py==2.10.0", "pyyaml==3.12"),
+            conda_python_version = "3.6"
+          )
         shell: Rscript {0}
 
       - name: Conda environment info
