@@ -15,8 +15,9 @@ install_tensorflow(
 \arguments{
 \item{method}{Installation method ("conda" or "virtualenv").}
 
-\item{conda}{Path to conda executable (or "auto" to find conda using the
-PATH and other conventional install locations).}
+\item{conda}{The path to a \code{conda} executable. Use \code{"auto"} to allow
+\code{reticulate} to automatically find an appropriate \code{conda} binary. See
+\strong{Finding Conda} for more details.}
 
 \item{version}{TensorFlow version to install ( by default, "2.0.0").}
 
