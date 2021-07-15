@@ -13,7 +13,6 @@ status](https://github.com/ruthkr/deepredeff/workflows/R-CMD-check/badge.svg)](h
 coverage](https://codecov.io/gh/ruthkr/deepredeff/branch/master/graph/badge.svg)](https://codecov.io/gh/ruthkr/deepredeff?branch=master)
 [![pkgdown
 status](https://github.com/ruthkr/deepredeff/workflows/pkgdown/badge.svg)](https://ruthkr.github.io/deepredeff/)
-
 [![tensorflow
 version](https://img.shields.io/badge/tensorflow-v2.0.0-orange)](https://www.tensorflow.org/)
 [![python
