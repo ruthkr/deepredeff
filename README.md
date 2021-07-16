@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/deepredeff)](https://cran.r-project.org/package=deepredeff)
-[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 [![R build
 status](https://github.com/ruthkr/deepredeff/workflows/R-CMD-check/badge.svg)](https://github.com/ruthkr/deepredeff/actions)
 [![Codecov test
@@ -117,4 +117,4 @@ plot(pred_result)
 
 More examples with different input formats are available on functions
 documentations and vignettes, please refer to the
-[documentation](https://ruthkr.github.io/deepredeff).
+[documentation](https://ruthkr.github.io/deepredeff/).
