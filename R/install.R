@@ -8,7 +8,7 @@
 #'
 #' @param method Installation method ("conda" or "virtualenv").
 #'
-#' @param version TensorFlow version to install ( by default, "2.0.0").
+#' @param version TensorFlow version to install.
 #'
 #' @param extra_packages Additional PyPI packages to install along with TensorFlow.
 #'
@@ -37,7 +37,6 @@
 #' @export
 install_tensorflow <- function(method = c("conda", "virtualenv"),
                                conda = "auto",
-                               version = "2.0.0",
                                extra_packages = NULL,
                                ...) {
 
@@ -56,8 +55,8 @@ install_tensorflow <- function(method = c("conda", "virtualenv"),
   # Fix for h5py (see https://github.com/rstudio/keras/blob/67425c88109d308e983d631de9e5aa1369dcd913/R/install.R#L164)
   extra_packages <- c(
     extra_packages,
-    "h5py==2.10.0",
-    "pyyaml==3.12"
+    "h5py",
+    "pyyaml"
   )
 
   # Install TensorFlow on Linux and macOS
@@ -68,7 +67,6 @@ install_tensorflow <- function(method = c("conda", "virtualenv"),
         conda = conda,
         version = version,
         extra_packages = extra_packages,
-        conda_python_version = "3.6",
         pip_ignore_installed = FALSE,
         ...
       ),
@@ -97,7 +95,6 @@ install_tensorflow <- function(method = c("conda", "virtualenv"),
         envname = NULL,
         method = method,
         conda = conda,
-        python_version = "3.6",
         pip = TRUE,
         ...
       ),
