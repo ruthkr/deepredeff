@@ -16,3 +16,4 @@
 ^overview$
 ^vignettes/overview_old\.Rmd$
 ^vignettes/predict_old\.Rmd$
+^CRAN-RELEASE$
