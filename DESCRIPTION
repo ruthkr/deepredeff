@@ -39,9 +39,6 @@ Suggests:
     testthat
 VignetteBuilder: 
     knitr
-biocViews:
-Config/reticulate:list( packages = list( list(package =
-    "tensorflow", version = "2.0.0", pip = FALSE) ) )
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
