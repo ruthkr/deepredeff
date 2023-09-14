@@ -37,6 +37,7 @@
 #' @export
 install_tensorflow <- function(method = c("conda", "virtualenv"),
                                conda = "auto",
+                               version = "default",
                                extra_packages = NULL,
                                ...) {
 

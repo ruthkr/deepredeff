@@ -7,7 +7,7 @@
 install_tensorflow(
   method = c("conda", "virtualenv"),
   conda = "auto",
-  version = "2.0.0",
+  version = "default",
   extra_packages = NULL,
   ...
 )
@@ -16,10 +16,10 @@ install_tensorflow(
 \item{method}{Installation method ("conda" or "virtualenv").}
 
 \item{conda}{The path to a \code{conda} executable. Use \code{"auto"} to allow
-\code{reticulate} to automatically find an appropriate \code{conda} binary. See
-\strong{Finding Conda} for more details.}
+\code{reticulate} to automatically find an appropriate \code{conda} binary.
+See \strong{Finding Conda} and \code{\link[reticulate:conda_binary]{conda_binary()}} for more details.}
 
-\item{version}{TensorFlow version to install ( by default, "2.0.0").}
+\item{version}{TensorFlow version to install.}
 
 \item{extra_packages}{Additional PyPI packages to install along with TensorFlow.}
 

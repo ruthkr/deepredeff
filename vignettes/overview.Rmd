@@ -48,7 +48,7 @@ To install TensorFlow on your system, you need to run the following commands. **
 
 ```r
 library(deepredeff)
-tensorflow::install_tensorflow()
+install_tensorflow()
 ```
 This will provide you with an installation of Python and TensorFlow suitable for use with the `deepredeff` R package. In particular, this command will download and install Miniconda, and create the `r-reticulate` environment in the following locations:
 
