@@ -7,8 +7,7 @@
 
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/deepredeff)](https://cran.r-project.org/package=deepredeff)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![R build
-status](https://github.com/ruthkr/deepredeff/workflows/R-CMD-check/badge.svg)](https://github.com/ruthkr/deepredeff/actions)
+[![R-CMD-check](https://github.com/ruthkr/deepredeff/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/ruthkr/deepredeff/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/ruthkr/deepredeff/branch/master/graph/badge.svg)](https://codecov.io/gh/ruthkr/deepredeff?branch=master)
 [![pkgdown
@@ -86,6 +85,10 @@ pred_result <- predict_effector(
 )
 #> Loaded models successfully!
 #> Model used for taxon bacteria: ensemble_weighted.
+#> 1/1 - 0s - 214ms/epoch - 214ms/step
+#> 1/1 - 0s - 368ms/epoch - 368ms/step
+#> 1/1 - 0s - 265ms/epoch - 265ms/step
+#> 1/1 - 0s - 233ms/epoch - 233ms/step
 ```
 
 ``` r
@@ -95,7 +98,7 @@ pred_result
 
 | name                                                                                                                                                                              | sequence                  |   s_score | prediction   |
 |:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------|----------:|:-------------|
-| tr⎮A0A0N8SZV2⎮A0A0N8SZV2_PSESY Type III secretion system effector HopAI1 OS=Pseudomonas syringae pv. syringae OX=321 GN=ALO45_04155 PE=4 SV=1                                     | MPINRPAFNLKLNTAIAQPTLKKDA | 0.9483424 | effector     |
+| tr⎮A0A0N8SZV2⎮A0A0N8SZV2_PSESY Type III secretion system effector HopAI1 OS=Pseudomonas syringae pv. syringae OX=321 GN=ALO45_04155 PE=4 SV=1                                     | MPINRPAFNLKLNTAIAQPTLKKDA | 0.9483423 | effector     |
 | tr⎮A5CLR7⎮A5CLR7_CLAM3 Pat-1 protein OS=Clavibacter michiganensis subsp. michiganensis (strain NCPPB 382) OX=443906 GN=pat-1 PE=4 SV=1                                            | MQFMSRINRILFVAVVSLLSVLGCC | 0.0798178 | non-effector |
 | sp⎮B2SU53⎮PTHX1_XANOP TAL effector protein PthXo1 OS=Xanthomonas oryzae pv. oryzae (strain PXO99A) OX=360094 GN=pthXo1 PE=1 SV=2                                                  | MDPIRSRTPSPARELLPGPQPDRVQ | 0.9943361 | effector     |
 | tr⎮C0SPN9⎮C0SPN9_RALSL Uncharacterized protein RSc2139 OS=Ralstonia solanacearum OX=305 GN=RSc2139 PE=4 SV=1                                                                      | MSIGRSKSVAGASASHALASGENGS | 0.8418444 | effector     |
