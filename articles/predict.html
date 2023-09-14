@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">deepredeff</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.2</span>
       </span>
     </div>
 
@@ -50,7 +50,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -85,49 +85,60 @@
 
       
 
-      </header><script src="predict_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="predict_files/kePrint-0.0.1/kePrint.js"></script><link href="predict_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+      </header><script src="predict_files/kePrint-0.0.1/kePrint.js"></script><link href="predict_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>More in predicting sequences</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/ruthkr/deepredeff/blob/master/vignettes/predict.Rmd" class="external-link"><code>vignettes/predict.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ruthkr/deepredeff/blob/HEAD/vignettes/predict.Rmd" class="external-link"><code>vignettes/predict.Rmd</code></a></small>
       <div class="hidden name"><code>predict.Rmd</code></div>
 
     </div>
 
     
     
-<div id="selecting-the-model" class="section level2">
-<h2 class="hasAnchor">
-<a href="#selecting-the-model" class="anchor" aria-hidden="true"></a>Selecting the model</h2>
-<p><code>deepredeff</code> provides a selection of models trained on sequences from different phytopathogen taxa. It is important to select the correct model. Each taxon is represented by just one model at the moment. You can select the model by setting the taxon in the main function, <code><a href="../reference/predict_effector.html">predict_effector()</a></code>. Available values are <code>bacteria</code>, <code>fungi</code> and <code>oomycete</code>.</p>
+<div class="section level2">
+<h2 id="selecting-the-model">Selecting the model<a class="anchor" aria-label="anchor" href="#selecting-the-model"></a>
+</h2>
+<p><code>deepredeff</code> provides a selection of models trained on
+sequences from different phytopathogen taxa. It is important to select
+the correct model. Each taxon is represented by just one model at the
+moment. You can select the model by setting the taxon in the main
+function, <code><a href="../reference/predict_effector.html">predict_effector()</a></code>. Available values are
+<code>bacteria</code>, <code>fungi</code> and <code>oomycete</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span>
-  input <span class="op">=</span> <span class="st">"my_fungal_seqs.fa"</span>,
-  taxon <span class="op">=</span> <span class="st">"fungi"</span>
-<span class="op">)</span></code></pre></div>
-<p>For each taxon, <code>deepredeff</code> uses a different model. These models are:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span></span>
+<span>  input <span class="op">=</span> <span class="st">"my_fungal_seqs.fa"</span>,</span>
+<span>  taxon <span class="op">=</span> <span class="st">"fungi"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>For each taxon, <code>deepredeff</code> uses a different model. These
+models are:</p>
 <ul>
 <li>
-<code>bacteria</code>: <code>ensemble_weighted</code>, which is a weighted ensemble model of CNN-LSTM, CNN-GRU, GRU Embedding, and LSTM-Embedding.</li>
+<code>bacteria</code>: <code>ensemble_weighted</code>, which is a
+weighted ensemble model of CNN-LSTM, CNN-GRU, GRU Embedding, and
+LSTM-Embedding.</li>
 <li>
 <code>fungi</code>: CNN-LSTM.</li>
 <li>
 <code>oomycete</code>: CNN-LSTM.</li>
 </ul>
-<p>The model used for your prediction will also be shown when you run the function <code><a href="../reference/predict_effector.html">predict_effector()</a></code> or when you run <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>.</p>
+<p>The model used for your prediction will also be shown when you run
+the function <code><a href="../reference/predict_effector.html">predict_effector()</a></code> or when you run
+<code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code>.</p>
 </div>
-<div id="importing-from-different-data-sources" class="section level2">
-<h2 class="hasAnchor">
-<a href="#importing-from-different-data-sources" class="anchor" aria-hidden="true"></a>Importing from different data sources</h2>
-<div id="sequences-in-a-dataframe" class="section level3">
-<h3 class="hasAnchor">
-<a href="#sequences-in-a-dataframe" class="anchor" aria-hidden="true"></a>Sequences in a dataframe</h3>
-<p>Here we will take example of fungal sequences in data frame format called <code>input_fungi_df</code> as shown below:</p>
+<div class="section level2">
+<h2 id="importing-from-different-data-sources">Importing from different data sources<a class="anchor" aria-label="anchor" href="#importing-from-different-data-sources"></a>
+</h2>
+<div class="section level3">
+<h3 id="sequences-in-a-dataframe">Sequences in a dataframe<a class="anchor" aria-label="anchor" href="#sequences-in-a-dataframe"></a>
+</h3>
+<p>Here we will take example of fungal sequences in data frame format
+called <code>input_fungi_df</code> as shown below:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">input_fungi_df</span> </code></pre></div>
+<code class="sourceCode R"><span><span class="va">input_fungi_df</span> </span></code></pre></div>
 <table class="table">
 <thead><tr>
 <th style="text-align:left;">
@@ -140,66 +151,85 @@ sequence
 <tbody>
 <tr>
 <td style="text-align:left;font-family: monospace;">
-tr|A0A0A0S3X0|A0A0A0S3X0_LEPMC Avirulence protein OS=Leptosphaeria maculans OX=5022 GN=AvrLm2 PE=4 SV=1
+tr|A0A0A0S3X0|A0A0A0S3X0_LEPMC Avirulence protein OS=Leptosphaeria
+maculans OX=5022 GN=AvrLm2 PE=4 SV=1
 </td>
 <td style="text-align:left;width: 50em; font-family: monospace;">
-MRLANFLFYLAPMIVSSLAFDFVPLSGELDFSQEMVFINLTQQQFSELHL QHQQWHQKNILKRYTLTELDEICQQYNANFRFNSGFCSGKDRRWDCYDLN FPTTQSERRVQRRRVCRGEHQTCETIDVINAFGAHARFPQCVHRFELPIN DPIPYKDSYQGQYTVEKALDDSWEDILANTGGSHVDFSYQSGTQHYQGYG LTFACIHCIGGSILRMIHANDPARATVTIKFH
+MRLANFLFYLAPMIVSSLAFDFVPLSGELDFSQEMVFINLTQQQFSELHL
+QHQQWHQKNILKRYTLTELDEICQQYNANFRFNSGFCSGKDRRWDCYDLN
+FPTTQSERRVQRRRVCRGEHQTCETIDVINAFGAHARFPQCVHRFELPIN
+DPIPYKDSYQGQYTVEKALDDSWEDILANTGGSHVDFSYQSGTQHYQGYG
+LTFACIHCIGGSILRMIHANDPARATVTIKFH
 </td>
 </tr>
 <tr>
 <td style="text-align:left;font-family: monospace;">
-tr|A0A0A2ILW0|A0A0A2ILW0_PENEN Peptidoglycan-binding Lysin subgroup OS=Penicillium expansum OX=27334 GN=PEX2_020570 PE=4 SV=1
+tr|A0A0A2ILW0|A0A0A2ILW0_PENEN Peptidoglycan-binding Lysin subgroup
+OS=Penicillium expansum OX=27334 GN=PEX2_020570 PE=4 SV=1
 </td>
 <td style="text-align:left;width: 50em; font-family: monospace;">
-MFFPSLILAAGSLSTLIQAIPHGAKHHHSLHRRAAATYAVMGGDGEASDG WPTISQWSEYETLWGLNQILIAASCDNSDDETSDINTSIKSIASETGVDA RFILAIIMQESKGCVRVQSTNNGVENTGLMQSHDGEGSCNKDGSKTTPCP SSMITQMIQDGTAGTTQGDGLKQCYEAQTGGTAAKYYKAARTYNSGSIAS SGNLGQGGATHCYASDIANRVRGWAGDVSECVEATIGTITSGVESALGGD DGSSSTSTSTTAAQSTETAEPVQTSSSAAEQPVTTEPIQTSSAPAQAAET SSAASSATSTETTSVAPAPTWTPSSNVQVAAQTTTPTPSWTTKSAPAATT APAASSSASGTAPLYPYASSSCQKYYTVKAGDFCDKVTEAVGISFLDLRS LNPGLDEKCSDLWLGYQYCIKA
+MFFPSLILAAGSLSTLIQAIPHGAKHHHSLHRRAAATYAVMGGDGEASDG
+WPTISQWSEYETLWGLNQILIAASCDNSDDETSDINTSIKSIASETGVDA
+RFILAIIMQESKGCVRVQSTNNGVENTGLMQSHDGEGSCNKDGSKTTPCP
+SSMITQMIQDGTAGTTQGDGLKQCYEAQTGGTAAKYYKAARTYNSGSIAS
+SGNLGQGGATHCYASDIANRVRGWAGDVSECVEATIGTITSGVESALGGD
+DGSSSTSTSTTAAQSTETAEPVQTSSSAAEQPVTTEPIQTSSAPAQAAET
+SSAASSATSTETTSVAPAPTWTPSSNVQVAAQTTTPTPSWTTKSAPAATT
+APAASSSASGTAPLYPYASSSCQKYYTVKAGDFCDKVTEAVGISFLDLRS
+LNPGLDEKCSDLWLGYQYCIKA
 </td>
 </tr>
 </tbody>
 </table>
-<p><code>deepredeff</code> accepts these directly. To predict fungal effectors, you can specify the model to <code>taxon= "fungi"</code>.</p>
+<p><code>deepredeff</code> accepts these directly. To predict fungal
+effectors, you can specify the model to <code>taxon= "fungi"</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pred_fungi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span>
-  input <span class="op">=</span> <span class="va">input_fungi_df</span>,
-  taxon <span class="op">=</span> <span class="st">"fungi"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Loaded models successfully!</span>
-<span class="co">#&gt; Model used for taxon fungi: cnn_lstm.</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">pred_fungi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span></span>
+<span>  input <span class="op">=</span> <span class="va">input_fungi_df</span>,</span>
+<span>  taxon <span class="op">=</span> <span class="st">"fungi"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loaded models successfully!</span></span>
+<span><span class="co">#&gt; Model used for taxon fungi: cnn_lstm.</span></span></code></pre></div>
 </div>
-<div id="sequences-in-aastringset" class="section level3">
-<h3 class="hasAnchor">
-<a href="#sequences-in-aastringset" class="anchor" aria-hidden="true"></a>Sequences in AAStringSet</h3>
-<p>In the same way as with the dataframe and fasta files we can use a Bioconductor AAStringSet object:</p>
+<div class="section level3">
+<h3 id="sequences-in-aastringset">Sequences in AAStringSet<a class="anchor" aria-label="anchor" href="#sequences-in-aastringset"></a>
+</h3>
+<p>In the same way as with the dataframe and fasta files we can use a
+Bioconductor AAStringSet object:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">input_oomycete_aastringset</span>
-<span class="co">#&gt; AAStringSet object of length 10:</span>
-<span class="co">#&gt;     width seq                                              names               </span>
-<span class="co">#&gt; [1]   820 MVKLYCAVVGVAGSAFSVRVDES...SKKGKTAMILSRMHYDDDEADL sp|A0A0M5K865|CR1...</span>
-<span class="co">#&gt; [2]   111 MRLAQVVVVIAASFLVATDALST...FQRYQKKANKIIEKQKAAAKNA tr|A5YTY8|A5YTY8_...</span></code></pre></div>
-<p>To predict oomycete effectors, you can specify the model to <code>taxon= "oomycete"</code>.</p>
+<code class="sourceCode R"><span><span class="va">input_oomycete_aastringset</span></span>
+<span><span class="co">#&gt; AAStringSet object of length 10:</span></span>
+<span><span class="co">#&gt;     width seq                                              names               </span></span>
+<span><span class="co">#&gt; [1]   820 MVKLYCAVVGVAGSAFSVRVDES...SKKGKTAMILSRMHYDDDEADL sp|A0A0M5K865|CR1...</span></span>
+<span><span class="co">#&gt; [2]   111 MRLAQVVVVIAASFLVATDALST...FQRYQKKANKIIEKQKAAAKNA tr|A5YTY8|A5YTY8_...</span></span></code></pre></div>
+<p>To predict oomycete effectors, you can specify the model to
+<code>taxon= "oomycete"</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pred_oomycete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span>
-  input <span class="op">=</span> <span class="va">input_oomycete_aastringset</span>,
-  taxon <span class="op">=</span> <span class="st">"oomycete"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Loaded models successfully!</span>
-<span class="co">#&gt; Model used for taxon oomycete: cnn_lstm.</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">pred_oomycete</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span></span>
+<span>  input <span class="op">=</span> <span class="va">input_oomycete_aastringset</span>,</span>
+<span>  taxon <span class="op">=</span> <span class="st">"oomycete"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loaded models successfully!</span></span>
+<span><span class="co">#&gt; Model used for taxon oomycete: cnn_lstm.</span></span></code></pre></div>
 </div>
-<div id="predict-from-character-vectors" class="section level3">
-<h3 class="hasAnchor">
-<a href="#predict-from-character-vectors" class="anchor" aria-hidden="true"></a>Predict from character vectors</h3>
-<p>The same applies if we provide a character vector. Let us take an example of data in string format.</p>
+<div class="section level3">
+<h3 id="predict-from-character-vectors">Predict from character vectors<a class="anchor" aria-label="anchor" href="#predict-from-character-vectors"></a>
+</h3>
+<p>The same applies if we provide a character vector. Let us take an
+example of data in string format.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">input_bacteria_strings</span>
-<span class="co">#&gt; [1] "MPINRPAFNLKLNTAIAQ..."</span>
-<span class="co">#&gt; [2] "MQFMSRINRILFVAV..."</span></code></pre></div>
-<p>To predict bacteria effectors, you can specify the model to <code>taxon = "bacteria"</code>.</p>
+<code class="sourceCode R"><span><span class="va">input_bacteria_strings</span></span>
+<span><span class="co">#&gt; [1] "MPINRPAFNLKLNTAIAQ..."</span></span>
+<span><span class="co">#&gt; [2] "MQFMSRINRILFVAV..."</span></span></code></pre></div>
+<p>To predict bacteria effectors, you can specify the model to
+<code>taxon = "bacteria"</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pred_bacteria</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span>
-  input <span class="op">=</span> <span class="va">input_bacteria_strings</span>,
-  taxon <span class="op">=</span> <span class="st">"bacteria"</span>
-<span class="op">)</span>
-<span class="co">#&gt; Loaded models successfully!</span>
-<span class="co">#&gt; Model used for taxon bacteria: ensemble_weighted.</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">pred_bacteria</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/predict_effector.html">predict_effector</a></span><span class="op">(</span></span>
+<span>  input <span class="op">=</span> <span class="va">input_bacteria_strings</span>,</span>
+<span>  taxon <span class="op">=</span> <span class="st">"bacteria"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Loaded models successfully!</span></span>
+<span><span class="co">#&gt; Model used for taxon bacteria: ensemble_weighted.</span></span></code></pre></div>
 </div>
 </div>
   </div>
@@ -221,7 +251,7 @@ MFFPSLILAAGSLSTLIQAIPHGAKHHHSLHRRAAATYAVMGGDGEASDG WPTISQWSEYETLWGLNQILIAASCDNSD
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
