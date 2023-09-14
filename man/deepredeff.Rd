@@ -3,6 +3,7 @@
 \docType{package}
 \name{deepredeff}
 \alias{deepredeff}
+\alias{deepredeff-package}
 \title{\code{deepredeff} package}
 \description{
 Effector protein predictor using Deep Learning models.
